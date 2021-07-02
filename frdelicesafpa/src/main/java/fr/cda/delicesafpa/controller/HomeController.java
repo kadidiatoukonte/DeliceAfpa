@@ -25,10 +25,7 @@ public class HomeController {
 	private static final Logger logger = LoggerFactory.getLogger(HomeController.class);
 	@Autowired
     ClientRepository clientRepository;
-	/**
-	 * Simply selects the home view to render by returning its name.
-	 * @return 
-	 */
+	
 	@RequestMapping(value = "/", method = RequestMethod.GET)
 	public  String home(Locale locale, Model model) {
 		logger.info("Welcome home! The client locale is {}.", locale);
@@ -39,9 +36,7 @@ public class HomeController {
 		String formattedDate = dateFormat.format(date);
 		
 		model.addAttribute("serverTime", formattedDate );
-		//Client client = clientRepository.findById(0).get();
-		//String url = "data:image/jpeg;base64," + Base64.getEncoder().encodeToString(client.getPhotoclient());
-		//model.addAttribute("url", url);
+	
 		return "home";
 	}
 	
