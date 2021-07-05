@@ -1,0 +1,343 @@
+--CREATE DATABASE cdafr;
+------------------------------------------------------------
+--        Script Postgre 
+------------------------------------------------------------
+
+
+CREATE USER gestionnairefr WITH ENCRYPTED PASSWORD 'yourpass';
+GRANT ALL PRIVILEGES ON DATABASE cdafr TO gestionnairefr;
+
+
+
+CREATE SCHEMA delicesafpa
+    AUTHORIZATION gestionnairefr;
+
+
+
+------------------------------------------------------------
+-- Table: client
+------------------------------------------------------------
+CREATE TABLE delicesafpa.client(
+	idclient              SERIAL NOT NULL ,
+	nomclient             VARCHAR (50) NOT NULL ,
+	prenomclient          VARCHAR (50) NOT NULL ,
+	datebirclient         DATE  NOT NULL ,
+	paysclient            VARCHAR (50) NOT NULL ,
+	adresseclient         VARCHAR (50) NOT NULL ,
+	complementadrclient   VARCHAR (50)  ,
+	cpclient              VARCHAR  NOT NULL ,
+	villeclient           VARCHAR (50) NOT NULL ,
+	telclient             VARCHAR (50) NOT NULL ,
+	mailclient            VARCHAR (50) NOT NULL ,
+	passwordclient        VARCHAR (50) NOT NULL ,
+	photoclient           BYTEA    ,
+	PRIMARY KEY (idclient)
+);
+ALTER TABLE delicesafpa.client
+    OWNER to gestionnairefr;
+
+------------------------------------------------------------
+-- Table: employe
+------------------------------------------------------------
+CREATE TABLE delicesafpa.employe(
+	idemploye         SERIAL NOT NULL ,
+	nomemploye        VARCHAR (50) NOT NULL ,
+	prenomemploye     VARCHAR (50) NOT NULL ,
+	telemploye        VARCHAR (50) NOT NULL ,
+	mailemploye       VARCHAR (50) NOT NULL ,
+	photoemploye      BYTEA   ,
+	passwordemploye   VARCHAR (50) NOT NULL ,
+	statusemploye     BOOL  NOT NULL  ,
+        PRIMARY KEY (idemploye)
+);
+
+ALTER TABLE delicesafpa.employe
+    OWNER to gestionnairefr;
+------------------------------------------------------------
+-- Table: categorie
+------------------------------------------------------------
+CREATE TABLE delicesafpa.categorie(
+	idcategorie            SERIAL NOT NULL ,
+	nomcategorie           VARCHAR (50) NOT NULL ,
+	descriptioncategorie   VARCHAR (150) NOT NULL ,
+	visibilitecategorie    BOOL  NOT NULL ,
+	photocategorie         BYTEA    ,
+	PRIMARY KEY (idcategorie)
+);
+ALTER TABLE delicesafpa.categorie
+    OWNER to gestionnairefr;
+
+------------------------------------------------------------
+-- Table: article
+------------------------------------------------------------
+CREATE TABLE delicesafpa.article(
+	idarticle              SERIAL NOT NULL ,
+	nomarticle             VARCHAR (50) NOT NULL ,
+	prixarticle            FLOAT  NOT NULL ,
+	descriptionarticle     VARCHAR (150) NOT NULL ,
+	visibilitearticle      BOOL  NOT NULL ,
+	offreSpecialearticle   BOOL  NOT NULL ,
+	descriptionoffresp     VARCHAR (150)  ,
+	photoarticle           BYTEA   ,
+	idcategorie            INT    ,
+	PRIMARY KEY (idarticle)
+);
+ALTER TABLE delicesafpa.article
+    OWNER to gestionnairefr;
+
+------------------------------------------------------------
+-- Table: reservation
+------------------------------------------------------------
+CREATE TABLE delicesafpa.reservation(
+	idreservation          SERIAL NOT NULL ,
+	datereservation        DATE  NOT NULL , 
+        horaire         time without time zone NOT NULL,
+	nbreplacereservation   INT  NOT NULL ,
+	idclient               INT  NOT NULL  ,
+	PRIMARY KEY (idreservation)
+);
+
+ALTER TABLE delicesafpa.reservation
+    OWNER to gestionnairefr;
+------------------------------------------------------------
+-- Table: statusReservation
+------------------------------------------------------------
+CREATE TABLE delicesafpa.statusreservation(
+	idstatus      SERIAL NOT NULL ,
+	description   VARCHAR (50) NOT NULL  ,
+	PRIMARY KEY (idstatus)
+);
+
+ALTER TABLE delicesafpa.statusreservation
+    OWNER to gestionnairefr;
+------------------------------------------------------------
+-- Table: statusCommande
+------------------------------------------------------------
+CREATE TABLE delicesafpa.statuscommande(
+	idstatus      SERIAL NOT NULL ,
+	description   VARCHAR (50) NOT NULL  ,
+	PRIMARY KEY (idstatus)
+);
+ALTER TABLE delicesafpa.statuscommande
+    OWNER to gestionnairefr;
+
+------------------------------------------------------------
+-- Table: roleEmploye
+------------------------------------------------------------
+CREATE TABLE delicesafpa.roleemploye(
+	idstatus      SERIAL NOT NULL ,
+	description   VARCHAR (50) NOT NULL  ,
+	PRIMARY KEY (idstatus)
+);
+
+ALTER TABLE delicesafpa.roleemploye
+    OWNER to gestionnairefr;
+------------------------------------------------------------
+-- Table: traiterReservation
+------------------------------------------------------------
+CREATE TABLE delicesafpa.traiterreservation(
+	idreservation   INT  NOT NULL ,
+	idemploye       INT  NOT NULL ,
+	idstatus        INT  NOT NULL ,
+	date            timestamp without time zone NOT NULL  ,
+	PRIMARY KEY (idreservation,idemploye,idstatus,date)
+);
+
+ALTER TABLE delicesafpa.traiterreservation
+    OWNER to gestionnairefr;
+
+------------------------------------------------------------
+-- Table: etreSup
+------------------------------------------------------------
+CREATE TABLE delicesafpa.etresup(
+	idarticle           INT  NOT NULL ,
+	idarticle_etreSup   INT  NOT NULL  ,
+	PRIMARY KEY (idarticle,idarticle_etresup)
+);
+
+ALTER TABLE delicesafpa.etresup
+    OWNER to gestionnairefr;
+
+------------------------------------------------------------
+-- Table: assignerrole
+------------------------------------------------------------
+CREATE TABLE delicesafpa.assignerrole(
+	idemploye                 INT  NOT NULL ,
+	idemploye_assigner_role   INT  NOT NULL ,
+	idstatus                  INT  NOT NULL ,
+	date            timestamp without time zone NOT NULL  ,
+	PRIMARY KEY (idemploye,idemploye_assigner_role,idstatus,date)
+);
+ALTER TABLE delicesafpa.assignerrole
+    OWNER to gestionnairefr;
+
+
+------------------------------------------------------------
+-- Table: determinerArt
+------------------------------------------------------------
+CREATE TABLE delicesafpa.determinerart(
+	idarticle   INT  NOT NULL ,
+	idemploye   INT  NOT NULL ,
+	date            timestamp without time zone NOT NULL  ,
+	PRIMARY KEY (idarticle,idemploye,date)
+);
+ALTER TABLE delicesafpa.determinerart
+    OWNER to gestionnairefr;
+
+------------------------------------------------------------
+-- Table: determinerCat
+------------------------------------------------------------
+CREATE TABLE delicesafpa.determinercat(
+	idcategorie   INT  NOT NULL ,
+	idemploye     INT  NOT NULL ,
+	date            timestamp without time zone NOT NULL  ,
+	PRIMARY KEY (idcategorie,idemploye,date)
+);
+ALTER TABLE delicesafpa.determinercat
+    OWNER to gestionnairefr;
+
+------------------------------------------------------------
+-- Table: commande
+------------------------------------------------------------
+CREATE TABLE delicesafpa.commande(
+	idcommande        SERIAL NOT NULL ,
+	datecommande      DATE  NOT NULL ,
+        horaire         time without time zone NOT NULL,	
+        adressecommande   VARCHAR (50) NOT NULL ,
+	idclient          INT  NOT NULL ,
+	idemploye         INT   ,
+idpanier     INT,
+	PRIMARY KEY (idcommande)
+);
+
+ALTER TABLE delicesafpa.commande
+    OWNER to gestionnairefr;
+------------------------------------------------------------
+-- Table: panier
+------------------------------------------------------------
+CREATE TABLE delicesafpa.panier(
+	idpanier     SERIAL NOT NULL ,
+
+	PRIMARY KEY (idpanier)
+);
+
+ALTER TABLE delicesafpa.panier
+    OWNER to gestionnairefr;
+------------------------------------------------------------
+-- Table: concerner
+------------------------------------------------------------
+CREATE TABLE delicesafpa.concerner(
+	idpanier          INT  NOT NULL ,
+	idarticle         INT  NOT NULL ,
+	quantitearticle   INT  NOT NULL  ,
+	PRIMARY KEY (idpanier,idarticle)
+);
+ALTER TABLE delicesafpa.concerner
+    OWNER to gestionnairefr;
+
+------------------------------------------------------------
+-- Table: traiterCommande
+------------------------------------------------------------
+CREATE TABLE delicesafpa.traitercommande(
+	idcommande   INT  NOT NULL ,
+	idemploye    INT  NOT NULL ,
+	idstatus     INT  NOT NULL ,
+	date            timestamp without time zone NOT NULL  ,
+	PRIMARY KEY (idcommande,idemploye,idstatus,date)
+);
+ALTER TABLE delicesafpa.traitercommande
+    OWNER to gestionnairefr;
+
+
+
+ALTER TABLE delicesafpa.article
+	ADD 
+	FOREIGN KEY (idcategorie)
+	REFERENCES delicesafpa.categorie(idcategorie);
+
+ALTER TABLE delicesafpa.reservation
+	ADD FOREIGN KEY (idclient)
+	REFERENCES delicesafpa.client(idclient);
+
+ALTER TABLE delicesafpa.traiterreservation
+	ADD FOREIGN KEY (idreservation)
+	REFERENCES delicesafpa.reservation(idreservation);
+
+ALTER TABLE delicesafpa.traiterreservation
+	ADD FOREIGN KEY (idemploye)
+	REFERENCES delicesafpa.employe(idemploye);
+
+ALTER TABLE delicesafpa.traiterreservation
+	ADD FOREIGN KEY (idstatus)
+	REFERENCES delicesafpa.statusreservation(idstatus);
+
+ALTER TABLE delicesafpa.etresup
+	ADD FOREIGN KEY (idarticle)
+	REFERENCES delicesafpa.article(idarticle);
+
+ALTER TABLE delicesafpa.etresup
+	ADD FOREIGN KEY (idarticle_etresup)
+	REFERENCES delicesafpa.article(idarticle);
+
+ALTER TABLE delicesafpa.assignerrole
+	ADD FOREIGN KEY (idemploye)
+	REFERENCES delicesafpa.employe(idemploye);
+
+ALTER TABLE delicesafpa.assignerrole
+	ADD FOREIGN KEY (idemploye_assigner_role)
+	REFERENCES delicesafpa.employe(idemploye);
+
+ALTER TABLE delicesafpa.assignerrole
+	ADD FOREIGN KEY (idstatus)
+	REFERENCES delicesafpa.roleemploye(idstatus);
+
+ALTER TABLE delicesafpa.determinerart
+	ADD FOREIGN KEY (idarticle)
+	REFERENCES delicesafpa.article(idarticle);
+
+ALTER TABLE delicesafpa.determinerart
+	ADD FOREIGN KEY (idemploye)
+	REFERENCES delicesafpa.employe(idemploye);
+
+ALTER TABLE delicesafpa.determinercat
+	ADD FOREIGN KEY (idcategorie)
+	REFERENCES delicesafpa.categorie(idcategorie);
+
+ALTER TABLE delicesafpa.determinercat
+	ADD FOREIGN KEY (idemploye)
+	REFERENCES delicesafpa.employe(idemploye);
+
+ALTER TABLE delicesafpa.commande
+	ADD FOREIGN KEY (idclient)
+	REFERENCES delicesafpa.client(idclient);
+
+ALTER TABLE delicesafpa.commande
+	ADD FOREIGN KEY (idemploye)
+	REFERENCES delicesafpa.employe(idemploye);
+
+ALTER TABLE delicesafpa.commande
+	ADD FOREIGN KEY (idpanier)
+	REFERENCES delicesafpa.panier(idpanier);
+
+
+
+ALTER TABLE delicesafpa.concerner
+	ADD FOREIGN KEY (idpanier)
+	REFERENCES delicesafpa.panier(idpanier);
+
+ALTER TABLE delicesafpa.concerner
+	ADD FOREIGN KEY (idarticle)
+	REFERENCES delicesafpa.article(idarticle);
+
+ALTER TABLE delicesafpa.traitercommande
+	ADD FOREIGN KEY (idcommande)
+	REFERENCES delicesafpa.commande(idcommande);
+
+ALTER TABLE delicesafpa.traitercommande
+	ADD FOREIGN KEY (idemploye)
+	REFERENCES delicesafpa.employe(idemploye);
+
+ALTER TABLE delicesafpa.traitercommande
+	ADD FOREIGN KEY (idstatus)
+	REFERENCES delicesafpa.statuscommande(idstatus);
+
