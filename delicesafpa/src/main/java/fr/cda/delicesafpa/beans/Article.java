@@ -5,6 +5,7 @@ import java.math.BigInteger;
 import java.sql.Date;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Set;
 
 import javax.persistence.Basic;
 import javax.persistence.Column;
@@ -64,10 +65,19 @@ public class Article {
 	@ManyToOne @JoinColumn(name="idcategorie", nullable=true)
     private Categorie categorie ;
 	
+	@OneToMany(mappedBy = "idarticle_etreSup",fetch = FetchType.EAGER)
+	Set<EtreSup> idarticle_etreSup;
+	
+	@OneToMany(mappedBy = "idarticle",fetch = FetchType.EAGER)
+	Set<EtreSup> idarticleS;
+	
+	
+	
+	
 	public Article() {};
 
 	public Article(String nomarticle, float prixarticle, String descriptionarticle,
-			boolean visibilitearticle, boolean offrespecialearticle, String descriptionoffresp) {
+			boolean visibilitearticle, boolean offrespecialearticle, String descriptionoffresp,Categorie categorie) {
 		super();
 		this.nomarticle = nomarticle;
 		this.prixarticle = prixarticle;
@@ -75,6 +85,7 @@ public class Article {
 		this.visibilitearticle = visibilitearticle;
 		this.offrespecialearticle = offrespecialearticle;
 		this.descriptionoffresp = descriptionoffresp;
+	    this.categorie = categorie;
 	}
 
 	public int getIdarticle() {
@@ -132,6 +143,49 @@ public class Article {
 	public void setDescriptionoffresp(String descriptionoffresp) {
 		this.descriptionoffresp = descriptionoffresp;
 	}
+
+	public List<DeterminerArt> getDeterminerart() {
+		return determinerart;
+	}
+
+	public void setDeterminerart(List<DeterminerArt> determinerart) {
+		this.determinerart = determinerart;
+	}
+
+	public Categorie getCategorie() {
+		return categorie;
+	}
+
+	public void setCategorie(Categorie categorie) {
+		this.categorie = categorie;
+	}
+
+	public Set<EtreSup> getIdarticle_etreSup() {
+		return idarticle_etreSup;
+	}
+
+	public void setIdarticle_etreSup(Set<EtreSup> idarticle_etreSup) {
+		this.idarticle_etreSup = idarticle_etreSup;
+	}
+
+	public Set<EtreSup> getIdarticleS() {
+		return idarticleS;
+	}
+
+	public void setIdarticleS(Set<EtreSup> idarticleS) {
+		this.idarticleS = idarticleS;
+	}
+/*java.lang.StackOverflowError*/
+	@Override
+	public String toString() {
+		return "nomarticle=" + nomarticle + ", prixarticle=" + prixarticle
+				+ ", descriptionarticle=" + descriptionarticle + ", visibilitearticle=" + visibilitearticle
+				+ ", offrespecialearticle=" + offrespecialearticle + ", descriptionoffresp=" + descriptionoffresp
+				+ ", determinerart=" + determinerart.size() + ", categorie=" + categorie + ", idarticle_etreSup="
+				+ idarticle_etreSup.size() + ", idarticleS=" + idarticleS.size() + "]";
+	}
+
+
 	
 	
 

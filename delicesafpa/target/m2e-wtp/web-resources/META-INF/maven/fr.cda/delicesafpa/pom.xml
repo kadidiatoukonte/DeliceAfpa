@@ -14,25 +14,58 @@
 		<org.slf4j-version>1.6.6</org.slf4j-version>
 	</properties>
 	<dependencies>
-		
-		<dependency>
+	<dependency>
+    <groupId>org.webjars</groupId>
+    <artifactId>jquery-ui</artifactId>
+    <version>1.12.0</version>
+</dependency>
+	<dependency>
+		<groupId>org.projectlombok</groupId>
+		<artifactId>lombok</artifactId>
+		<version>1.18.20</version>
+		<scope>provided</scope>
+	</dependency>
+	<!-- https://mvnrepository.com/artifact/org.modelmapper/modelmapper -->
+<dependency>
+    <groupId>org.modelmapper</groupId>
+    <artifactId>modelmapper</artifactId>
+    <version>2.0.0</version>
+</dependency>
+<!-- https://mvnrepository.com/artifact/org.webjars/jquery -->
+<dependency>
+    <groupId>org.webjars</groupId>
+    <artifactId>jquery</artifactId>
+    <version>1.9.0</version>
+</dependency>
+<!-- https://mvnrepository.com/artifact/org.webjars/bootstrap -->
+<!-- https://mvnrepository.com/artifact/org.webjars/bootstrap -->
+<dependency>
+    <groupId>org.webjars</groupId>
+    <artifactId>bootstrap</artifactId>
+    <version>5.0.1</version>
+</dependency>
+
+<!-- https://mvnrepository.com/artifact/net.sourceforge.cssparser/cssparser -->
+<dependency>
+    <groupId>net.sourceforge.cssparser</groupId>
+    <artifactId>cssparser</artifactId>
+    <version>0.9.29</version>
+</dependency>
+
+	
+	<!-- https://mvnrepository.com/artifact/org.hibernate/hibernate-core -->
+<dependency>
     <groupId>org.hibernate</groupId>
     <artifactId>hibernate-core</artifactId>
-    <version>5.3.2.Final</version>
+    <version>5.4.16.Final</version>
 </dependency>
-<dependency>
-    <groupId>org.postgresql</groupId>
-    <artifactId>postgresql</artifactId>
-    <version>42.2.19.jre7</version>
-</dependency>
-<dependency>
-    <groupId>org.springframework.data</groupId>
-    <artifactId>spring-data-jpa</artifactId>
-    <version>2.2.3.RELEASE</version>
-</dependency>
-		
-		
-		
+	
+		<!-- Spring -->
+		<dependency>
+			<groupId>org.springframework.data</groupId>
+			<artifactId>spring-data-jpa</artifactId>
+			<version>2.2.3.RELEASE</version>
+		</dependency>
 		<dependency>
 			<groupId>org.springframework</groupId>
 			<artifactId>spring-webmvc</artifactId>
@@ -121,7 +154,14 @@
 			<artifactId>junit</artifactId>
 			<version>4.7</version>
 			<scope>test</scope>
-		</dependency>        
+		</dependency> 
+		<!-- https://mvnrepository.com/artifact/org.postgresql/postgresql -->
+		<dependency>
+		    <groupId>org.postgresql</groupId>
+		    <artifactId>postgresql</artifactId>
+		    <version>42.2.20</version>
+		</dependency>
+		       
 	</dependencies>
     <build>
         <plugins>
@@ -157,6 +197,24 @@
                 <version>1.2.1</version>
                 <configuration>
                     <mainClass>org.test.int1.Main</mainClass>
+                </configuration>
+            </plugin>
+            
+            <plugin>
+                <artifactId>maven-war-plugin</artifactId>
+                <version>2.3</version>
+                <configuration>
+                    <overlays>
+                        <overlay>
+                            <groupId>yourgroupid</groupId>
+                            <artifactId>yourJqueryArtifactId</artifactId>
+                            <type>zip</type>
+                            <targetPath/>
+                            <includes>
+                                <include>js/jquery.js</include>
+                            </includes>
+                        </overlay>
+                    </overlays>
                 </configuration>
             </plugin>
         </plugins>

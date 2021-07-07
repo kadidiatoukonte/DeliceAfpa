@@ -2,16 +2,28 @@ package fr.cda.delicesafpa.beans;
 
 import java.io.Serializable;
 
+import javax.persistence.Column;
 import javax.persistence.Embeddable;
 
-//@Embeddable 
+@Embeddable 
 public class ConcernerId implements Serializable {
 	
-/*
-	private Panier idpanier;
+	@Column(name = "idpanier")
+	private int idpanier;
+	
+	@Column(name = "idarticle")
+	private int idarticle;
 	
 
-	private Article idarticle;
+
+
+	public ConcernerId(int idpanier, int idarticle) {
+		super();
+		this.idpanier = idpanier;
+		this.idarticle = idarticle;
+	}
+
+
 
 
 	public ConcernerId() {
@@ -20,41 +32,54 @@ public class ConcernerId implements Serializable {
 	}
 
 
-	public ConcernerId(Panier idpanier, Article idarticle) {
-		super();
-		this.idpanier = idpanier;
-		this.idarticle = idarticle;
-	}
 
 
-	public Panier getIdpanier() {
+	public int getIdpanier() {
 		return idpanier;
 	}
 
 
-	public void setIdpanier(Panier idpanier) {
+
+
+	public void setIdpanier(int idpanier) {
 		this.idpanier = idpanier;
 	}
 
 
-	public Article getIdarticle() {
+
+
+	public int getIdarticle() {
 		return idarticle;
 	}
 
 
-	public void setIdarticle(Article idarticle) {
+
+
+	public void setIdarticle(int idarticle) {
 		this.idarticle = idarticle;
 	}
+
+
+
+
+	@Override
+	public String toString() {
+		return "ConcernerId [idpanier=" + idpanier + ", idarticle=" + idarticle + "]";
+	}
+
+
 
 
 	@Override
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
-		result = prime * result + ((idarticle == null) ? 0 : idarticle.hashCode());
-		result = prime * result + ((idpanier == null) ? 0 : idpanier.hashCode());
+		result = prime * result + idarticle;
+		result = prime * result + idpanier;
 		return result;
 	}
+
+
 
 
 	@Override
@@ -66,22 +91,13 @@ public class ConcernerId implements Serializable {
 		if (getClass() != obj.getClass())
 			return false;
 		ConcernerId other = (ConcernerId) obj;
-		if (idarticle == null) {
-			if (other.idarticle != null)
-				return false;
-		} else if (!idarticle.equals(other.idarticle))
+		if (idarticle != other.idarticle)
 			return false;
-		if (idpanier == null) {
-			if (other.idpanier != null)
-				return false;
-		} else if (!idpanier.equals(other.idpanier))
+		if (idpanier != other.idpanier)
 			return false;
 		return true;
 	}
-	
-	
-	
-	*/
-	
+
+
 
 }

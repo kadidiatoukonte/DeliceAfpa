@@ -48,4 +48,11 @@ public class StatusReservation {
 		this.description = description;
 	}
 
+
+	@Override
+	public String toString() {
+		return "StatusReservation [idstatus=" + idstatus + ", description=" + description + ", traiterReservation="
+				+ traiterReservation + "]";
+	}
+
 }

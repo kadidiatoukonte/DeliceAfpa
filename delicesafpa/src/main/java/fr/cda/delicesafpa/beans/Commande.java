@@ -64,11 +64,7 @@ public class Commande {
 
 	@ManyToOne @JoinColumn(name="idemploye", nullable=true)
     private Employe employe;/*livreur*/
-	/*
-	@OneToOne(mappedBy = "commande",fetch = FetchType.EAGER,cascade = CascadeType.ALL)
-    @PrimaryKeyJoinColumn*/
-	/*@OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "idpanier", referencedColumnName = "id")*/
+	
 	@OneToOne (cascade = CascadeType.REMOVE)  
     @JoinColumn( name="idPanier", nullable = true)
 	private Panier panier;

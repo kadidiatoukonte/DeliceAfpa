@@ -24,11 +24,15 @@ import fr.cda.delicesafpa.beans.AssignerRoleId;
 import fr.cda.delicesafpa.beans.Categorie;
 import fr.cda.delicesafpa.beans.Client;
 import fr.cda.delicesafpa.beans.Commande;
+import fr.cda.delicesafpa.beans.ConcernerId;
+import fr.cda.delicesafpa.beans.ConcernerPanArt;
 import fr.cda.delicesafpa.beans.DeterminerArt;
 import fr.cda.delicesafpa.beans.DeterminerArtId;
 import fr.cda.delicesafpa.beans.DeterminerCat;
 import fr.cda.delicesafpa.beans.DeterminerCatId;
 import fr.cda.delicesafpa.beans.Employe;
+import fr.cda.delicesafpa.beans.EtreSup;
+import fr.cda.delicesafpa.beans.EtresupId;
 import fr.cda.delicesafpa.beans.Panier;
 import fr.cda.delicesafpa.beans.Reservation;
 import fr.cda.delicesafpa.beans.RoleEmploye;
@@ -41,9 +45,11 @@ import fr.cda.delicesafpa.dao.AssignerRoleRepository;
 import fr.cda.delicesafpa.dao.CategorieRepository;
 import fr.cda.delicesafpa.dao.ClientRepository;
 import fr.cda.delicesafpa.dao.CommandeRepository;
+import fr.cda.delicesafpa.dao.ConcernerPanArtRepository;
 import fr.cda.delicesafpa.dao.DeterminerArtRepository;
 import fr.cda.delicesafpa.dao.DeterminerCatRepository;
 import fr.cda.delicesafpa.dao.EmployeRepository;
+import fr.cda.delicesafpa.dao.EtreSupRepository;
 import fr.cda.delicesafpa.dao.PanierRepository;
 import fr.cda.delicesafpa.dao.ReservationRepository;
 import fr.cda.delicesafpa.dao.RoleEmployeRepository;
@@ -51,6 +57,8 @@ import fr.cda.delicesafpa.dao.StatusCommandeRepository;
 import fr.cda.delicesafpa.dao.StatusReservationRepository;
 import fr.cda.delicesafpa.dao.TraiterCommandeRepository;
 import fr.cda.delicesafpa.dao.TraiterReservationRepository;
+import fr.cda.delicesafpa.interfaceServ.ArticleServiceI;
+import fr.cda.delicesafpa.services.ArticleService;
 
 /**
  * Handles requests for the application home page.
@@ -89,12 +97,19 @@ public class HomeController {
 	CategorieRepository categorieRepository;
 	@Autowired
 	ArticleRepository articleRepository;
+	@Autowired
+	ArticleServiceI articleService;
+	@Autowired
+	ConcernerPanArtRepository concernerPanArtRepository;
+	@Autowired
+	EtreSupRepository etreSupRepository;
+	
 	
 	
 	/**
 	 * Simply selects the home view to render by returning its name.
 	 */
-	@RequestMapping(value = "/", method = RequestMethod.GET)
+	@RequestMapping(value = "/ciao", method = RequestMethod.GET)
 	public String home(Locale locale, Model model) {
 		logger.info("Welcome home! The client locale is {}.", locale);
 		Date date = new Date();
@@ -216,9 +231,10 @@ public class HomeController {
 		/* %%%%%%%%%%%%%%%%%%% */// DETARTICLE
 		/*Article(String nomarticle, float prixarticle, String descriptionarticle,
 			boolean visibilitearticle, boolean offrespecialearticle, String descriptionoffresp)*/
-		Article newArt = new Article("nomarticle", (float) 10.50,"descriptionarticle",
-				true, false,"descriptionoffresp");
-		articleRepository.save(newArt);
+		Article newArt = new Article("TESTTTT", (float) 10.50,"descriptionarticle",
+				true, false,"descriptionoffresp",categorie);
+		//articleRepository.save(newArt);
+		articleService.save(newArt);
 
 		/* DeterminerCatId(int idcategorie, int idemploye, LocalDateTime date) */
 		LocalDateTime nowCA = LocalDateTime.now();
@@ -234,6 +250,20 @@ public class HomeController {
 		System.out.println(articleRepository.findById(aid).get());
 		
 		System.out.println(employeRepository.findById(1).get());	
+		/* %%%%%%%%%%%%%%%%%%% */// panier-article
+		
+		ConcernerId conId = new ConcernerId(newPanier.getIdpanier(),art.getIdarticle());
+		ConcernerPanArt newConPanArt = new ConcernerPanArt(conId,newPanier,art,20 );		
+		concernerPanArtRepository.save(newConPanArt);
+		System.out.println(newConPanArt);
+/* %%%%%%%%%%%%%%%%%%% */// etresup
+        Article aaa= articleRepository.findById(1).get();
+		EtresupId etruSupId = new EtresupId(aaa.getIdarticle(),art.getIdarticle());
+		EtreSup etres = new EtreSup(etruSupId,aaa,art);
+		etreSupRepository.save(etres);
+System.out.println(etres);
+System.out.println(articleRepository.findById(1).get());
+System.out.println(articleRepository.findById(art.getIdarticle()).get());		
 		
 		
 		
