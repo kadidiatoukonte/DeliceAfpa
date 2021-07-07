@@ -71,7 +71,9 @@ public class Article {
 	@OneToMany(mappedBy = "idarticle",fetch = FetchType.EAGER)
 	Set<EtreSup> idarticleS;
 	
-	
+	@OneToMany
+	(fetch = FetchType.EAGER , mappedBy = "idarticle")
+	private Set<ConcernerPanArt> concernerPanArt;
 	
 	
 	public Article() {};
@@ -175,7 +177,19 @@ public class Article {
 	public void setIdarticleS(Set<EtreSup> idarticleS) {
 		this.idarticleS = idarticleS;
 	}
-/*java.lang.StackOverflowError*/
+	
+	
+	
+	
+public Set<ConcernerPanArt> getConcernerPanArt() {
+		return concernerPanArt;
+	}
+
+	public void setConcernerPanArt(Set<ConcernerPanArt> concernerPanArt) {
+		this.concernerPanArt = concernerPanArt;
+	}
+
+	/*java.lang.StackOverflowError*/
 	@Override
 	public String toString() {
 		return "nomarticle=" + nomarticle + ", prixarticle=" + prixarticle

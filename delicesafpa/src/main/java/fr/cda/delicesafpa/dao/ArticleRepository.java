@@ -18,22 +18,60 @@ public interface ArticleRepository extends JpaRepository<Article,Integer>{
 	@Query("select a from Article a where a.descriptionarticle like '%noce'")
 	Set<Article> findArticleWithDescriptionArticle();
 	
-	
 	@Transactional
     @Modifying
 	@Query("update Article a SET a.descriptionarticle = ?1 where a.idarticle = ?2")
 	public void updateDescription(@Param("description") String description, @Param("id") int id);
 	
 	@Transactional
-	@Modifying
-	@Query("update Article s SET s.descriptionarticle = :description WHERE s.id = :id")
-	public void updateArticleDesUsingQueryAnnotation(@Param("description") String description, @Param("id") int id);
+    @Modifying
+	@Query("update Article a SET a.nomarticle = ?1 where a.idarticle = ?2")
+	public void updateNomArticle(@Param("nomarticle") String nomarticle, @Param("id") int id);
+	
+	@Transactional
+    @Modifying
+	@Query("update Article a SET a.prixarticle = ?1 where a.idarticle = ?2")
+	public void updatePrixArticle(@Param("prixarticle") float prixarticle, @Param("id") int id);
+	
+	@Transactional
+    @Modifying
+	@Query("update Article a SET a.visibilitearticle = ?1 where a.idarticle = ?2")
+	public void updateVisibiliteArticle(@Param("visibilitearticle") boolean visibilitearticle, @Param("id") int id);
+	
+	@Transactional
+    @Modifying
+	@Query("update Article a SET a.offrespecialearticle = ?1 where a.idarticle = ?2")
+	public void updateOffreSpecialeArticle(@Param("offrespecialearticle") boolean offrespecialearticle, @Param("id") int id);
+	
+	@Transactional
+    @Modifying
+	@Query("update Article a SET a.descriptionoffresp = ?1 where a.idarticle = ?2")
+	public void updateDescriptionOffresp(@Param("descriptionoffresp") String descriptionoffresp, @Param("id") int id);
+	
+	
+	@Transactional
+    @Modifying
+    @Query(value = "update Article a SET a.idcategorie = ?1 where a.idarticle = ?2",
+            nativeQuery = true)
+    void updateCategorieArt(@Param("idcategorie") Categorie idcategorie, @Param("id") int id);
 
+	
+	
+	/*@Transactional
+    @Modifying
+	@Query("update Article a SET a.idcategorie = ?1 where a.idarticle = ?2")
+	public void updateCategorie(@Param("idcategorie") int idcategorie, @Param("id") int id);
+	*/
+	
 	@Transactional
 	@Modifying
-	@Query("select s from Article s where s.offrespecialearticle = true ")
+	@Query("select s from Article s where s.offrespecialearticle = true  and s.visibilitearticle = true ")
 	public Set<Article> findOffrespeciale();
 
 
+	
+	
+	
+	
 }
 

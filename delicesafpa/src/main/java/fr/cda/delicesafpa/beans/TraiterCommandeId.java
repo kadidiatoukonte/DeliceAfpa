@@ -10,7 +10,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 
-//@Embeddable
+@Embeddable
 public class TraiterCommandeId implements Serializable {
 	@Column(name = "idcommande")
 	private int idcommande;

@@ -103,12 +103,6 @@ public class Categorie {
 
 
 	
-	/*
-	@Lob
-    @Basic(fetch = FetchType.LAZY)
-    private byte[] photocategorie;*/
-
-	
 	
 	
 	

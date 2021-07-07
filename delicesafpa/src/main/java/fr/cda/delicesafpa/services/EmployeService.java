@@ -51,6 +51,73 @@ public class EmployeService implements EmployeServiceI {
 	}
 
 	
+	public void updateNomEmploye(String nom, int idemploye) {
+		try {
+
+			employeRepository.updateNomEmploye(nom, idemploye);
+			
+
+		} catch (Exception e) {
+			System.out.println("catch");
+		}
+
+	}
+	
+	public void updatePrenomEmploye(String pnom, int idemploye) {
+		try {
+
+			employeRepository.updatePrenomEmploye(pnom, idemploye);
+			
+
+		} catch (Exception e) {
+			System.out.println("catch");
+		}
+
+	}
+	public void updateTelEmploye(String tel, int idemploye) {
+		try {
+
+			employeRepository.updateTelEmploye(tel, idemploye);
+			
+
+		} catch (Exception e) {
+			System.out.println("catch");
+		}
+
+	}
+	public void updateEmailEmploye(String mail, int idemploye) {
+		try {
+
+			employeRepository.updateEmailEmploye(mail, idemploye);
+			
+
+		} catch (Exception e) {
+			System.out.println("catch");
+		}
+
+	}
+	public void updatePassEmploye(String pass, int idemploye) {
+		try {
+
+			employeRepository.updatePassEmploye(pass, idemploye);
+			
+
+		} catch (Exception e) {
+			System.out.println("catch");
+		}
+
+	}
+	public void updateOnlineEmploye(boolean o, int idemploye) {
+		try {
+
+			employeRepository.updateOnlineEmploye(o, idemploye);
+			
+
+		} catch (Exception e) {
+			System.out.println("catch");
+		}
+
+	}
 	
 	
 	

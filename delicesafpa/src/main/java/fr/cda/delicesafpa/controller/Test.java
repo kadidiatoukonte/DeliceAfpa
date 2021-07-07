@@ -10,10 +10,12 @@ import java.time.LocalTime;
 import java.util.Date;
 import java.util.List;
 import java.util.Locale;
+import java.util.Optional;
 import java.time.LocalDateTime;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -37,6 +39,7 @@ import fr.cda.delicesafpa.beans.EtresupId;
 import fr.cda.delicesafpa.beans.Panier;
 import fr.cda.delicesafpa.beans.Reservation;
 import fr.cda.delicesafpa.beans.RoleEmploye;
+import fr.cda.delicesafpa.beans.StatusCommande;
 import fr.cda.delicesafpa.beans.StatusReservation;
 import fr.cda.delicesafpa.beans.TraiterCommande;
 import fr.cda.delicesafpa.beans.TraiterCommandeId;
@@ -127,6 +130,8 @@ public class Test {
 	@Autowired
 	TraiterReservationServiceI traiterReservationService;
 	
+	@Autowired
+	TraiterReservationRepository traiterReservationRepository;
 	
 	
 	@Autowired
@@ -135,7 +140,8 @@ public class Test {
 	@Autowired
 	StatusCommandeServiceI statusCommandeService;
 	
-	
+	@Autowired
+	TraiterCommandeRepository traiterCommandeRepository;
 	@Autowired
 	TraiterCommandeServiceI traiterCommandeService;
 
@@ -263,6 +269,7 @@ public class Test {
 		
 		/* %%%%%%%%%%%%%%%%%%% */// TRAITER RESERVATION
 	 LocalDateTime now = LocalDateTime.now();
+	 
 		TraiterReservationId idtres = new TraiterReservationId(1, 1, 1, now);
 		TraiterReservation newTR = new TraiterReservation(idtres, reservation, employe,
 				statusReservationService.getById(1));/**/
@@ -286,7 +293,7 @@ public class Test {
 		/* %%%%%%%%%%%%%%%%%%% */// COMMANDE
 		LocalTime timec = LocalTime.of(20, 30);
 		Panier newPanier2 = new Panier();
-		panierService.save(newPanier);
+		panierService.save(newPanier2);
 	/**/	Commande newcommande = new Commande(getDate("2010-10-10"), "adressecommande", timec, c, null, newPanier);
 		commandeService.save(newcommande);
 	/**/	int iC = commandeService.getAll().size();
@@ -298,9 +305,9 @@ public class Test {
 		TraiterCommandeId idtcom = new TraiterCommandeId(1, 1, 1, nowCC);
 		TraiterCommande newTRC = new TraiterCommande(idtcom, commande, employe,
 				statusCommandeService.getById(1));/**/
-
 		traiterCommandeService.save(newTRC);/**/
-		
+		/*TraiterCommande ctct = traiterCommandeRepository.findById(newTRC.getId()).get();*/
+      //  System.out.println(ctct);
 		
 		
 		System.out.println(newTRC);
@@ -360,13 +367,95 @@ articleService.save(aaaaaa);
 System.out.println(aaaaaa.getDescriptionarticle());
 
 System.out.println(articleService.getById(articleService.getAll().size()));
+/*updateNomArticle
+updatePrixArticle
+updateVisibiliteArticle
+updateOffreSpecialeArticle
+updateDescriptionOffresp*/
 
 articleService.updateDescription("updescri",articleService.getAll().size());
+articleService.updateNomArticle("upnom",articleService.getAll().size());
+articleService.updatePrixArticle(999,articleService.getAll().size());
+articleService.updateVisibiliteArticle(false,articleService.getAll().size());
+articleService.updateOffreSpecialeArticle(false,articleService.getAll().size());
+articleService.updateDescriptionOffresp("1updescrioffrespecial",articleService.getAll().size());
 System.out.println(articleService.getById(articleService.getAll().size()));
+/*%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%*/
 
 
+categorieService.updateDescriptionCategorie("updescricat", 10);
+categorieService.updateNomCategorie("upnom", 10);
+categorieService.updateVisibiliteCategorie(false, 10);
+Categorie cat = categorieService.getById(10);
+System.out.println(cat);
+/*%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%*/
+int aSp = articleService.findOffrespeciale().size();
+int aAll = articleService.getAll().size();
+System.out.println("sp" +aSp +"all"+  aAll  );
+/*
+ public Employe getById(int id) ;
+	public void updateNomEmploye(String nom, int idemploye);
+	public void updatePrenomEmploye(String prenom, int idemploye);
+	public void updateTelEmploye(String tel, int idemploye);
+	public void updateEmailEmploye(String mail, int idemploye);
+	public void updatePassEmploye(String pass, int idemploye);
+	public void updateOnlineEmploye(boolean online, int idemploye);*/
 
 /* %%%%%%%%%%%%%%%%%%% *///
+employeService.updateNomEmploye("upnomemploye", 10);
+employeService.updatePrenomEmploye("upprenomemploye", 10);
+employeService.updateEmailEmploye("nuovamail", 10);
+employeService.updateTelEmploye("0123456", 10);
+employeService.updatePassEmploye("nuovapass", 10);
+employeService.updateOnlineEmploye(true,10);
+Employe emp10 = employeService.getById(10);
+System.out.println(emp10);
+
+
+/*articleService.updateCategorieArt(cat, 1);*/
+Article upcatArt = articleService.getById(1);
+System.out.println(articleService.getById(1));
+upcatArt.setCategorie(categorieService.getById(33));
+articleService.save(upcatArt);
+System.out.println(articleService.getById(1));
+/**/
+
+
+/**/
+
+System.out.println(traiterReservationRepository.findTraitResByDate(now).size());
+System.out.println(traiterReservationRepository.findTraitResActuel(newreservation));
+
+TraiterReservation t = traiterReservationService.findTraitResActuel(newreservation);
+StatusReservation s = traiterReservationService.findStatusActuel(newreservation) ;
+System.out.println( "s + t"+t+s);
+System.out.println(s);
+
+
+
+TraiterCommande tC = traiterCommandeService.findTraitComActuel(commande);
+StatusCommande sC = traiterCommandeService.findStatusActuel(commande) ;
+System.out.println( "t + s"+tC+sC);
+System.out.println(sC);
+
+ConcernerId CIP = new ConcernerId(1, 1);
+ConcernerPanArt cpa = new ConcernerPanArt(CIP, panierService.getById(1), articleService.getById(1), 5);
+concernerPanArtService.save(cpa);
+
+for(int j=2; j<10;j++) {
+	
+	
+ConcernerId CIP2 = new ConcernerId(2, 1);
+ConcernerPanArt cpa2 = new ConcernerPanArt(CIP2, panierService.getById(2), articleService.getById(j), 3);
+concernerPanArtService.save(cpa2);
+
+panierService.getById(2).getConcernerPanArt().size();
+
+
+
+}
+System.out.println(panierService.getById(2).getConcernerPanArt());
+System.out.println(articleService.getById(3).getConcernerPanArt());
 		return "home";
 	}
 

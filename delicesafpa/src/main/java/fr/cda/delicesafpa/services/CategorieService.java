@@ -52,5 +52,43 @@ public class CategorieService implements CategorieServiceI {
 	}
 	
 	
+	public void updateNomCategorie(String nom, int idcategorie) {
+		try {
+
+			categorieRepository.updateNomCategorie(nom, idcategorie);
+			
+
+		} catch (Exception e) {
+			System.out.println("catch");
+		}
+
+	}
+	
+	public void updateDescriptionCategorie(String d, int idcategorie) {
+		try {
+
+			categorieRepository.updateDescriptionCategorie(d, idcategorie);
+			
+
+		} catch (Exception e) {
+			System.out.println("catch");
+		}
+
+	}
+	
+	
+	public void updateVisibiliteCategorie(boolean v, int idcategorie) {
+		try {
+
+			categorieRepository.updateVisibiliteCategorie(v, idcategorie);
+			
+
+		} catch (Exception e) {
+			System.out.println("catch");
+		}
+
+	}
+	
+	
 	
 }

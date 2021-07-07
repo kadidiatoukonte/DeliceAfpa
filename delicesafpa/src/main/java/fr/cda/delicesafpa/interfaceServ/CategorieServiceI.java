@@ -11,5 +11,7 @@ public interface CategorieServiceI {
 	public	void save(Categorie categorie);
 	public	List<Categorie> getAll();
 	public Categorie getById(int id) ;
-
+	public void updateNomCategorie(String nom, int idcategorie);
+	public void updateDescriptionCategorie(String description, int idcategorie);
+	public void updateVisibiliteCategorie(boolean v, int idcategorie);
 }
