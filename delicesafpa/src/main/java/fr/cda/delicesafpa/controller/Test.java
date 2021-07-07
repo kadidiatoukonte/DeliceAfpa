@@ -162,8 +162,15 @@ public class Test {
 	@RequestMapping(value = "/", method = RequestMethod.GET)
 	public String home(Locale locale, Model model) {
 	
-
-		/* %%%%%%%%%%%%%%%%%%% */// CLIENT
+		/*cat*/
+		
+		for(int a=0;a<11;a++) {
+		Categorie newCat = new Categorie("nomcategorie"+a, "descriptioncategorie"+a, true);
+		
+	     categorieService.save(newCat);/**/
+		
+	}
+	     /* %%%%%%%%%%%%%%%%%%% */// CLIENT
 		
 	Client c = new Client("nomclient","prenomclient",getDate("2010-10-10"),"paysclient","adresseclient",
 				"complementadrclient","cpclient","villeclient","telclient","mailclient",
@@ -205,9 +212,19 @@ public class Test {
 
 		
 		/* %%%%%%%%%%%%%%%%%%% */// DETARTICLE
-		Article newArt = new Article("offsp", (float) 10.50,"descriptionarticle",
-				true, true,"descriptionoffresp",categorie);
+		
+		
+		
+		for (int ik = 1 ; ik<11;ik++) {
+		Article newArt = new Article("offsp"+ik, (float) 10.50+ik,"descriptionarticle"+ik,
+				true, true,"descriptionoffresp"+ik,categorie);
 		articleService.save(newArt);
+		
+		};
+		
+		
+		
+		
 		System.out.println(articleService.getAll().size());
 		Article newArtById = articleService.getById(articleService.getAll().size());
 		System.out.println(newArtById);
@@ -337,9 +354,7 @@ public class Test {
 
 		AssignerRole newRole = new AssignerRole(newAsRol, employeT, employeR, status);
 		assignerRoleService.save(newRole);
-		Employe employeRPrint = employeService.getById(2);
-		System.out.println(employeRPrint);
-		System.out.println( employeService.getById(1).getIdemploye_assigner_role());
+		
 
 		/* %%%%%%%%%%%%%%%%%%% */// panier-article
 		
@@ -456,7 +471,49 @@ panierService.getById(2).getConcernerPanArt().size();
 }
 System.out.println(panierService.getById(2).getConcernerPanArt());
 System.out.println(articleService.getById(3).getConcernerPanArt());
-		return "home";
+	
+LocalDateTime nowCRbis = LocalDateTime.now();
+AssignerRoleId newAsRolbis = new AssignerRoleId(1, 2, 3, nowCRbis);
+
+Employe employeTb = employeService.getById(1);
+Employe employeRb = employeService.getById(2);
+RoleEmploye statusb = roleEmployeService.getById(3);
+
+AssignerRole newRoleb = new AssignerRole(newAsRolbis, employeTb, employeRb, statusb);
+assignerRoleService.save(newRoleb);
+
+
+System.out.println(assignerRoleService.findAssRoleActuel(employeService.getById(2)).getIdstatus());
+
+assignerRoleService.findRoleActuel(employeService.getById(2));
+
+LocalDateTime nowCRbis3 = LocalDateTime.now();
+AssignerRoleId newAsRolbis3 = new AssignerRoleId(1, 3, 3, nowCRbis3);
+
+Employe employeTb3 = employeService.getById(1);
+Employe employeRb3 = employeService.getById(3);
+RoleEmploye statusb3 = roleEmployeService.getById(3);
+
+AssignerRole newRoleb3 = new AssignerRole(newAsRolbis3, employeTb3, employeRb3, statusb3);
+assignerRoleService.save(newRoleb3);
+
+
+System.out.println(assignerRoleService.findAssRoleActuel(employeService.getById(2)).getIdstatus());
+
+assignerRoleService.findRoleActuel(employeService.getById(2));
+
+
+System.out.println(assignerRoleService.findRoleActuel(employeService.getById(2)));
+System.out.println(assignerRoleService.findListRole(roleEmployeService.getById(3)).size());
+
+employeService.updateOnlineEmploye(true, 2);
+employeService.updateOnlineEmploye(true, 3);
+System.out.println(assignerRoleService.findListLivreurSOnline());
+
+
+
+
+return "home";
 	}
 
 	
