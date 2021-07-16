@@ -62,6 +62,7 @@ import fr.cda.delicesafpa.dao.StatusCommandeRepository;
 import fr.cda.delicesafpa.dao.StatusReservationRepository;
 import fr.cda.delicesafpa.dao.TraiterCommandeRepository;
 import fr.cda.delicesafpa.dao.TraiterReservationRepository;
+import fr.cda.delicesafpa.dto.AssignerRoleDTO;
 import fr.cda.delicesafpa.interfaceServ.ArticleServiceI;
 import fr.cda.delicesafpa.interfaceServ.AssignerRoleServiceI;
 import fr.cda.delicesafpa.interfaceServ.CategorieServiceI;
@@ -90,6 +91,7 @@ import fr.cda.delicesafpa.services.RoleEmployeService;
 import fr.cda.delicesafpa.services.StatusCommandeService;
 import fr.cda.delicesafpa.services.TraiterCommandeService;
 import fr.cda.delicesafpa.services.TraiterReservationService;
+import fr.cda.delicesafpa.util.AssignerRoleConverter;
 
 /**
  * Handles requests for the application home page.
@@ -161,9 +163,36 @@ public class Test {
 	 */
 	@RequestMapping(value = "/", method = RequestMethod.GET)
 	public String home(Locale locale, Model model) {
+		
+		
+		
+		AssignerRole assignerRole = assignerRoleService.getAll().get(1);	
+		
+		AssignerRoleDTO aDto =  AssignerRoleConverter.explicitModelMappingDemoDaotoDto(assignerRole);
+	
+		System.out.println(aDto);
+
+		AssignerRole assignerRoleNew  = new AssignerRole();
+		
+		
+		try {
+			assignerRoleNew =	AssignerRoleConverter.convertToEntity(aDto);
+			System.out.println(assignerRoleNew);
+		} catch (com.steadystate.css.parser.ParseException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			System.out.println("ciaociao");
+		}
+		
+		
+		System.out.println("conv+"+aDto);
+		System.out.println("convA+"+assignerRoleNew);
+//System.out.println(assignerRoleUPDAO);
+
+	return "home";
 	
 		/*cat*/
-		
+	/*	
 		for(int a=0;a<11;a++) {
 		Categorie newCat = new Categorie("nomcategorie"+a, "descriptioncategorie"+a, true);
 		
@@ -171,30 +200,30 @@ public class Test {
 		
 	}
 	     /* %%%%%%%%%%%%%%%%%%% */// CLIENT
-		
+	/*	
 	Client c = new Client("nomclient","prenomclient",getDate("2010-10-10"),"paysclient","adresseclient",
 				"complementadrclient","cpclient","villeclient","telclient","mailclient",
 				"passwordclient");
 		
 	clientService.save(c);/**/
-	List<Client>  listClient = clientService.getAll();/**/
-	System.out.println(listClient.toString());
+	/*List<Client>  listClient = clientService.getAll();/**/
+/*	System.out.println(listClient.toString());
 	Client cId =  clientService.getById(1);/**/
-	System.out.println(cId);
+	/*System.out.println(cId);
 	
 		
 		
 		/* %%%%%%%%%%%%%%%%%%% */// RESERVATION
-		LocalTime time = LocalTime.of(20, 30);
+	/*	LocalTime time = LocalTime.of(20, 30);
 
 		Reservation newreservation = new Reservation(getDate("2010-10-10"), time, 5, cId);
 		reservationService.save(newreservation);/**/
-		int i = reservationService.getAll().size();/**/
-		Reservation reservation = reservationService.getById(i);/**/
-		System.out.println(reservation);
+/*		int i = reservationService.getAll().size();/**/
+/*		Reservation reservation = reservationService.getById(i);/**/
+	/*	System.out.println(reservation);
 
 		/* %%%%%%%%%%%%%%%%%%% */// EMPLOYE
-		Employe employe = employeService.getById(1);
+	/*	Employe employe = employeService.getById(1);
 		Employe newEmp = new Employe("nomemploye", "prenomemploye", "telemploye", "String mailemploye",
 				"String passwordemploye", false);
 		employeService.save(newEmp);
@@ -208,14 +237,14 @@ public class Test {
 		
 		
 		int iCat = categorieService.getAll().size();/**/
-		Categorie categorie = categorieService.getById(iCat);/**/
+	//	Categorie categorie = categorieService.getById(iCat);/**/
 
 		
 		/* %%%%%%%%%%%%%%%%%%% */// DETARTICLE
 		
 		
 		
-		for (int ik = 1 ; ik<11;ik++) {
+	/*	for (int ik = 1 ; ik<11;ik++) {
 		Article newArt = new Article("offsp"+ik, (float) 10.50+ik,"descriptionarticle"+ik,
 				true, true,"descriptionoffresp"+ik,categorie);
 		articleService.save(newArt);
@@ -230,24 +259,24 @@ public class Test {
 		System.out.println(newArtById);
 		
 		/* %%%%%%%%%%%%%%%%%%% */// PANIER
-		Panier newPanier = new Panier();
+	/*	Panier newPanier = new Panier();
 		panierService.save(newPanier);/**/
-		System.out.println(panierService.getAll().size());/***/
-		System.out.println(panierService.getById(panierService.getAll().size()));
+	/*	System.out.println(panierService.getAll().size());/***/
+	//	System.out.println(panierService.getById(panierService.getAll().size()));
 
 		/* %%%%%%%%%%%%%%%%%%% */// ROLEEMPLOYE
-		RoleEmploye newRoleEmploye = new RoleEmploye("Sospeso");
+	/*	RoleEmploye newRoleEmploye = new RoleEmploye("Sospeso");
 		roleEmployeService.save(newRoleEmploye);/**/
-		System.out.println(roleEmployeService.getAll().size());/***/
-		System.out.println(roleEmployeService.getById(roleEmployeService.getAll().size()));
+	/*	System.out.println(roleEmployeService.getAll().size());/***/
+		/*System.out.println(roleEmployeService.getById(roleEmployeService.getAll().size()));
 		
 		
 		/* %%%%%%%%%%%%%%%%%%% */// DETCATEGORIE
-	Categorie newCat = new Categorie("nomcategorie", "descriptioncategorie", true);
+	/*Categorie newCat = new Categorie("nomcategorie", "descriptioncategorie", true);
 		
 	     categorieService.save(newCat);/**/
 
-		
+	/*	
 		System.out.println(categorie+"?????");
 		
 		LocalDateTime nowC = LocalDateTime.now();
@@ -263,7 +292,7 @@ public class Test {
 			List<DeptDTO> listdeptDTO = deptConverter.EntityToDTO(listdept);
 			model.addAttribute("listdept", listdeptDTO)/inviarealla jsp*/
 
-
+/*
 		LocalDateTime nowCA = LocalDateTime.now();
 		int iA = articleService.getAll().size();
 		Article art = articleService.getById(iA);
@@ -285,52 +314,52 @@ public class Test {
 		
 		
 		/* %%%%%%%%%%%%%%%%%%% */// TRAITER RESERVATION
-	 LocalDateTime now = LocalDateTime.now();
+	/* LocalDateTime now = LocalDateTime.now();
 	 
 		TraiterReservationId idtres = new TraiterReservationId(1, 1, 1, now);
 		TraiterReservation newTR = new TraiterReservation(idtres, reservation, employe,
 				statusReservationService.getById(1));/**/
-		statusReservationService.getAll();/**/
-		StatusReservation st = new	StatusReservation("description");
+	/*	statusReservationService.getAll();/**/
+	/*	StatusReservation st = new	StatusReservation("description");
 		statusReservationService.save(st);/**/
-		System.out.println(statusReservationService.getAll().size());/**/
-
+	/*	System.out.println(statusReservationService.getAll().size());/**/
+/*
 		
 		System.out.println(st);
 		
 
 		traiterReservationService.save(newTR);/**/
 		/* %%%%%%%%%%%%%%%%%%% */// TRAITER RESERVATION
-
+/*
 		System.out.println(newTR);
 		System.out.println(employe.getTraiterReservation());/**/
 
-		System.out.println(time);
+/*	System.out.println(time);
 
 		/* %%%%%%%%%%%%%%%%%%% */// COMMANDE
-		LocalTime timec = LocalTime.of(20, 30);
+	/*	LocalTime timec = LocalTime.of(20, 30);
 		Panier newPanier2 = new Panier();
 		panierService.save(newPanier2);
-	/**/	Commande newcommande = new Commande(getDate("2010-10-10"), "adressecommande", timec, c, null, newPanier);
-		commandeService.save(newcommande);
-	/**/	int iC = commandeService.getAll().size();
-		/**/Commande commande = commandeService.getById(iC);
-		System.out.println(commande);
+	/**///	Commande newcommande = new Commande(getDate("2010-10-10"), "adressecommande", timec, c, null, newPanier);
+		//commandeService.save(newcommande);
+	/**/	//int iC = commandeService.getAll().size();
+		/**///Commande commande = commandeService.getById(iC);
+		//System.out.println(commande);
 
 		/* %%%%%%%%%%%%%%%%%%% */// TRAITER COMMANDE
-		LocalDateTime nowCC = LocalDateTime.now();
+	/*	LocalDateTime nowCC = LocalDateTime.now();
 		TraiterCommandeId idtcom = new TraiterCommandeId(1, 1, 1, nowCC);
 		TraiterCommande newTRC = new TraiterCommande(idtcom, commande, employe,
 				statusCommandeService.getById(1));/**/
-		traiterCommandeService.save(newTRC);/**/
+	//	traiterCommandeService.save(newTRC);/**/
 		/*TraiterCommande ctct = traiterCommandeRepository.findById(newTRC.getId()).get();*/
       //  System.out.println(ctct);
 		
 		
-		System.out.println(newTRC);
+	//	System.out.println(newTRC);
 		
 		/* %%%%%%%%%%%%%%%%%%% */// TRAITER COMMANDE
-
+/*
 		System.out.println(newTRC);
 		System.out.println(employe.getTraiterCommande());
 		System.out.println(commande);
@@ -338,9 +367,9 @@ public class Test {
 		System.out.println(commandePrint);
 		/* %%%%%%%%%%%%%%%%%%% */// TRAITER COMMANDE
 
-		System.out.println(newPanier);
+	//	System.out.println(newPanier);
 		/* %%%%%%%%%%%%%%%%%%% */// ASSIGNEROLE
-	
+	/*
 	Employe newEmpA = new Employe("nomemploye", "prenomemploye", "telemploye", "String mailemploye",
 				"String passwordemploye", false);
 
@@ -357,13 +386,13 @@ public class Test {
 		
 
 		/* %%%%%%%%%%%%%%%%%%% */// panier-article
-		
+	/*	
 	ConcernerId conId = new ConcernerId(newPanier.getIdpanier(),art.getIdarticle());
 		ConcernerPanArt newConPanArt = new ConcernerPanArt(conId,newPanier,art,20 );		
 		concernerPanArtService.save(newConPanArt);
 		System.out.println(newConPanArt);
 /* %%%%%%%%%%%%%%%%%%% */// etresup
-   Article aaa= articleService.getById(1);
+  /* Article aaa= articleService.getById(1);
 		EtresupId etruSupId = new EtresupId(aaa.getIdarticle(),art.getIdarticle());
 		EtreSup etres = new EtreSup(etruSupId,aaa,art);
 		etreSupServiceI.save(etres);
@@ -372,7 +401,7 @@ System.out.println(articleService.getById(1));
 System.out.println(articleService.getById(art.getIdarticle()));	
 
 /*%%%%%%%%%%%%%%%%%%%%%%%varie*/
-System.out.println(articleService.findOffrespeciale());
+/*System.out.println(articleService.findOffrespeciale());
 		
 
 Article aaaaaa = new Article("offspaaaaa", (float) 10.50,"descriptionaaaaa",
@@ -387,7 +416,7 @@ updatePrixArticle
 updateVisibiliteArticle
 updateOffreSpecialeArticle
 updateDescriptionOffresp*/
-
+/*
 articleService.updateDescription("updescri",articleService.getAll().size());
 articleService.updateNomArticle("upnom",articleService.getAll().size());
 articleService.updatePrixArticle(999,articleService.getAll().size());
@@ -396,7 +425,7 @@ articleService.updateOffreSpecialeArticle(false,articleService.getAll().size());
 articleService.updateDescriptionOffresp("1updescrioffrespecial",articleService.getAll().size());
 System.out.println(articleService.getById(articleService.getAll().size()));
 /*%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%*/
-
+/*
 
 categorieService.updateDescriptionCategorie("updescricat", 10);
 categorieService.updateNomCategorie("upnom", 10);
@@ -404,6 +433,7 @@ categorieService.updateVisibiliteCategorie(false, 10);
 Categorie cat = categorieService.getById(10);
 System.out.println(cat);
 /*%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%*/
+	/*
 int aSp = articleService.findOffrespeciale().size();
 int aAll = articleService.getAll().size();
 System.out.println("sp" +aSp +"all"+  aAll  );
@@ -417,6 +447,7 @@ System.out.println("sp" +aSp +"all"+  aAll  );
 	public void updateOnlineEmploye(boolean online, int idemploye);*/
 
 /* %%%%%%%%%%%%%%%%%%% *///
+	/*
 employeService.updateNomEmploye("upnomemploye", 10);
 employeService.updatePrenomEmploye("upprenomemploye", 10);
 employeService.updateEmailEmploye("nuovamail", 10);
@@ -428,6 +459,7 @@ System.out.println(emp10);
 
 
 /*articleService.updateCategorieArt(cat, 1);*/
+	/*
 Article upcatArt = articleService.getById(1);
 System.out.println(articleService.getById(1));
 upcatArt.setCategorie(categorieService.getById(33));
@@ -437,7 +469,7 @@ System.out.println(articleService.getById(1));
 
 
 /**/
-
+/*
 System.out.println(traiterReservationRepository.findTraitResByDate(now).size());
 System.out.println(traiterReservationRepository.findTraitResActuel(newreservation));
 
@@ -509,13 +541,10 @@ System.out.println(assignerRoleService.findListRole(roleEmployeService.getById(3
 employeService.updateOnlineEmploye(true, 2);
 employeService.updateOnlineEmploye(true, 3);
 System.out.println(assignerRoleService.findListLivreurSOnline());
+*/
 
 
-
-
-return "home";
-	}
-
+	
 	
 	
 	

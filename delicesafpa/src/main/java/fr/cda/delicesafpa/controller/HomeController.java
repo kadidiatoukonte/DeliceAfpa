@@ -59,6 +59,7 @@ import fr.cda.delicesafpa.dao.TraiterCommandeRepository;
 import fr.cda.delicesafpa.dao.TraiterReservationRepository;
 import fr.cda.delicesafpa.interfaceServ.ArticleServiceI;
 import fr.cda.delicesafpa.services.ArticleService;
+import fr.cda.delicesafpa.util.AssignerRoleConverter;
 
 /**
  * Handles requests for the application home page.
@@ -111,36 +112,36 @@ public class HomeController {
 	 */
 	@RequestMapping(value = "/ciao", method = RequestMethod.GET)
 	public String home(Locale locale, Model model) {
-		logger.info("Welcome home! The client locale is {}.", locale);
+	/*	logger.info("Welcome home! The client locale is {}.", locale);
 		Date date = new Date();
 		DateFormat dateFormat = DateFormat.getDateTimeInstance(DateFormat.LONG, DateFormat.LONG, locale);
 		String formattedDate = dateFormat.format(date);
 		model.addAttribute("serverTime", formattedDate);
 
 		/* %%%%%%%%%%%%%%%%%%% */// CLIENT
-		Client client = clientRepository.findById(1).get();
+	/*	Client client = clientRepository.findById(1).get();
 		System.out.println(client);
 		/*
 		 * public Reservation(Date datereservation, int nbreplacereservation, Client
 		 * idclient) {
 		 */
 		/* %%%%%%%%%%%%%%%%%%% */// RESERVATION
-		LocalTime time = LocalTime.of(20, 30);
+	//	LocalTime time = LocalTime.of(20, 30);
 		/*
 		 * n(int idreservation, Date datereservation, LocalTime horaire, int
 		 * nbreplacereservation, Client idclient)
 		 */
-		Reservation newreservation = new Reservation(getDate("2010-10-10"), time, 5, client);
+	/*Reservation newreservation = new Reservation(getDate("2010-10-10"), time, 5, client);
 		reservationRepository.save(newreservation);
 		int i = reservationRepository.findAll().size();
 		Reservation reservation = reservationRepository.findById(i).get();
 		System.out.println(reservation);
 
 		/* %%%%%%%%%%%%%%%%%%% */// EMPLOYE
-		Employe employe = employeRepository.findById(1).get();
+/*		Employe employe = employeRepository.findById(1).get();
 		System.out.println(employe.getTraiterReservation().size());
 		/* %%%%%%%%%%%%%%%%%%% */// TRAITER RESERVATION
-		LocalDateTime now = LocalDateTime.now();
+	/*	LocalDateTime now = LocalDateTime.now();
 		TraiterReservationId idtres = new TraiterReservationId(1, 1, 1, now);
 		TraiterReservation newTR = new TraiterReservation(idtres, reservation, employe,
 				statusReservationRepository.findById(1).get());
@@ -148,13 +149,13 @@ public class HomeController {
 		traiterReservationRepository.save(newTR);
 		/* %%%%%%%%%%%%%%%%%%% */// TRAITER RESERVATION
 
-		System.out.println(newTR);
+	/*	System.out.println(newTR);
 		System.out.println(employe.getTraiterReservation());
 
 		System.out.println(time);
 
 		/* %%%%%%%%%%%%%%%%%%% */// COMMANDE
-		LocalTime timec = LocalTime.of(20, 30);
+	/*	LocalTime timec = LocalTime.of(20, 30);
 		Panier newPanier = new Panier();
 		panierRepository.save(newPanier);
 		Commande newcommande = new Commande(getDate("2010-10-10"), "adressecommande", timec, client, null, newPanier);
@@ -164,7 +165,7 @@ public class HomeController {
 		System.out.println(commande);
 
 		/* %%%%%%%%%%%%%%%%%%% */// TRAITER COMMANDE
-		LocalDateTime nowC = LocalDateTime.now();
+		/*LocalDateTime nowC = LocalDateTime.now();
 		TraiterCommandeId idtcom = new TraiterCommandeId(1, 1, 1, nowC);
 		TraiterCommande newTRC = new TraiterCommande(idtcom, commande, employe,
 				statusCommandeRepository.findById(1).get());
@@ -172,14 +173,14 @@ public class HomeController {
 		traiterCommandeRepository.save(newTRC);
 		/* %%%%%%%%%%%%%%%%%%% */// TRAITER COMMANDE
 
-		System.out.println(newTRC);
+	/*	System.out.println(newTRC);
 		System.out.println(employe.getTraiterCommande());
 		System.out.println(commande);
 		Commande commandePrint = commandeRepository.findById(iC).get();
 		System.out.println(commandePrint);
 		/* %%%%%%%%%%%%%%%%%%% */// TRAITER COMMANDE
 
-		Commande commandePrint2 = commandeRepository.findById(iC).get();
+	/*	Commande commandePrint2 = commandeRepository.findById(iC).get();
 		System.out.println(newPanier);
 		System.out.println(commandePrint2);
 		/* %%%%%%%%%%%%%%%%%%% */// ASSIGNEROLE
@@ -188,7 +189,7 @@ public class HomeController {
 		 * mailemploye, String passwordemploye, Boolean statusemploye)
 		 */
 
-		Employe newEmp = new Employe("nomemploye", "prenomemploye", "telemploye", "String mailemploye",
+	/*	Employe newEmp = new Employe("nomemploye", "prenomemploye", "telemploye", "String mailemploye",
 				"String passwordemploye", false);
 
 		employeRepository.save(newEmp);
@@ -206,11 +207,11 @@ public class HomeController {
 		System.out.println(employeRepository.findById(1).get().getIdemploye_assigner_role());
 
 		/* %%%%%%%%%%%%%%%%%%% */// DETCATEGORIE
-		Categorie newCat = new Categorie("nomcategorie", "descriptioncategorie", true);
+	/*	Categorie newCat = new Categorie("nomcategorie", "descriptioncategorie", true);
 		categorieRepository.save(newCat);
 
 		/* DeterminerCatId(int idcategorie, int idemploye, LocalDateTime date) */
-		LocalDateTime nowCat = LocalDateTime.now();
+		/*LocalDateTime nowCat = LocalDateTime.now();
 		int iCat = categorieRepository.findAll().size();
 		Categorie categorie = categorieRepository.findById(iCat).get();
 		
@@ -220,7 +221,7 @@ public class HomeController {
 		 * Employe employe) {
 */
 		
-		int cat =categorie.getIdcategorie(); 
+/*		int cat =categorie.getIdcategorie(); 
 		DeterminerCat nowDetCat = new DeterminerCat(nowDetCatId,categorie,employeRepository.findById(1).get());
 		determinerCatRepository.save(nowDetCat);
 		System.out.println(nowDetCat);
@@ -231,13 +232,13 @@ public class HomeController {
 		/* %%%%%%%%%%%%%%%%%%% */// DETARTICLE
 		/*Article(String nomarticle, float prixarticle, String descriptionarticle,
 			boolean visibilitearticle, boolean offrespecialearticle, String descriptionoffresp)*/
-		Article newArt = new Article("TESTTTT", (float) 10.50,"descriptionarticle",
-				true, false,"descriptionoffresp",categorie);
+	//	Article newArt = new Article("TESTTTT", (float) 10.50,"descriptionarticle",
+	//			true, false,"descriptionoffresp",categorie);
 		//articleRepository.save(newArt);
-		articleService.save(newArt);
+	/*	articleService.save(newArt);
 
 		/* DeterminerCatId(int idcategorie, int idemploye, LocalDateTime date) */
-		LocalDateTime nowCA = LocalDateTime.now();
+		/*LocalDateTime nowCA = LocalDateTime.now();
 		int iA = articleRepository.findAll().size();
 		Article art = articleRepository.findById(iA).get();
 		DeterminerArtId nowDetArtId = new DeterminerArtId(art.getIdarticle(),1,nowCA);
@@ -252,12 +253,12 @@ public class HomeController {
 		System.out.println(employeRepository.findById(1).get());	
 		/* %%%%%%%%%%%%%%%%%%% */// panier-article
 		
-		ConcernerId conId = new ConcernerId(newPanier.getIdpanier(),art.getIdarticle());
+	/*	ConcernerId conId = new ConcernerId(newPanier.getIdpanier(),art.getIdarticle());
 		ConcernerPanArt newConPanArt = new ConcernerPanArt(conId,newPanier,art,20 );		
 		concernerPanArtRepository.save(newConPanArt);
 		System.out.println(newConPanArt);
 /* %%%%%%%%%%%%%%%%%%% */// etresup
-        Article aaa= articleRepository.findById(1).get();
+     /*   Article aaa= articleRepository.findById(1).get();
 		EtresupId etruSupId = new EtresupId(aaa.getIdarticle(),art.getIdarticle());
 		EtreSup etres = new EtreSup(etruSupId,aaa,art);
 		etreSupRepository.save(etres);
@@ -265,7 +266,7 @@ System.out.println(etres);
 System.out.println(articleRepository.findById(1).get());
 System.out.println(articleRepository.findById(art.getIdarticle()).get());		
 		
-		
+/*%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%*/
 		
 
 		/* %%%%%%%%%%%%%%%%%%% *///
