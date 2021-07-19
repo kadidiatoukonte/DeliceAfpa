@@ -6,8 +6,9 @@ import fr.cda.delicesafpa.beans.Article;
 import fr.cda.delicesafpa.beans.Employe;
 import fr.cda.delicesafpa.beans.EtreSup;
 import fr.cda.delicesafpa.beans.Reservation;
+import fr.cda.delicesafpa.dto.EtreSupDTO;
 
 public interface EtreSupServiceI {
-	public void save(EtreSup etreSup);
-	public List<EtreSup> getAll();
+	public void save(EtreSupDTO etreSup);
+	public List<EtreSupDTO> getAll();
 }

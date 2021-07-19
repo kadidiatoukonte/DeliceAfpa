@@ -7,10 +7,11 @@ import fr.cda.delicesafpa.beans.Categorie;
 import fr.cda.delicesafpa.beans.DeterminerCat;
 import fr.cda.delicesafpa.beans.DeterminerCatId;
 import fr.cda.delicesafpa.beans.Employe;
+import fr.cda.delicesafpa.dto.DeterminerCatDTO;
 
 public interface DeterminerCatServiceI {
 
-	public	void save(DeterminerCat determinerCat);
-	public List<DeterminerCat> getAll();
+	public	DeterminerCatDTO save(DeterminerCatDTO determinerCatDTO);
+	public List<DeterminerCatDTO> getAll();
 
 }

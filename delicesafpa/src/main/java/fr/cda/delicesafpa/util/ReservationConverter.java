@@ -13,7 +13,7 @@ import fr.cda.delicesafpa.dto.ReservationDTO;
 
 @Component
 public class ReservationConverter {
-	public ReservationDTO EntityToDTO(Reservation reservation) {
+	public static ReservationDTO EntityToDTO(Reservation reservation) {
 		ModelMapper mapper = new ModelMapper();
 		ReservationDTO map = mapper.map(reservation, ReservationDTO.class);
 		return map;
@@ -25,7 +25,7 @@ public class ReservationConverter {
 
 	}
 
-	public Reservation dTOToEntity(ReservationDTO reservation) {
+	public static Reservation dTOToEntity(ReservationDTO reservation) {
 		ModelMapper mapper = new ModelMapper();
 		Reservation map = mapper.map(reservation, Reservation.class);
 		return map;

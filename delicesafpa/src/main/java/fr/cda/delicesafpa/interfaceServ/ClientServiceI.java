@@ -4,10 +4,11 @@ package fr.cda.delicesafpa.interfaceServ;
 import java.util.List;
 
 import fr.cda.delicesafpa.beans.Client;
+import fr.cda.delicesafpa.dto.ClientDTO;
 
 public interface ClientServiceI {
 
-	public	Client save(Client client);
-	public	List<Client> getAll();
-    public Client getById(int id) ;
+	public	ClientDTO save(ClientDTO client);
+	public	List<ClientDTO> getAll();
+    public ClientDTO getById(int id) ;
 }

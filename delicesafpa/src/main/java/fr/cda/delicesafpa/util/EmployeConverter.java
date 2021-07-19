@@ -16,7 +16,7 @@ import fr.cda.delicesafpa.dto.ReservationDTO;
 @Component
 public class EmployeConverter {
 	
-	public EmployeDTO EntityToDTO(Employe employe) {
+	public static EmployeDTO EntityToDTO(Employe employe) {
 		ModelMapper mapper = new ModelMapper();
 		EmployeDTO map = mapper.map(employe, EmployeDTO.class);
 		return map;
@@ -28,7 +28,7 @@ public class EmployeConverter {
 
 	}
 
-	public Employe dTOToEntity(EmployeDTO employe) {
+	public static Employe dTOToEntity(EmployeDTO employe) {
 		ModelMapper mapper = new ModelMapper();
 		Employe map = mapper.map(employe, Employe.class);
 		return map;

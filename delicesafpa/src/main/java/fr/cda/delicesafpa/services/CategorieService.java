@@ -15,37 +15,49 @@ import fr.cda.delicesafpa.dao.CategorieRepository;
 import fr.cda.delicesafpa.dao.ClientRepository;
 import fr.cda.delicesafpa.dao.PanierRepository;
 import fr.cda.delicesafpa.dao.ReservationRepository;
+import fr.cda.delicesafpa.dto.ArticleDTO;
+import fr.cda.delicesafpa.dto.CategorieDTO;
 import fr.cda.delicesafpa.interfaceServ.ArticleServiceI;
 import fr.cda.delicesafpa.interfaceServ.CategorieServiceI;
 import fr.cda.delicesafpa.interfaceServ.PanierServiceI;
 import fr.cda.delicesafpa.interfaceServ.ReservationServiceI;
+import fr.cda.delicesafpa.util.CategorieConverter;
 
 @Service
 public class CategorieService implements CategorieServiceI {
 	@Autowired
 	private CategorieRepository categorieRepository;
+	@Autowired
+	private CategorieConverter categorieConverter;
 	
 	
-	public void save(Categorie categorie) {
+	public CategorieDTO save(CategorieDTO categorieDTO) {
 		try {
+			Categorie categorie = categorieConverter.dTOToEntity(categorieDTO);
 			categorieRepository.save(categorie);
 		} catch (Exception e) {
 			
 		}
+		return categorieDTO;
 	}
 	
-	public List<Categorie> getAll() {
+	public List<CategorieDTO> getAll() {
 		try {
-			return categorieRepository.findAll();
+			List<Categorie> categorie = categorieRepository.findAll();
+			List<CategorieDTO> categorieDTO = categorieConverter.EntityToDTO(categorie);
+			return categorieDTO;
+			
 		} catch (Exception e) {
 			return null;
 		}
 		
 	}
 	
-	public Categorie getById(int id) {
+	public CategorieDTO getById(int id) {
 		try {
-		return categorieRepository.findById(id).get();
+		Categorie c =categorieRepository.findById(id).get();
+		CategorieDTO cDTO = categorieConverter.EntityToDTO(c);
+		return cDTO;
 		} catch (Exception NoSuchElementException) {
 			return null;
 		}

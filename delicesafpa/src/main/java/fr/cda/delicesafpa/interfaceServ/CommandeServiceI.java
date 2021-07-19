@@ -4,10 +4,11 @@ import java.util.List;
 
 import fr.cda.delicesafpa.beans.Article;
 import fr.cda.delicesafpa.beans.Commande;
+import fr.cda.delicesafpa.dto.CommandeDTO;
 
 public interface CommandeServiceI {
 
-	public	void save(Commande commande);
-	public List<Commande> getAll();
-	public Commande getById(int id);
+	public	CommandeDTO  save(CommandeDTO commandeDTO);
+	public List<CommandeDTO > getAll();
+	public CommandeDTO  getById(int id);
 }

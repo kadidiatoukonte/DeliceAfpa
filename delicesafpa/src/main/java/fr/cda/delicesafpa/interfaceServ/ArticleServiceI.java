@@ -6,13 +6,13 @@ import java.util.Set;
 
 import fr.cda.delicesafpa.beans.Article;
 import fr.cda.delicesafpa.beans.Categorie;
+import fr.cda.delicesafpa.dto.ArticleDTO;
 
 public interface ArticleServiceI {
 
-	public	void save(Article article);
-	public List<Article> getAll();
-	public Article getById(int id) ;
-	public void testFind();
+	public	ArticleDTO save(ArticleDTO articleDTO);
+	public List<ArticleDTO> getAll();
+	public ArticleDTO getById(int id) ;
 	public void updateDescription(String description, int idarticle);
 	public void updateNomArticle(String description, int idarticle);
 	public void updatePrixArticle(float prix, int idarticle);
@@ -20,7 +20,6 @@ public interface ArticleServiceI {
 	public void updateOffreSpecialeArticle(boolean sp, int idarticle);
 	public void updateDescriptionOffresp(String dsp, int idarticle);
 	public void updateCategorieArt(Categorie cat, int idarticle);
+	public Set<ArticleDTO> findOffrespeciale();
 	
-	
-	public Set<Article> findOffrespeciale();
 }

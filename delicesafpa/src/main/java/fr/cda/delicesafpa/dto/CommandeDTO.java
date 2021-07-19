@@ -2,48 +2,46 @@ package fr.cda.delicesafpa.dto;
 
 import java.sql.Date;
 import java.time.LocalTime;
-import java.util.List;
-import java.util.Set;
 
-import javax.persistence.CascadeType;
-import javax.persistence.Column;
-import javax.persistence.FetchType;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
-import javax.persistence.OneToOne;
 
 import fr.cda.delicesafpa.beans.Client;
-import fr.cda.delicesafpa.beans.Employe;
-import fr.cda.delicesafpa.beans.Panier;
-import fr.cda.delicesafpa.beans.TraiterCommande;
+
 import lombok.Data;
 
 @Data
 public class CommandeDTO {
-	private int idcommande;	
-	private Date datecommande;
-	private String adressecommande;
-	private LocalTime horaire;
-	private ClientDTO idclient;
-	private Set<TraiterCommandeDTO> traiterCommande;
-    private EmployeDTO employe;
-	private PanierDTO panier;
-	private List<CommandeDTO> listCommande;
 
+	private int idcommande;	
+	
+
+	private Date datecommande;
+
+
+	private String adressecommande;
+
+	private LocalTime horaire;
+	
+	private Client idclient;
+
+	public CommandeDTO(int idcommande, Date datecommande, String adressecommande, LocalTime horaire, Client idclient) {
+		super();
+		this.idcommande = idcommande;
+		this.datecommande = datecommande;
+		this.adressecommande = adressecommande;
+		this.horaire = horaire;
+		this.idclient = idclient;
+	}
+	
 	public CommandeDTO() {
-		
+	
 	}
 
-	public CommandeDTO(Date datecommande, String adressecommande, LocalTime horaire, ClientDTO idclient,
-			EmployeDTO employe, PanierDTO panier) {
+	public CommandeDTO(Date datecommande, String adressecommande, LocalTime horaire, Client idclient) {
 		super();
 		this.datecommande = datecommande;
 		this.adressecommande = adressecommande;
 		this.horaire = horaire;
 		this.idclient = idclient;
-		this.employe = employe;
-		this.panier = panier;
 	}
 
 	public int getIdcommande() {
@@ -78,52 +76,22 @@ public class CommandeDTO {
 		this.horaire = horaire;
 	}
 
-	public ClientDTO getIdclient() {
+	public Client getIdclient() {
 		return idclient;
 	}
 
-	public void setIdclient(ClientDTO idclient) {
+	public void setIdclient(Client idclient) {
 		this.idclient = idclient;
-	}
-
-	public Set<TraiterCommandeDTO> getTraiterCommande() {
-		return traiterCommande;
-	}
-
-	public void setTraiterCommande(Set<TraiterCommandeDTO> traiterCommande) {
-		this.traiterCommande = traiterCommande;
-	}
-
-	public EmployeDTO getEmploye() {
-		return employe;
-	}
-
-	public void setEmploye(EmployeDTO employe) {
-		this.employe = employe;
-	}
-
-	public PanierDTO getPanier() {
-		return panier;
-	}
-
-	public void setPanier(PanierDTO panier) {
-		this.panier = panier;
-	}
-
-	public List<CommandeDTO> getListCommande() {
-		return listCommande;
-	}
-
-	public void setListCommande(List<CommandeDTO> listCommande) {
-		this.listCommande = listCommande;
 	}
 
 	@Override
 	public String toString() {
 		return "CommandeDTO [idcommande=" + idcommande + ", datecommande=" + datecommande + ", adressecommande="
-				+ adressecommande + ", horaire=" + horaire + ", idclient=" + idclient + ", traiterCommande="
-				+ traiterCommande + ", employe=" + employe + ", panier=" + panier + "]";
-	};
+				+ adressecommande + ", horaire=" + horaire + ", idclient=" + idclient + "]";
+	}
 	
+
+
+
 
 }

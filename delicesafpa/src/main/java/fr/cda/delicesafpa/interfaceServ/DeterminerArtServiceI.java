@@ -8,10 +8,11 @@ import fr.cda.delicesafpa.beans.DeterminerArt;
 import fr.cda.delicesafpa.beans.DeterminerCat;
 import fr.cda.delicesafpa.beans.DeterminerCatId;
 import fr.cda.delicesafpa.beans.Employe;
+import fr.cda.delicesafpa.dto.DeterminerArtDTO;
 
 public interface DeterminerArtServiceI {
 
-	public	void save(DeterminerArt determinerArt);
-	public List<DeterminerArt> getAll();
+	public	DeterminerArtDTO  save(DeterminerArtDTO determinerArtDTO);
+	public List<DeterminerArtDTO > getAll();
 
 }

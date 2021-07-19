@@ -134,8 +134,7 @@ public class Test {
 	@RequestMapping(value = "/", method = RequestMethod.GET)
 	public String home(Locale locale, Model model) {
 
-		System.out.println(	StatusCommandeConverter.convertToDto(statusCommandeService.getAll().get(1)) );
-		StatusCommandeDTO	statusCommandeDto=StatusCommandeConverter.convertToDto(statusCommandeService.getAll().get(1)) ;
+		StatusCommandeDTO	statusCommandeDto=statusCommandeService.getById(1);
 		try {
 			StatusCommande	statusCommande =	StatusCommandeConverter.convertToEntity(statusCommandeDto);
 			System.out.println(statusCommande);
@@ -147,7 +146,7 @@ public class Test {
 		}
 		
 		
-		
+		/*
 		
 		System.out.println(	StatusReservationConverter.convertToDto(statusReservationService.getAll().get(1)) );
 		StatusReservationDTO	statusReservationDto=StatusReservationConverter.convertToDto(statusReservationService.getAll().get(1)) ;

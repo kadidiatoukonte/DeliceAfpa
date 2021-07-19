@@ -169,11 +169,6 @@ public class ClientController {
 
 	
 	
-		@PostMapping("/addClient")
-		public Client Client(@RequestBody Client client) {
-			System.out.println(client);
-			return clientService.save(client);
 		
-		}
 	
 }

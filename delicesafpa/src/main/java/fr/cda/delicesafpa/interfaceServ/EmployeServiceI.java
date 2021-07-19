@@ -2,15 +2,13 @@ package fr.cda.delicesafpa.interfaceServ;
 
 import java.util.List;
 
-import fr.cda.delicesafpa.beans.Article;
-import fr.cda.delicesafpa.beans.Client;
-import fr.cda.delicesafpa.beans.Employe;
-import fr.cda.delicesafpa.beans.Reservation;
+
+import fr.cda.delicesafpa.dto.EmployeDTO;
 
 public interface EmployeServiceI {
-	public void save(Employe employe);
-	public List<Employe> getAll();
-	public Employe getById(int id) ;
+	public void save(EmployeDTO employe);
+	public List<EmployeDTO> getAll();
+	public EmployeDTO getById(int id) ;
 	public void updateNomEmploye(String nom, int idemploye);
 	public void updatePrenomEmploye(String prenom, int idemploye);
 	public void updateTelEmploye(String tel, int idemploye);

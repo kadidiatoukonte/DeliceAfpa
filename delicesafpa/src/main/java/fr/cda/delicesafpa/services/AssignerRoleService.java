@@ -14,9 +14,15 @@ import fr.cda.delicesafpa.beans.Employe;
 import fr.cda.delicesafpa.beans.RoleEmploye;
 import fr.cda.delicesafpa.dao.ArticleRepository;
 import fr.cda.delicesafpa.dao.AssignerRoleRepository;
+import fr.cda.delicesafpa.dto.AssignerRoleDTO;
+import fr.cda.delicesafpa.dto.EmployeDTO;
+import fr.cda.delicesafpa.dto.RoleEmployeDTO;
 import fr.cda.delicesafpa.interfaceServ.ArticleServiceI;
 import fr.cda.delicesafpa.interfaceServ.AssignerRoleServiceI;
 import fr.cda.delicesafpa.interfaceServ.RoleEmployeServiceI;
+import fr.cda.delicesafpa.util.AssignerRoleConverter;
+import fr.cda.delicesafpa.util.EmployeConverter;
+import fr.cda.delicesafpa.util.RoleEmployeConverter;
 
 
 
@@ -25,21 +31,35 @@ import fr.cda.delicesafpa.interfaceServ.RoleEmployeServiceI;
 public class AssignerRoleService implements AssignerRoleServiceI {
 	@Autowired
 	private AssignerRoleRepository assignerRoleRepository;
-	
 	@Autowired
 	private	RoleEmployeServiceI roleEmployeService;
+	@Autowired
+	private	AssignerRoleConverter assignerRoleConverter;
+	@Autowired
+	private	EmployeConverter employeConverter;
+	@Autowired
+	private	RoleEmployeConverter roleEmployeConverter;
 	
-	public void save(AssignerRole assignerRole) {
+	public AssignerRoleDTO save(AssignerRoleDTO assignerRoleDTO) {
 		try {
+			AssignerRole assignerRole = assignerRoleConverter.convertToEntity(assignerRoleDTO);
 			assignerRoleRepository.save(assignerRole);
 		} catch (Exception e) {
 			
 		}
+		return assignerRoleDTO;
 	}
 	
-	public List<AssignerRole> getAll() {
+	
+	public List<AssignerRoleDTO> getAll() {
 		try {
-			return assignerRoleRepository.findAll();
+			List<AssignerRole> ass =assignerRoleRepository.findAll();
+			List<AssignerRoleDTO> assDTO= new ArrayList<AssignerRoleDTO>();
+			for(AssignerRole a : ass) {
+				assDTO.add(assignerRoleConverter.explicitModelMappingDemoDaotoDto(a));
+			}
+			
+			return assDTO;
 		} catch (Exception e) {
 			return null;
 		}
@@ -47,9 +67,12 @@ public class AssignerRoleService implements AssignerRoleServiceI {
 	}
 	
 	
-	public AssignerRole findAssRoleActuel(Employe employe) {
+	public AssignerRoleDTO findAssRoleActuel(EmployeDTO employeDTO) {
 		try {
-			return assignerRoleRepository. findAssRoleActuel(employe);
+			Employe ee = employeConverter.dTOToEntity(employeDTO);
+			AssignerRole a= assignerRoleRepository.findAssRoleActuel(ee);
+			AssignerRoleDTO ass = assignerRoleConverter.explicitModelMappingDemoDaotoDto(a);
+			return ass;
 		} catch (Exception e) {
 			return null;
 		}
@@ -57,30 +80,44 @@ public class AssignerRoleService implements AssignerRoleServiceI {
 	}
 	
 	
-	public RoleEmploye findRoleActuel(Employe employe) {
+	public RoleEmployeDTO findRoleActuel(EmployeDTO employe) {
 		try {
-			return assignerRoleRepository. findAssRoleActuel(employe).getIdstatus();
+			Employe ee = employeConverter.dTOToEntity(employe);
+			RoleEmploye re =assignerRoleRepository.findAssRoleActuel(ee).getIdstatus();
+			RoleEmployeDTO reDTO= roleEmployeConverter.EntityToDTO(re);
+			return reDTO;
+					
 		} catch (Exception e) {
 			return null;
 		}
 		
 	}
 	
-	public List<AssignerRole> findListRole(RoleEmploye role) {
+	
+	public List<AssignerRoleDTO> findListRole(RoleEmployeDTO role) {
 		try {
-			return assignerRoleRepository. findListRole(role);
+			RoleEmploye r = roleEmployeConverter.dTOToEntity(role);
+			List<AssignerRole> la =assignerRoleRepository. findListRole(r);
+			List<AssignerRoleDTO> assDTO= new ArrayList<AssignerRoleDTO>();
+			for(AssignerRole a : la) {
+				assDTO.add(assignerRoleConverter.explicitModelMappingDemoDaotoDto(a));
+			}
+			
+			return assDTO;
 		} catch (Exception e) {
 			return null;
 		}
 		
 	}
 	
-	public List<Employe> findListLivreurSOnline() {
+	public List<EmployeDTO> findListLivreurSOnline() {
 		List<Employe>livreursOnline  = new ArrayList<Employe>();
+		List<EmployeDTO>l  = new ArrayList<EmployeDTO>();
 		try {
 			
-			RoleEmploye role  = roleEmployeService.getById(3);
-			List<AssignerRole> list = assignerRoleRepository. findListRole(role);
+			RoleEmployeDTO role  = roleEmployeService.getById(3);
+		
+			List<AssignerRole> list = assignerRoleRepository. findListRole(	RoleEmployeConverter.dTOToEntity(role));
 			
 			
 			for(AssignerRole a: list) {
@@ -91,11 +128,16 @@ public class AssignerRoleService implements AssignerRoleServiceI {
 			
 			}
 			
+			for (Employe e :livreursOnline) {
+				l.add(employeConverter.EntityToDTO(e));
+			}
+			
+			
 			
 		} catch (Exception e) {
 			
 		}
-		return livreursOnline;
+		return l;
 		
 	}
 	
