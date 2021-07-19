@@ -13,34 +13,35 @@ import fr.cda.delicesafpa.beans.AssignerRoleId;
 import fr.cda.delicesafpa.beans.DeterminerArt;
 import fr.cda.delicesafpa.beans.DeterminerArtId;
 import fr.cda.delicesafpa.beans.DeterminerCat;
+import fr.cda.delicesafpa.beans.EtreSup;
+import fr.cda.delicesafpa.beans.EtresupId;
 import fr.cda.delicesafpa.dto.ArticleDTO;
 import fr.cda.delicesafpa.dto.DeterminerArtDTO;
 import fr.cda.delicesafpa.dto.DeterminerCatDTO;
+import fr.cda.delicesafpa.dto.EtreSupDTO;
 
 
 
 @Component
-public class DeterminerArtConverter {
+public class EtreSupConverter {
 	
-	public static DeterminerArtDTO convertToDto(DeterminerArt determinerArt) {
+	public static EtreSupDTO convertToDto(EtreSup etreSup) {
 		ModelMapper modelMapper = new ModelMapper();
 
-		DeterminerArtDTO postDto = modelMapper.map(determinerArt, DeterminerArtDTO.class);
-	    postDto.setDate(determinerArt.getId().getDate());
-	    return postDto;
+		EtreSupDTO etreSupDTO = modelMapper.map(etreSup, EtreSupDTO.class);
+	    return etreSupDTO;
 	}
 
 
-	public static DeterminerArt convertToEntity(DeterminerArtDTO postDto) throws ParseException {
+	public static EtreSup convertToEntity(EtreSupDTO etreSupDto) throws ParseException {
 		ModelMapper modelMapper = new ModelMapper();
 
-		DeterminerArt post = modelMapper.map(postDto, DeterminerArt.class);
-	
+		EtreSup etreSup = modelMapper.map(etreSupDto, EtreSup.class);
+		etreSup.setId((new EtresupId(etreSupDto.getIdarticle().getIdarticle(),
+				etreSupDto.getIdarticle_etreSup().getIdarticle())
+	      ));
 	 
-	        post.setId((new DeterminerArtId(postDto.getIdarticle().getIdarticle(),
-	        		postDto.getIdemploye().getIdemploye(),postDto.getDate()))
-	      );
-	    return post;
+	    return etreSup;
 	}
 
 

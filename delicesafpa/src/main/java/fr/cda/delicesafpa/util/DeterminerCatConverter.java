@@ -6,9 +6,13 @@ import java.util.stream.Collectors;
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Component;
 
-import fr.cda.delicesafpa.beans.Article;
+import com.steadystate.css.parser.ParseException;
+
+
 import fr.cda.delicesafpa.beans.DeterminerCat;
+import fr.cda.delicesafpa.beans.DeterminerCatId;
 import fr.cda.delicesafpa.dto.ArticleDTO;
+import fr.cda.delicesafpa.dto.DeterminerArtDTO;
 import fr.cda.delicesafpa.dto.DeterminerCatDTO;
 
 
@@ -16,35 +20,38 @@ import fr.cda.delicesafpa.dto.DeterminerCatDTO;
 @Component
 public class DeterminerCatConverter {
 	
-	
-	public DeterminerCatDTO EntityToDTO(DeterminerCat determinerCat) {
-		ModelMapper mapper = new ModelMapper();
-		DeterminerCatDTO map = mapper.map(determinerCat, DeterminerCatDTO.class);
-		return map;
+	public static DeterminerCatDTO convertToDto(DeterminerCat determinerCat) {
+		ModelMapper modelMapper = new ModelMapper();
+	    DeterminerCatDTO postDto = modelMapper.map(determinerCat, DeterminerCatDTO.class);
+	    postDto.setDate(determinerCat.getId().getDate());
+	    postDto.setIdcategorie(determinerCat.getCategorie());
+	    postDto.setIdemploye(determinerCat.getEmploye());
+	    
+	    return postDto;
 	}
 
-	
-	
-	public List<DeterminerCatDTO> EntityToDTO(List<DeterminerCat> determinerCats) {
+	/*ModelMapper modelMapper = new ModelMapper();
 
-		return determinerCats.stream().map(x -> EntityToDTO(x)).collect(Collectors.toList());
-
-	}
-	
+		DeterminerArtDTO postDto = modelMapper.map(determinerArt, DeterminerArtDTO.class);
+	    postDto.setDate(determinerArt.getId().getDate());
+	    return postDto;*/
 	
 	
 	
 
-	public DeterminerCat dTOToEntity(DeterminerCatDTO determinerCat) {
-		ModelMapper mapper = new ModelMapper();
-		DeterminerCat map = mapper.map(determinerCat, DeterminerCat.class);
-		return map;
-	}
+	public static DeterminerCat convertToEntity(DeterminerCatDTO postDto) throws ParseException {
+		ModelMapper modelMapper = new ModelMapper();
 
-	public List<DeterminerCat> dTOToEntity(List<DeterminerCatDTO> determinerCat) {
-
-		return determinerCat.stream().map(x -> dTOToEntity(x)).collect(Collectors.toList());
-
+		DeterminerCat post = modelMapper.map(postDto, DeterminerCat.class);
+	 
+	            post.setId((new DeterminerCatId(postDto.getIdcategorie().getIdcategorie(),
+	            		postDto.getIdemploye().getIdemploye(),postDto.getDate())));
+	        		
+	               post.setCategorie(postDto.getIdcategorie());
+	             	post.setEmploye(postDto.getIdemploye());
+	        		
+	        		
+	    return post;
 	}
 
 

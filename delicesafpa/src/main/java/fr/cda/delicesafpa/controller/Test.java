@@ -21,48 +21,20 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
-import fr.cda.delicesafpa.beans.Article;
-import fr.cda.delicesafpa.beans.AssignerRole;
-import fr.cda.delicesafpa.beans.AssignerRoleId;
-import fr.cda.delicesafpa.beans.Categorie;
-import fr.cda.delicesafpa.beans.Client;
-import fr.cda.delicesafpa.beans.Commande;
-import fr.cda.delicesafpa.beans.ConcernerId;
 import fr.cda.delicesafpa.beans.ConcernerPanArt;
-import fr.cda.delicesafpa.beans.DeterminerArt;
-import fr.cda.delicesafpa.beans.DeterminerArtId;
-import fr.cda.delicesafpa.beans.DeterminerCat;
-import fr.cda.delicesafpa.beans.DeterminerCatId;
-import fr.cda.delicesafpa.beans.Employe;
 import fr.cda.delicesafpa.beans.EtreSup;
-import fr.cda.delicesafpa.beans.EtresupId;
-import fr.cda.delicesafpa.beans.Panier;
-import fr.cda.delicesafpa.beans.Reservation;
-import fr.cda.delicesafpa.beans.RoleEmploye;
 import fr.cda.delicesafpa.beans.StatusCommande;
 import fr.cda.delicesafpa.beans.StatusReservation;
 import fr.cda.delicesafpa.beans.TraiterCommande;
-import fr.cda.delicesafpa.beans.TraiterCommandeId;
 import fr.cda.delicesafpa.beans.TraiterReservation;
-import fr.cda.delicesafpa.beans.TraiterReservationId;
-import fr.cda.delicesafpa.dao.ArticleRepository;
-import fr.cda.delicesafpa.dao.AssignerRoleRepository;
-import fr.cda.delicesafpa.dao.CategorieRepository;
-import fr.cda.delicesafpa.dao.ClientRepository;
-import fr.cda.delicesafpa.dao.CommandeRepository;
-import fr.cda.delicesafpa.dao.ConcernerPanArtRepository;
-import fr.cda.delicesafpa.dao.DeterminerArtRepository;
-import fr.cda.delicesafpa.dao.DeterminerCatRepository;
-import fr.cda.delicesafpa.dao.EmployeRepository;
-import fr.cda.delicesafpa.dao.EtreSupRepository;
-import fr.cda.delicesafpa.dao.PanierRepository;
-import fr.cda.delicesafpa.dao.ReservationRepository;
-import fr.cda.delicesafpa.dao.RoleEmployeRepository;
-import fr.cda.delicesafpa.dao.StatusCommandeRepository;
-import fr.cda.delicesafpa.dao.StatusReservationRepository;
 import fr.cda.delicesafpa.dao.TraiterCommandeRepository;
 import fr.cda.delicesafpa.dao.TraiterReservationRepository;
-import fr.cda.delicesafpa.dto.AssignerRoleDTO;
+import fr.cda.delicesafpa.dto.ConcernerPanArtDTO;
+import fr.cda.delicesafpa.dto.EtreSupDTO;
+import fr.cda.delicesafpa.dto.StatusCommandeDTO;
+import fr.cda.delicesafpa.dto.StatusReservationDTO;
+import fr.cda.delicesafpa.dto.TraiterCommandeDTO;
+import fr.cda.delicesafpa.dto.TraiterReservationDTO;
 import fr.cda.delicesafpa.interfaceServ.ArticleServiceI;
 import fr.cda.delicesafpa.interfaceServ.AssignerRoleServiceI;
 import fr.cda.delicesafpa.interfaceServ.CategorieServiceI;
@@ -80,19 +52,14 @@ import fr.cda.delicesafpa.interfaceServ.StatusCommandeServiceI;
 import fr.cda.delicesafpa.interfaceServ.StatusReservationServiceI;
 import fr.cda.delicesafpa.interfaceServ.TraiterCommandeServiceI;
 import fr.cda.delicesafpa.interfaceServ.TraiterReservationServiceI;
-import fr.cda.delicesafpa.services.ArticleService;
-import fr.cda.delicesafpa.services.AssignerRoleService;
-import fr.cda.delicesafpa.services.ClientService;
-import fr.cda.delicesafpa.services.DetCategorieService;
-import fr.cda.delicesafpa.services.EmployeService;
-import fr.cda.delicesafpa.services.PanierService;
-import fr.cda.delicesafpa.services.ReservationService;
-import fr.cda.delicesafpa.services.RoleEmployeService;
-import fr.cda.delicesafpa.services.StatusCommandeService;
-import fr.cda.delicesafpa.services.TraiterCommandeService;
-import fr.cda.delicesafpa.services.TraiterReservationService;
-import fr.cda.delicesafpa.util.AssignerRoleConverter;
+import fr.cda.delicesafpa.util.ConcernerPanArtConverter;
+import fr.cda.delicesafpa.util.EtreSupConverter;
+import fr.cda.delicesafpa.util.StatusCommandeConverter;
+import fr.cda.delicesafpa.util.StatusReservationConverter;
+import fr.cda.delicesafpa.util.TraiterCommandeConverter;
+import fr.cda.delicesafpa.util.TraiterReservationConverter;
 
+import org.springframework.web.bind.annotation.RestController;
 /**
  * Handles requests for the application home page.
  */
@@ -155,26 +122,148 @@ public class Test {
 	ConcernerPanArtServiceI concernerPanArtService;
 	
 	@Autowired
-	EtreSupServiceI etreSupServiceI;
+	EtreSupServiceI etreSupService;
 	
 	
 	/**
 	 * Simply selects the home view to render by returning its name.
 	 */
+	
+	
+
 	@RequestMapping(value = "/", method = RequestMethod.GET)
 	public String home(Locale locale, Model model) {
-		
-		
-		
-		AssignerRole assignerRole = assignerRoleService.getAll().get(1);	
-		
-		AssignerRoleDTO aDto =  AssignerRoleConverter.explicitModelMappingDemoDaotoDto(assignerRole);
-	
-		System.out.println(aDto);
 
+		System.out.println(	StatusCommandeConverter.convertToDto(statusCommandeService.getAll().get(1)) );
+		StatusCommandeDTO	statusCommandeDto=StatusCommandeConverter.convertToDto(statusCommandeService.getAll().get(1)) ;
+		try {
+			StatusCommande	statusCommande =	StatusCommandeConverter.convertToEntity(statusCommandeDto);
+			System.out.println(statusCommande);
+			System.out.println(statusCommandeDto);
+		} catch (com.steadystate.css.parser.ParseException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			System.out.println("errore");
+		}
+		
+		
+		
+		
+		System.out.println(	StatusReservationConverter.convertToDto(statusReservationService.getAll().get(1)) );
+		StatusReservationDTO	statusReservationDto=StatusReservationConverter.convertToDto(statusReservationService.getAll().get(1)) ;
+		try {
+			StatusReservation	statusReservation =	StatusReservationConverter.convertToEntity(statusReservationDto);
+			System.out.println(statusReservation);
+			System.out.println(statusReservationDto);
+		} catch (com.steadystate.css.parser.ParseException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			System.out.println("errore");
+		}
+		
+		
+		
+		System.out.println(	ConcernerPanArtConverter.convertToDto(concernerPanArtService.getAll().get(1)) );
+		ConcernerPanArtDTO	concernerPanArtDto=ConcernerPanArtConverter.convertToDto(concernerPanArtService.getAll().get(1)) ;
+		try {
+			ConcernerPanArt	concernerPanArt =	ConcernerPanArtConverter.convertToEntity(concernerPanArtDto);
+			System.out.println(concernerPanArtDto);
+			System.out.println(concernerPanArt);
+		
+		} catch (com.steadystate.css.parser.ParseException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			System.out.println("errore");
+		}
+		
+		
+		
+		/*
+
+		System.out.println(	TraiterReservationConverter.convertToDto(traiterReservationService.getAll().get(1)) );
+		TraiterReservationDTO	traiterReservationDto=TraiterReservationConverter.convertToDto(traiterReservationService.getAll().get(1)) ;
+		try {
+			TraiterReservation	traiterReservation =	TraiterReservationConverter.convertToEntity(traiterReservationDto);
+			System.out.println(traiterReservation);
+			System.out.println(traiterReservationDto);
+		} catch (com.steadystate.css.parser.ParseException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			System.out.println("errore");
+		}
+		
+/*
+		System.out.println(	TraiterCommandeConverter.convertToDto(traiterCommandeService.getAll().get(1)) );
+		TraiterCommandeDTO	traiterCommandeDto=TraiterCommandeConverter.convertToDto(traiterCommandeService.getAll().get(1)) ;
+		try {
+			TraiterCommande	traiterCommande =	TraiterCommandeConverter.convertToEntity(traiterCommandeDto);
+			System.out.println(traiterCommande);
+			System.out.println(traiterCommandeDto);
+		} catch (com.steadystate.css.parser.ParseException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			System.out.println("errore");
+		}
+		
+		
+		
+		
+	/*
+		
+		System.out.println(	EtreSupConverter.convertToDto(etreSupService.getAll().get(1)) );
+		EtreSupDTO	etreSupDto=EtreSupConverter.convertToDto(etreSupService.getAll().get(1)) ;
+		try {
+			EtreSup	etreSup =	EtreSupConverter.convertToEntity(etreSupDto);
+			System.out.println(etreSup);
+		} catch (com.steadystate.css.parser.ParseException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			System.out.println("errore");
+		}
+		
+		
+		
+		
+	
+		/*detCategorie*/
+		/*
+		DeterminerCat det = detCategorieService.getAll().get(1);
+		System.out.println(det);
+		DeterminerCatDTO detDTO = DeterminerCatConverter.convertToDto(det);
+		   System.out.println(detDTO);
+		   DeterminerCat detNew = new DeterminerCat();
+			try {
+				detNew= DeterminerCatConverter.convertToEntity (detDTO);
+			} catch (com.steadystate.css.parser.ParseException e) {
+				e.printStackTrace();
+				System.out.println("ciaocuaoihkqsgdqsuh");
+			}
+		
+			System.out.println("conv+"+detDTO);
+			System.out.println("convA+"+detNew);		
+		
+		/*detArticle*//*
+DeterminerArt det = detArticleService.getAll().get(1);
+		DeterminerArtDTO detDTO = DeterminerArtConverter.convertToDto (det);
+		   System.out.println(detDTO);
+			DeterminerArt detNew = new DeterminerArt();
+			try {
+				detNew= DeterminerArtConverter.convertToEntity (detDTO);
+			} catch (com.steadystate.css.parser.ParseException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+				System.out.println("ciaocuaoihkqsgdqsuh");
+			}
+		
+			System.out.println("conv+"+detDTO);
+			System.out.println("convA+"+detNew);		
+			
+			
+		/*assignerRole*/
+	/*	AssignerRole assignerRole = assignerRoleService.getAll().get(1);	
+		AssignerRoleDTO aDto =  AssignerRoleConverter.explicitModelMappingDemoDaotoDto(assignerRole);
+	    System.out.println(aDto);
 		AssignerRole assignerRoleNew  = new AssignerRole();
-		
-		
 		try {
 			assignerRoleNew =	AssignerRoleConverter.convertToEntity(aDto);
 			System.out.println(assignerRoleNew);
@@ -183,13 +272,12 @@ public class Test {
 			e.printStackTrace();
 			System.out.println("ciaociao");
 		}
-		
-		
+				
 		System.out.println("conv+"+aDto);
 		System.out.println("convA+"+assignerRoleNew);
 //System.out.println(assignerRoleUPDAO);
-
-	return "home";
+/**/
+	return "home";}
 	
 		/*cat*/
 	/*	
@@ -198,7 +286,7 @@ public class Test {
 		
 	     categorieService.save(newCat);/**/
 		
-	}
+	//}
 	     /* %%%%%%%%%%%%%%%%%%% */// CLIENT
 	/*	
 	Client c = new Client("nomclient","prenomclient",getDate("2010-10-10"),"paysclient","adresseclient",

@@ -20,12 +20,13 @@ public class ClientService implements ClientServiceI {
 	@Autowired
 	private ClientRepository clientRepository;
 
-	public void save(Client client) {
+	public Client save(Client client) {
 		try {
 			clientRepository.save(client);
 		} catch (Exception e) {
 
 		}
+		return client;
 	}
 
 	public List<Client> getAll() {

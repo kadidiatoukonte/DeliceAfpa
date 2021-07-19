@@ -100,15 +100,15 @@ public class TraiterCommande {
 		this.idstatus = idstatus;
 	}
 
-
-
-
 	@Override
 	public String toString() {
-		return "TraiterCommande [id=" + id.getIdcommande() + ", idcommande=" + idcommande.getDatecommande() + ", idemploye=" + idemploye.getIdemploye() + ", idstatus="
+		return "TraiterCommande [id=" + id.getDate() + ", idcommande=" + idcommande.getIdcommande() + ", idemploye=" + idemploye.getIdemploye() + ", idstatus="
 				+ idstatus.getDescription() + "]";
 	}
-	
+
+
+
+
 	
 	
 }

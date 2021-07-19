@@ -9,17 +9,17 @@ import java.util.Set;
 import lombok.Data;
 
 @Data
-public class StatusReservationDTO {
+public class StatusCommandeDTO {
 
 	private int idstatus;
 
 	private String description;
 
-	public StatusReservationDTO() {
+	public StatusCommandeDTO() {
 		super();
 	}
 
-	public StatusReservationDTO(String description) {
+	public StatusCommandeDTO(String description) {
 		super();
 		this.description = description;
 	}
@@ -42,7 +42,7 @@ public class StatusReservationDTO {
 
 	@Override
 	public String toString() {
-		return "StatusReservationDTO [idstatus=" + idstatus + ", description=" + description + "]";
+		return "StatusCommandeDTO [idstatus=" + idstatus + ", description=" + description + "]";
 	}
 
 
