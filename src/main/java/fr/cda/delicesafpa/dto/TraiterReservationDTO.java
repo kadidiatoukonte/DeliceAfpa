@@ -7,52 +7,69 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.MapsId;
 
+import fr.cda.delicesafpa.beans.Commande;
 import fr.cda.delicesafpa.beans.Employe;
 import fr.cda.delicesafpa.beans.Reservation;
+import fr.cda.delicesafpa.beans.StatusCommande;
 import fr.cda.delicesafpa.beans.StatusReservation;
 import lombok.Data;
 
 @Data
 public class TraiterReservationDTO {
-	
-	private EmployeDTO idemploye;
-	private ReservationDTO idreservation; 
-	private LocalDateTime date; 
-    private StatusReservationDTO idstatus;
-	
+
+	private Reservation idreservation;
     
-    public TraiterReservationDTO() {
-    	
-    }
+	private Employe idemploye;	
+    
+ 
+    private StatusReservation idstatus;
+    
+    
+    private LocalDateTime date;
 
 
-	public TraiterReservationDTO(EmployeDTO idemploye, ReservationDTO idreservation, LocalDateTime date,
-			StatusReservationDTO idstatus) {
+	public TraiterReservationDTO() {
 		super();
-		this.idemploye = idemploye;
+	}
+
+
+	public TraiterReservationDTO(Reservation idreservation, Employe idemploye, StatusReservation idstatus,
+			LocalDateTime date) {
+		super();
 		this.idreservation = idreservation;
-		this.date = date;
-		this.idstatus = idstatus;
-	}
-
-
-	public EmployeDTO getIdemploye() {
-		return idemploye;
-	}
-
-
-	public void setIdemploye(EmployeDTO idemploye) {
 		this.idemploye = idemploye;
+		this.idstatus = idstatus;
+		this.date = date;
 	}
 
 
-	public ReservationDTO getIdreservation() {
+	public Reservation getIdreservation() {
 		return idreservation;
 	}
 
 
-	public void setIdreservation(ReservationDTO idreservation) {
+	public void setIdreservation(Reservation idreservation) {
 		this.idreservation = idreservation;
+	}
+
+
+	public Employe getIdemploye() {
+		return idemploye;
+	}
+
+
+	public void setIdemploye(Employe idemploye) {
+		this.idemploye = idemploye;
+	}
+
+
+	public StatusReservation getIdstatus() {
+		return idstatus;
+	}
+
+
+	public void setIdstatus(StatusReservation idstatus) {
+		this.idstatus = idstatus;
 	}
 
 
@@ -66,21 +83,19 @@ public class TraiterReservationDTO {
 	}
 
 
-	public StatusReservationDTO getIdstatus() {
-		return idstatus;
-	}
-
-
-	public void setIdstatus(StatusReservationDTO idstatus) {
-		this.idstatus = idstatus;
-	}
-
-
 	@Override
 	public String toString() {
-		return "TraiterReservationDTO [idemploye=" + idemploye + ", idreservation=" + idreservation + ", date=" + date
-				+ ", idstatus=" + idstatus + "]";
+		return "TraiterReservationDTO [idreservation=" + idreservation + ", idemploye=" + idemploye + ", idstatus="
+				+ idstatus + ", date=" + date + "]";
 	}
+    
+    
+    
+    
+    
+    
+    
+    
     
     
 }

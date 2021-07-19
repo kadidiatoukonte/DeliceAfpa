@@ -11,29 +11,55 @@ import fr.cda.delicesafpa.beans.Categorie;
 import fr.cda.delicesafpa.beans.Client;
 import fr.cda.delicesafpa.dao.ArticleRepository;
 import fr.cda.delicesafpa.dao.ClientRepository;
+import fr.cda.delicesafpa.dto.ArticleDTO;
+import fr.cda.delicesafpa.dto.ClientDTO;
 import fr.cda.delicesafpa.interfaceServ.ArticleServiceI;
 import fr.cda.delicesafpa.interfaceServ.ClientServiceI;
+import fr.cda.delicesafpa.util.ClientConverter;
 
 @Service
 public class ClientService implements ClientServiceI {
 
 	@Autowired
 	private ClientRepository clientRepository;
+	@Autowired
+	private ClientConverter clientConverter;
 
-	public void save(Client client) {
+	public ClientDTO save(ClientDTO clientDTO) {
 		try {
+			Client client = clientConverter.dTOToEntity(clientDTO);
 			clientRepository.save(client);
 		} catch (Exception e) {
 
 		}
+		return clientDTO;
 	}
 
-	public List<Client> getAll() {
+	public List<ClientDTO> getAll() {
 		try {
-			return clientRepository.findAll();
+			List<Client> client = clientRepository.findAll();
+			List<ClientDTO> clientDTO = clientConverter.EntityToDTO(client);
+			return clientDTO;
+			
 		} catch (Exception e) {
 			return null;
 		}
 
 	}
+
+
+	public ClientDTO getById(int id) {
+		try {
+			Client a = clientRepository.findById(id).get();
+			ClientDTO aDTO = clientConverter.EntityToDTO(a);
+			return aDTO;
+		} catch (Exception NoSuchElementException) {
+			return null;
+		}
+	}
+
+
+
+
+
 }

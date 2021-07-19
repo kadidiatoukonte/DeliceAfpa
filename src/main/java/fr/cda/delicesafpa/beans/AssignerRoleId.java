@@ -25,7 +25,6 @@ public class AssignerRoleId implements Serializable {
 
 	public AssignerRoleId() {
 		super();
-		// TODO Auto-generated constructor stub
 	}
 
 	public AssignerRoleId(int idemploye_assigner_role, int idemploye, int idstatus, LocalDateTime date) {

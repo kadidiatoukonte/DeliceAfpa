@@ -13,6 +13,8 @@ import fr.cda.delicesafpa.dto.ClientDTO;
 
 @Component
 public class ClientConverter {
+	
+	
 	public ClientDTO EntityToDTO(Client client) {
 		ModelMapper mapper = new ModelMapper();
 		ClientDTO map = mapper.map(client, ClientDTO.class);
