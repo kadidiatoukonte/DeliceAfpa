@@ -27,7 +27,7 @@ public class ArticleConverter {
 
 	}
 
-	public Article dTOToEntity(ArticleDTO article) {
+	public static Article dTOToEntity(ArticleDTO article) {
 		ModelMapper mapper = new ModelMapper();
 		Article map = mapper.map(article, Article.class);
 		return map;

@@ -14,9 +14,6 @@
 		<org.slf4j-version>1.6.6</org.slf4j-version>
 	</properties>
 	<dependencies>
-		 
-		 
-		 
 		 <dependency>
 		<groupId>org.projectlombok</groupId>
 		<artifactId>lombok</artifactId>
@@ -42,17 +39,12 @@
     <artifactId>bootstrap</artifactId>
     <version>5.0.1</version>
 </dependency>
-
 <!-- https://mvnrepository.com/artifact/net.sourceforge.cssparser/cssparser -->
 <dependency>
     <groupId>net.sourceforge.cssparser</groupId>
     <artifactId>cssparser</artifactId>
     <version>0.9.29</version>
 </dependency>
-		 
-		 
-		 
-		 
 		<dependency>
     <groupId>org.hibernate</groupId>
     <artifactId>hibernate-core</artifactId>
@@ -68,22 +60,18 @@
     <artifactId>spring-data-jpa</artifactId>
     <version>2.2.3.RELEASE</version>
 </dependency>
-		
-		
-		
 		<dependency>
 			<groupId>org.springframework</groupId>
 			<artifactId>spring-webmvc</artifactId>
 			<version>${org.springframework-version}</version>
 		</dependency>
-				
+		
 		<!-- AspectJ -->
 		<dependency>
 			<groupId>org.aspectj</groupId>
 			<artifactId>aspectjrt</artifactId>
 			<version>${org.aspectj-version}</version>
 		</dependency>	
-		
 		<!-- Logging -->
 		<dependency>
 			<groupId>org.slf4j</groupId>
@@ -126,14 +114,12 @@
 			</exclusions>
 			<scope>runtime</scope>
 		</dependency>
-
 		<!-- @Inject -->
 		<dependency>
 			<groupId>javax.inject</groupId>
 			<artifactId>javax.inject</artifactId>
 			<version>1</version>
 		</dependency>
-				
 		<!-- Servlet -->
 		<dependency>
 			<groupId>javax.servlet</groupId>
@@ -152,14 +138,24 @@
 			<artifactId>jstl</artifactId>
 			<version>1.2</version>
 		</dependency>
-	
 		<!-- Test -->
 		<dependency>
 			<groupId>junit</groupId>
 			<artifactId>junit</artifactId>
 			<version>4.7</version>
 			<scope>test</scope>
-		</dependency>        
+		</dependency>   
+		<dependency>
+			<groupId>com.fasterxml.jackson.dataformat</groupId>
+			<artifactId>jackson-dataformat-xml</artifactId>
+			<version>2.10.1</version>
+		</dependency>
+		
+		<dependency>
+<groupId>com.fasterxml.jackson.datatype</groupId>
+<artifactId>jackson-datatype-jsr310</artifactId>
+<version>2.6.0</version>
+</dependency>
 	</dependencies>
     <build>
         <plugins>

@@ -1,6 +1,5 @@
 package fr.cda.delicesafpa.beans;
 import java.awt.Image;
-
 import java.math.BigInteger;
 import java.math.BigInteger;
 import java.sql.Date;
@@ -72,7 +71,9 @@ public class Article {
 	@OneToMany(mappedBy = "idarticle",fetch = FetchType.EAGER)
 	Set<EtreSup> idarticleS;
 	
-	
+	@OneToMany
+	(fetch = FetchType.EAGER , mappedBy = "idarticle")
+	private Set<ConcernerPanArt> concernerPanArt;
 	
 	
 	public Article() {};
@@ -176,10 +177,22 @@ public class Article {
 	public void setIdarticleS(Set<EtreSup> idarticleS) {
 		this.idarticleS = idarticleS;
 	}
-/*java.lang.StackOverflowError*/
+	
+	
+	
+	
+public Set<ConcernerPanArt> getConcernerPanArt() {
+		return concernerPanArt;
+	}
+
+	public void setConcernerPanArt(Set<ConcernerPanArt> concernerPanArt) {
+		this.concernerPanArt = concernerPanArt;
+	}
+
+	/*java.lang.StackOverflowError*/
 	@Override
 	public String toString() {
-		return "Article [idarticle=" + idarticle + ", nomarticle=" + nomarticle + ", prixarticle=" + prixarticle
+		return "nomarticle=" + nomarticle + ", prixarticle=" + prixarticle
 				+ ", descriptionarticle=" + descriptionarticle + ", visibilitearticle=" + visibilitearticle
 				+ ", offrespecialearticle=" + offrespecialearticle + ", descriptionoffresp=" + descriptionoffresp
 				+ ", determinerart=" + determinerart.size() + ", categorie=" + categorie + ", idarticle_etreSup="

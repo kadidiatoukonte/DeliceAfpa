@@ -9,10 +9,7 @@
 		http://www.springframework.org/schema/beans https://www.springframework.org/schema/beans/spring-beans.xsd
 		http://www.springframework.org/schema/context https://www.springframework.org/schema/context/spring-context.xsd
 		http://www.springframework.org/schema/data/jpa http://www.springframework.org/schema/data/jpa/spring-jpa.xsd">
-
-
 	<annotation-driven />
-	
 	<beans:bean id="dataSource"
 		class="org.springframework.jdbc.datasource.DriverManagerDataSource">
 		<beans:property name="driverClassName"
@@ -22,7 +19,6 @@
 		<beans:property name="username" value="gestionnairefr" />
 		<beans:property name="password" value="yourpass" />
 	</beans:bean>
-
 	<beans:bean id="entityManagerFactory" class="org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean">
 		<beans:property name="dataSource" ref="dataSource" />
 		<beans:property name="packagesToScan" value="fr.cda.delicesafpa.beans" />
@@ -38,22 +34,15 @@
 			</beans:props>
 		</beans:property>
 	</beans:bean>
-	
 	<beans:bean id="transactionManager" class="org.springframework.orm.jpa.JpaTransactionManager">
 		<beans:property name="entityManagerFactory" ref="entityManagerFactory" />
 	</beans:bean>
-	
 	<jpa:repositories base-package="fr.cda.delicesafpa.dao"/>
 		<context:component-scan base-package="fr.cda.delicesafpa.util" />
 <context:component-scan base-package="fr.cda.delicesafpa.services" />
 <context:component-scan base-package="fr.cda.delicesafpa.dto" />
 <context:component-scan base-package="fr.cda.delicesafpa.interfaceServ" />
-
-
 	<context:component-scan base-package="fr.cda.delicesafpa.dao">
     	<context:include-filter type="annotation" expression="org.springframework.stereotype.Repository" />
 	</context:component-scan>
-
-
-
 </beans:beans>

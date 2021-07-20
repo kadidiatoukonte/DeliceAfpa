@@ -15,7 +15,10 @@ import fr.cda.delicesafpa.dto.RoleEmployeDTO;
 
 @Component
 public class RoleEmployeConverter {
-	public RoleEmployeDTO EntityToDTO(RoleEmploye roleEmploye) {
+	
+	
+	
+	public static RoleEmployeDTO EntityToDTO(RoleEmploye roleEmploye) {
 		ModelMapper mapper = new ModelMapper();
 		RoleEmployeDTO map = mapper.map(roleEmploye, RoleEmployeDTO.class);
 		return map;
@@ -27,7 +30,7 @@ public class RoleEmployeConverter {
 
 	}
 
-	public RoleEmploye dTOToEntity(RoleEmployeDTO roleEmploye) {
+	public static RoleEmploye dTOToEntity(RoleEmployeDTO roleEmploye) {
 		ModelMapper mapper = new ModelMapper();
 		RoleEmploye map = mapper.map(roleEmploye, RoleEmploye.class);
 		return map;

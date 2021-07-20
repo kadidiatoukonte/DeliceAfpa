@@ -16,6 +16,8 @@ import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 
 @Entity
 @Table(name = "categorie")
@@ -53,6 +55,7 @@ public class Categorie {
 		this.visibilitecategorie = visibilitecategorie;
 	}
 
+	@JsonIgnore
 	public int getIdcategorie() {
 		return idcategorie;
 	}
@@ -61,6 +64,7 @@ public class Categorie {
 		this.idcategorie = idcategorie;
 	}
 
+	@JsonIgnore
 	public String getNomcategorie() {
 		return nomcategorie;
 	}
@@ -69,6 +73,7 @@ public class Categorie {
 		this.nomcategorie = nomcategorie;
 	}
 
+	@JsonIgnore
 	public String getDescriptioncategorie() {
 		return descriptioncategorie;
 	}
@@ -77,6 +82,7 @@ public class Categorie {
 		this.descriptioncategorie = descriptioncategorie;
 	}
 
+	@JsonIgnore
 	public Boolean getVisibilitecategorie() {
 		return visibilitecategorie;
 	}
@@ -85,6 +91,7 @@ public class Categorie {
 		this.visibilitecategorie = visibilitecategorie;
 	}
 
+	@JsonIgnore
 	public Set<DeterminerCat> getDeterminerCat() {
 		return determinerCat;
 	}
@@ -101,12 +108,6 @@ public class Categorie {
 	}
 	
 
-
-	
-	/*
-	@Lob
-    @Basic(fetch = FetchType.LAZY)
-    private byte[] photocategorie;*/
 
 	
 	

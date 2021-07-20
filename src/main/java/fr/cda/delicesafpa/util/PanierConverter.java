@@ -14,7 +14,7 @@ import fr.cda.delicesafpa.dto.PanierDTO;
 @Component
 public class PanierConverter {
 
-	public PanierDTO EntityToDTO(Panier panier) {
+	public static PanierDTO EntityToDTO(Panier panier) {
 		ModelMapper mapper = new ModelMapper();
 		PanierDTO map = mapper.map(panier, PanierDTO.class);
 		return map;
@@ -26,7 +26,7 @@ public class PanierConverter {
 
 	}
 
-	public Panier dTOToEntity(PanierDTO panier) {
+	public static Panier dTOToEntity(PanierDTO panier) {
 		ModelMapper mapper = new ModelMapper();
 		Panier map = mapper.map(panier, Panier.class);
 		return map;

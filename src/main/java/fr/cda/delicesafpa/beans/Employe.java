@@ -4,6 +4,7 @@ import java.sql.Date;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
+
 import javax.imageio.ImageIO;
 import javax.persistence.Basic;
 import javax.persistence.Column;
@@ -194,8 +195,12 @@ public class Employe {
 		this.statusemploye = statusemploye;
 	}
 
-
-
+/*
+	@JsonIgnore
+	public Set<TraiterReservation> getTraiterReservation() {
+	return traiterReservation;
+	}
+*/
 	public Set<TraiterReservation> getTraiterReservation() {
 		return traiterReservation;
 	}

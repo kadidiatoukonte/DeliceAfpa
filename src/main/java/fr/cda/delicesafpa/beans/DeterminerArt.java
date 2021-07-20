@@ -40,6 +40,37 @@ public class DeterminerArt {
 		this.idemploye = idemploye;
 	}
 
+	public DeterminerArt(DeterminerArtId id) {
+		super();
+		this.id = id;
+		
+	}
+	
+	
+	public DeterminerArtId getId() {
+		return id;
+	}
+
+	public void setId(DeterminerArtId id) {
+		this.id = id;
+	}
+
+	public Article getIdarticle() {
+		return idarticle;
+	}
+
+	public void setIdarticle(Article idarticle) {
+		this.idarticle = idarticle;
+	}
+
+	public Employe getIdemploye() {
+		return idemploye;
+	}
+
+	public void setIdemploye(Employe idemploye) {
+		this.idemploye = idemploye;
+	}
+
 	@Override
 	public String toString() {
 		return "DeterminerArt [id=" + id + ", idarticle=" + idarticle + ", idemploye=" + idemploye.getIdemploye() + "]";

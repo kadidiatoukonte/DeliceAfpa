@@ -3,6 +3,7 @@ package fr.cda.delicesafpa.beans;
 import java.util.Set;
 
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -18,7 +19,7 @@ public class StatusReservation {
 
 	private String description;
 
-	@OneToMany(mappedBy = "idstatus")
+	@OneToMany(mappedBy = "idstatus",fetch = FetchType.EAGER)
 	Set<TraiterReservation> traiterReservation;
 	
 	
@@ -46,6 +47,13 @@ public class StatusReservation {
 
 	public void setDescription(String description) {
 		this.description = description;
+	}
+
+
+	@Override
+	public String toString() {
+		return "StatusReservation [idstatus=" + idstatus + ", description=" + description + ", traiterReservation="
+				+ traiterReservation + "]";
 	}
 
 }

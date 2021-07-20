@@ -38,6 +38,11 @@ public class DeterminerCat {
 			this.idemploye = employe;
 		}
 
+		public DeterminerCat(DeterminerCatId id) {
+			super();
+			this.id = id;
+			
+		}
 
 
 		public DeterminerCatId getId() {
@@ -68,7 +73,7 @@ public class DeterminerCat {
 
 		@Override
 		public String toString() {
-			return "DeterminerCat [ "+", categorie=" + idcategorie + ", employe=" + idemploye.getNomemploye() + "]";
+			return "DeterminerCat [ "+id.getDate()+", categorie=" + idcategorie + ", employe=" + idemploye.getNomemploye() + "]";
 		}
 	
 	

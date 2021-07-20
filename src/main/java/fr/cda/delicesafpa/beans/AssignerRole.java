@@ -82,7 +82,7 @@ public class AssignerRole {
 
 	@Override
 	public String toString() {
-		return "AssignerRole [id=" + id + ", idemploye_assigner_role=" + idemploye_assigner_role + ", idemploye="
+		return "AssignerRole [id=" + id.getDate() + ", idemploye_assigner_role=" + idemploye_assigner_role + ", idemploye="
 				+ idemploye + ", idstatus=" + idstatus + "]";
 	}
 
