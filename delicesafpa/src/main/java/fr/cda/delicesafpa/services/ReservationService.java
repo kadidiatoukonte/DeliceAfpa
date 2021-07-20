@@ -27,15 +27,14 @@ public class ReservationService implements ReservationServiceI {
 	@Autowired
 	private ReservationRepository reservationRepository;
 
-	
-	
-	public void save(ReservationDTO reservationDTO) {
+	public ReservationDTO save(ReservationDTO reservationDTO) {
 		try {
 
 			Reservation r = ReservationConverter.dTOToEntity(reservationDTO);
-			reservationRepository.save(r);
+			 reservationRepository.save(r);
+			 return reservationDTO;
 		} catch (Exception e) {
-
+			return null;
 		}
 	}
 
@@ -64,11 +63,4 @@ public class ReservationService implements ReservationServiceI {
 		}
 	}
 
-
-	
-	
-	
-	
-	
-	
 }

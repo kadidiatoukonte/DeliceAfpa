@@ -25,6 +25,10 @@ import javax.persistence.OneToOne;
 import javax.persistence.PrimaryKeyJoinColumn;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 
 /*CREATE TABLE delicesafpa.commande(
 idcommande        SERIAL NOT NULL ,
@@ -39,7 +43,7 @@ PRIMARY KEY (idcommande)
 
 @Entity
 @Table(name = "commande")
-public class Commande {
+public class Commande implements java.io.Serializable {
 
 	
 	@Id
@@ -58,10 +62,14 @@ public class Commande {
 	@ManyToOne
 	@JoinColumn(name = "idclient", nullable = false)
 	private Client idclient;
-
+	
+	
+	@JsonIgnore
 	@OneToMany(mappedBy = "idcommande",fetch = FetchType.EAGER)
 	Set<TraiterCommande> traiterCommande;
 
+	
+    
 	@ManyToOne @JoinColumn(name="idemploye", nullable=true)
     private Employe employe;/*livreur*/
 	
@@ -145,7 +153,7 @@ public class Commande {
 	}
 
 
-
+	@JsonIgnore
 	public Set<TraiterCommande> getTraiterCommande() {
 		return traiterCommande;
 	}

@@ -8,7 +8,7 @@ import fr.cda.delicesafpa.beans.Reservation;
 import fr.cda.delicesafpa.dto.ReservationDTO;
 
 public interface ReservationServiceI {
-	public void save(ReservationDTO reservation);
-	public List<ReservationDTO> getAll();
-	public ReservationDTO getById(int id) ;
+	/**/public ReservationDTO save(ReservationDTO reservation);
+	/**/public List<ReservationDTO> getAll();
+	/**/public ReservationDTO getById(int id) ;
 }

@@ -28,13 +28,15 @@ public class PanierService implements PanierServiceI {
 	
 
 	
-	public void save(PanierDTO panierDTO) {
+	public PanierDTO save(PanierDTO panierDTO) {
 		try {
 
 			Panier r = PanierConverter.dTOToEntity(panierDTO);
 			panierRepository.save(r);
+			
+			return panierDTO;
 		} catch (Exception e) {
-
+return null;
 		}
 	}
 

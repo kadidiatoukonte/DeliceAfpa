@@ -1,7 +1,9 @@
 package fr.cda.delicesafpa.services;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -25,25 +27,26 @@ public class TraiterReservationService implements TraiterReservationServiceI {
 	@Autowired
 	private TraiterReservationRepository traiterReservationRepository;
 
-	public void save(TraiterReservationDTO traiterReservationDTO) {
+	public TraiterReservationDTO save(TraiterReservationDTO traiterReservationDTO) {
 		try {
 
 			TraiterReservation traiterReservation = TraiterReservationConverter.convertToEntity(traiterReservationDTO);
 
 			traiterReservationRepository.save(traiterReservation);
+			return traiterReservationDTO;
 		} catch (Exception e) {
-
+			return null;
 		}
 	}
 
 	public List<TraiterReservationDTO> getAll() {
 		try {
-			List<TraiterReservationDTO> listDto = new ArrayList<TraiterReservationDTO>();
-			List<TraiterReservation> listDao = traiterReservationRepository.findAll();
+			List<TraiterReservationDTO> listDto =new ArrayList<>();
+			List<TraiterReservation> listDao =  traiterReservationRepository.findAll();
 			for (TraiterReservation t : listDao) {
 				listDto.add(TraiterReservationConverter.convertToDto(t));
 			}
-
+System.out.println(listDto.size());
 			return listDto;
 		} catch (Exception e) {
 			return null;

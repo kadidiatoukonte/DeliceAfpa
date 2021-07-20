@@ -22,14 +22,7 @@ public class EmployeDTO {
 	private String mailemploye;
 	private String passwordemploye;
 	private Boolean statusemploye;
-	private Set<TraiterCommandeDTO> traiterCommande;
-	private Set<TraiterReservationDTO> traiterReservation;
-	private Set<CommandeDTO> commandeliv;
-	private Set<AssignerRoleDTO> idemploye_assigner_role;
-	private Set<AssignerRoleDTO> idemployer;
-	private Set<DeterminerCatDTO> determinercat;
-	private Set<DeterminerArtDTO> determinerart;
-	private List<EmployeDTO> listEmploye;
+
 	
 	
 	public EmployeDTO() {
@@ -104,79 +97,7 @@ public class EmployeDTO {
 		this.statusemploye = statusemploye;
 	}
 
-	public Set<TraiterCommandeDTO> getTraiterCommande() {
-		return traiterCommande;
-	}
 
-	public void setTraiterCommande(Set<TraiterCommandeDTO> traiterCommande) {
-		this.traiterCommande = traiterCommande;
-	}
-
-	public Set<TraiterReservationDTO> getTraiterReservation() {
-		return traiterReservation;
-	}
-
-	public void setTraiterReservation(Set<TraiterReservationDTO> traiterReservation) {
-		this.traiterReservation = traiterReservation;
-	}
-
-	public Set<CommandeDTO> getCommandeliv() {
-		return commandeliv;
-	}
-
-	public void setCommandeliv(Set<CommandeDTO> commandeliv) {
-		this.commandeliv = commandeliv;
-	}
-
-	public Set<AssignerRoleDTO> getIdemploye_assigner_role() {
-		return idemploye_assigner_role;
-	}
-
-	public void setIdemploye_assigner_role(Set<AssignerRoleDTO> idemploye_assigner_role) {
-		this.idemploye_assigner_role = idemploye_assigner_role;
-	}
-
-	public Set<AssignerRoleDTO> getIdemployer() {
-		return idemployer;
-	}
-
-	public void setIdemployer(Set<AssignerRoleDTO> idemployer) {
-		this.idemployer = idemployer;
-	}
-
-	public Set<DeterminerCatDTO> getDeterminercat() {
-		return determinercat;
-	}
-
-	public void setDeterminercat(Set<DeterminerCatDTO> determinercat) {
-		this.determinercat = determinercat;
-	}
-
-	public Set<DeterminerArtDTO> getDeterminerart() {
-		return determinerart;
-	}
-
-	public void setDeterminerart(Set<DeterminerArtDTO> determinerart) {
-		this.determinerart = determinerart;
-	}
-
-	public List<EmployeDTO> getListEmploye() {
-		return listEmploye;
-	}
-
-	public void setListEmploye(List<EmployeDTO> listEmploye) {
-		this.listEmploye = listEmploye;
-	}
-
-	@Override
-	public String toString() {
-		return "EmployeDTO [idemploye=" + idemploye + ", nomemploye=" + nomemploye + ", prenomemploye=" + prenomemploye
-				+ ", telemploye=" + telemploye + ", mailemploye=" + mailemploye + ", passwordemploye=" + passwordemploye
-				+ ", statusemploye=" + statusemploye + ", traiterCommande=" + traiterCommande + ", traiterReservation="
-				+ traiterReservation + ", commandeliv=" + commandeliv + ", idemploye_assigner_role="
-				+ idemploye_assigner_role + ", idemployer=" + idemployer + ", determinercat=" + determinercat
-				+ ", determinerart=" + determinerart + "]";
-	}
 	
 	
 	

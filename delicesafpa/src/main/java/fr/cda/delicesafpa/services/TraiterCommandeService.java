@@ -31,13 +31,13 @@ public class TraiterCommandeService implements TraiterCommandeServiceI {
 	@Autowired
 	private TraiterCommandeRepository traiterCommandeRepository;
 
-	public void save(TraiterCommandeDTO traiterCommandeDTO) {
+	public TraiterCommandeDTO save(TraiterCommandeDTO traiterCommandeDTO) {
 		try {
 			TraiterCommande tc =	TraiterCommandeConverter.convertToEntity(traiterCommandeDTO);
-
 			traiterCommandeRepository.save(tc);
+		return traiterCommandeDTO;///
 		} catch (Exception e) {
-
+          return null;
 		}
 	}
 

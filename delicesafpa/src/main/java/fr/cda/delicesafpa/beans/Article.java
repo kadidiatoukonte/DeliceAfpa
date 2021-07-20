@@ -20,11 +20,15 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 
 
 @Entity
 @Table(name = "article")
-public class Article {
+public class Article implements java.io.Serializable{
 /*CREATE TABLE delicesafpa.article(
 	idarticle              SERIAL NOT NULL ,
 	nomarticle             VARCHAR (50) NOT NULL ,
@@ -37,7 +41,7 @@ public class Article {
 	idcategorie            INT    ,
 	PRIMARY KEY (idarticle)
 );*/
-@Id
+    @Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int idarticle;
 	
@@ -59,18 +63,26 @@ public class Article {
 	@Column(name = "descriptionoffresp")
 	private String descriptionoffresp;
 	
+	
+	
+	
 	@OneToMany( mappedBy="idarticle", fetch = FetchType.EAGER  )
     private List<DeterminerArt> determinerart = new ArrayList<>();
+	    
 	
 	@ManyToOne @JoinColumn(name="idcategorie", nullable=true)
     private Categorie categorie ;
 	
+	
 	@OneToMany(mappedBy = "idarticle_etreSup",fetch = FetchType.EAGER)
 	Set<EtreSup> idarticle_etreSup;
 	
+	
+	
+	
 	@OneToMany(mappedBy = "idarticle",fetch = FetchType.EAGER)
 	Set<EtreSup> idarticleS;
-	
+	 
 	@OneToMany
 	(fetch = FetchType.EAGER , mappedBy = "idarticle")
 	private Set<ConcernerPanArt> concernerPanArt;

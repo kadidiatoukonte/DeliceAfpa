@@ -6,6 +6,8 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.MapsId;
 import javax.persistence.Table;
+
+import com.fasterxml.jackson.annotation.JsonBackReference;
 /*CREATE TABLE delicesafpa.etresup(
 	idarticle           INT  NOT NULL ,
 	idarticle_etreSup   INT  NOT NULL  ,
@@ -13,7 +15,7 @@ import javax.persistence.Table;
 );
 */
 @Entity @Table( name="etresup")
-public class EtreSup {
+public class EtreSup implements java.io.Serializable {
 
 	
 	@EmbeddedId
@@ -24,7 +26,7 @@ public class EtreSup {
     @MapsId("idarticle")
     @JoinColumn(name = "idarticle")
     Article idarticle;
-
+    
     @ManyToOne
     @MapsId("idarticle_etreSup")
     @JoinColumn(name = "idarticle_etreSup")

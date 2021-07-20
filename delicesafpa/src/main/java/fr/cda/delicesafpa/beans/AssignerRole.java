@@ -7,24 +7,29 @@ import javax.persistence.ManyToOne;
 import javax.persistence.MapsId;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+
 
 @Entity @Table( name="assignerrole" )
-public class AssignerRole {
+public class AssignerRole implements java.io.Serializable{
 
 	@EmbeddedId
 	private AssignerRoleId id;
+	@JsonBackReference
 
     @ManyToOne
     @MapsId("idemploye_assigner_role")
     @JoinColumn(name = "idemploye_assigner_role")
 	private Employe idemploye_assigner_role;
+	
 
     @ManyToOne
     @MapsId("idemploye")
     @JoinColumn(name = "idemploye")
 	private Employe idemploye;	
 
-    
+	
+
     @ManyToOne
     @MapsId("idstatus")
     @JoinColumn(name = "idstatus")

@@ -1,6 +1,7 @@
 package fr.cda.delicesafpa.interfaceServ;
 
 import java.util.List;
+import java.util.Set;
 
 import fr.cda.delicesafpa.beans.Reservation;
 import fr.cda.delicesafpa.beans.StatusReservation;
@@ -11,7 +12,7 @@ import fr.cda.delicesafpa.dto.TraiterReservationDTO;
 
 public interface TraiterReservationServiceI {
 	
-	public void save(TraiterReservationDTO traiterReservationDTO);
+	public TraiterReservationDTO save(TraiterReservationDTO traiterReservationDTO);
 	
 	public List<TraiterReservationDTO> getAll();
 	

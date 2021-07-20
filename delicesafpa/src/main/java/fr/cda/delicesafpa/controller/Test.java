@@ -22,15 +22,19 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import fr.cda.delicesafpa.beans.ConcernerPanArt;
+import fr.cda.delicesafpa.beans.Employe;
 import fr.cda.delicesafpa.beans.EtreSup;
+import fr.cda.delicesafpa.beans.Reservation;
 import fr.cda.delicesafpa.beans.StatusCommande;
 import fr.cda.delicesafpa.beans.StatusReservation;
 import fr.cda.delicesafpa.beans.TraiterCommande;
 import fr.cda.delicesafpa.beans.TraiterReservation;
+import fr.cda.delicesafpa.beans.TraiterReservationId;
 import fr.cda.delicesafpa.dao.TraiterCommandeRepository;
 import fr.cda.delicesafpa.dao.TraiterReservationRepository;
 import fr.cda.delicesafpa.dto.ConcernerPanArtDTO;
 import fr.cda.delicesafpa.dto.EtreSupDTO;
+import fr.cda.delicesafpa.dto.ReservationDTO;
 import fr.cda.delicesafpa.dto.StatusCommandeDTO;
 import fr.cda.delicesafpa.dto.StatusReservationDTO;
 import fr.cda.delicesafpa.dto.TraiterCommandeDTO;
@@ -52,8 +56,11 @@ import fr.cda.delicesafpa.interfaceServ.StatusCommandeServiceI;
 import fr.cda.delicesafpa.interfaceServ.StatusReservationServiceI;
 import fr.cda.delicesafpa.interfaceServ.TraiterCommandeServiceI;
 import fr.cda.delicesafpa.interfaceServ.TraiterReservationServiceI;
+import fr.cda.delicesafpa.util.ClientConverter;
 import fr.cda.delicesafpa.util.ConcernerPanArtConverter;
+import fr.cda.delicesafpa.util.EmployeConverter;
 import fr.cda.delicesafpa.util.EtreSupConverter;
+import fr.cda.delicesafpa.util.ReservationConverter;
 import fr.cda.delicesafpa.util.StatusCommandeConverter;
 import fr.cda.delicesafpa.util.StatusReservationConverter;
 import fr.cda.delicesafpa.util.TraiterCommandeConverter;
@@ -127,13 +134,50 @@ public class Test {
 	
 	/**
 	 * Simply selects the home view to render by returning its name.
+	 * @throws com.steadystate.css.parser.ParseException 
 	 */
-	
 	
 
 	@RequestMapping(value = "/", method = RequestMethod.GET)
-	public String home(Locale locale, Model model) {
+	public String home(Locale locale, Model model) throws com.steadystate.css.parser.ParseException {
+		/* %%%%%%%%%%%%%%%%%%% */// TRAITER RESERVATION
+		 LocalDateTime now = LocalDateTime.now();
+		 
+			TraiterReservationId idtres = new TraiterReservationId(1, 1, 3, now);
+			TraiterReservation newTR = new TraiterReservation(
+					idtres,
+					ReservationConverter.dTOToEntity(reservationService.getById(1)),
+					EmployeConverter.dTOToEntity(employeService.getById(1)) ,
+					
+					StatusReservationConverter.convertToEntity(statusReservationService.getById(3)));/**/
 
+			TraiterReservationDTO dto  = TraiterReservationConverter.convertToDto(newTR);
+			traiterReservationService.save(dto);
+	
+			System.out.println(traiterReservationService.getAll().get(traiterReservationService.getAll().size()-1));
+			/* %%%%%%%%%%%%%%%%%%% */// TRAITER RESERVATION
+	/*
+			System.out.println(newTR);
+			System.out.println(employe.getTraiterReservation());/**/
+
+	/*	System.out.println(time);
+	
+		traiterReservationService.save(null);/**/		
+		
+		
+		return "home";
+	}
+		/*LocalTime time = LocalTime.of(20, 30);
+
+	ReservationDTO newreservation = new ReservationDTO(getDate("2010-10-10"), time, 5,		ClientConverter.dTOToEntity(clientService.getById(1))	
+);		
+		
+		reservationService.save( newreservation); 
+	
+		
+		
+		/*
+		
 		StatusCommandeDTO	statusCommandeDto=statusCommandeService.getById(1);
 		try {
 			StatusCommande	statusCommande =	StatusCommandeConverter.convertToEntity(statusCommandeDto);
@@ -276,7 +320,7 @@ DeterminerArt det = detArticleService.getAll().get(1);
 		System.out.println("convA+"+assignerRoleNew);
 //System.out.println(assignerRoleUPDAO);
 /**/
-	return "home";}
+	//return "home";}
 	
 		/*cat*/
 	/*	

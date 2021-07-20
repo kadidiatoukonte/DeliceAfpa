@@ -16,10 +16,13 @@ import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 
 @Entity
 @Table(name = "categorie")
-public class Categorie {
+public class Categorie  implements java.io.Serializable{
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -33,7 +36,8 @@ public class Categorie {
 	
 	@Column(name = "visibilitecategorie")
 	private Boolean visibilitecategorie;
-
+	
+	
 	@OneToMany(mappedBy = "idcategorie",fetch = FetchType.EAGER)
 	Set<DeterminerCat> determinerCat;
 	

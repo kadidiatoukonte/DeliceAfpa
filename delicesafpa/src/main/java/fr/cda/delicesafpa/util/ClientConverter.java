@@ -27,7 +27,7 @@ public class ClientConverter {
 
 	}
 
-	public Client dTOToEntity(ClientDTO client) {
+	public static Client dTOToEntity(ClientDTO client) {
 		ModelMapper mapper = new ModelMapper();
 		Client map = mapper.map(client, Client.class);
 		return map;

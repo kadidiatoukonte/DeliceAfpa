@@ -7,19 +7,23 @@ import javax.persistence.ManyToOne;
 import javax.persistence.MapsId;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+
 @Entity
 @Table(name = "traitercommande")
-public class TraiterCommande {
+public class TraiterCommande  implements java.io.Serializable{
 	
 	
 	@EmbeddedId
 	private TraiterCommandeId id;
-
+	
+	
     @ManyToOne
     @MapsId("idcommande")
     @JoinColumn(name = "idcommande")
 	private Commande idcommande;
 
+	
     @ManyToOne
     @MapsId("idemploye")
     @JoinColumn(name = "idemploye")
@@ -27,7 +31,7 @@ public class TraiterCommande {
     
     
 
-
+	
 	@ManyToOne
     @MapsId("idstatus")
     @JoinColumn(name = "idstatus")

@@ -11,7 +11,7 @@ import fr.cda.delicesafpa.dto.TraiterCommandeDTO;
 
 public interface TraiterCommandeServiceI {
 	
-	public void save(TraiterCommandeDTO traiterCommande);
+	public TraiterCommandeDTO save(TraiterCommandeDTO traiterCommande);
 	
 	public List<TraiterCommandeDTO> getAll();
 	

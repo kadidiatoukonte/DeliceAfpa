@@ -10,15 +10,19 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 @Entity
 @Table(name = "statusreservation")
-public class StatusReservation {
+public class StatusReservation  implements java.io.Serializable{
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int idstatus;
 
 	private String description;
-
+	
+	@JsonIgnore
 	@OneToMany(mappedBy = "idstatus",fetch = FetchType.EAGER)
 	Set<TraiterReservation> traiterReservation;
 	

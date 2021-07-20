@@ -27,7 +27,7 @@ public class ClientService implements ClientServiceI {
 
 	public ClientDTO save(ClientDTO clientDTO) {
 		try {
-			Client client = clientConverter.dTOToEntity(clientDTO);
+			Client client = ClientConverter.dTOToEntity(clientDTO);
 			clientRepository.save(client);
 		} catch (Exception e) {
 

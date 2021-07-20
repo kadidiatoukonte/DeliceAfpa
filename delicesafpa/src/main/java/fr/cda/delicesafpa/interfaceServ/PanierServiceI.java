@@ -10,7 +10,7 @@ import fr.cda.delicesafpa.dto.PanierDTO;
 public interface PanierServiceI {
 
 	
-	public	void save(PanierDTO panier);
+	public	PanierDTO save(PanierDTO panier);
 	public	List<PanierDTO> getAll();
 	public PanierDTO getById(int id) ;
 
