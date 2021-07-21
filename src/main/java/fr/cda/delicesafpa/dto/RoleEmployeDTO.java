@@ -10,7 +10,6 @@ public class RoleEmployeDTO {
 	private int idstatus;
 
 	private String description;
-	
 	Set<AssignerRoleDTO> assignerRole;
 
 	public RoleEmployeDTO() {

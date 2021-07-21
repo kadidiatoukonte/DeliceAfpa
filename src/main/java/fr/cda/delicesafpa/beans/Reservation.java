@@ -1,6 +1,7 @@
 package fr.cda.delicesafpa.beans;
 
 import java.awt.Image;
+import java.io.Serializable;
 import java.math.BigInteger;
 import java.math.BigInteger;
 import java.sql.Date;
@@ -8,6 +9,7 @@ import java.time.LocalTime;
 import java.util.Set;
 
 import javax.persistence.Basic;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -20,9 +22,16 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
+
 @Entity
 @Table(name = "reservation")
-public class Reservation {/*
+
+public class Reservation implements Serializable {/*
 							 * /*CREATE TABLE delicesafpa.reservation( idreservation SERIAL NOT NULL ,
 							 * datereservation DATE NOT NULL , nbreplacereservation INT NOT NULL , idclient
 							 * INT NOT NULL , PRIMARY KEY (idreservation) );
@@ -45,7 +54,9 @@ public class Reservation {/*
 	@JoinColumn(name = "idclient", nullable = false)
 	private Client idclient;
 
-	@OneToMany(mappedBy = "idreservation")
+	
+    @JsonIgnore
+	@OneToMany(mappedBy = "idreservation",fetch = FetchType.EAGER)
 	Set<TraiterReservation> traiterReservation;
 
 	public Reservation() {
@@ -76,7 +87,7 @@ public class Reservation {/*
 	}
 
 
-
+	@JsonIgnore
 	public Set<TraiterReservation> getTraiterReservation() {
 		return traiterReservation;
 	}

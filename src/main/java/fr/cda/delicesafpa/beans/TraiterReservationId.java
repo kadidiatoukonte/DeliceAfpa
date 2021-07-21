@@ -10,9 +10,13 @@ import javax.persistence.Embeddable;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 @Embeddable
 public class TraiterReservationId implements Serializable {
-    @Column(name = "idreservation")
+	
+
+	@Column(name = "idreservation")
 	private int idreservation;
    
     @Column(name = "idemploye")

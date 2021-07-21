@@ -14,14 +14,18 @@ import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 @Entity
 @Table(name = "panier")
-public class Panier {
+public class Panier implements java.io.Serializable {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int idpanier;
-
+	
+	@JsonIgnore
 	@OneToMany
 	(fetch = FetchType.EAGER , mappedBy = "idpanier")
 	private Set<ConcernerPanArt> concernerPanArt;

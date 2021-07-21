@@ -19,15 +19,17 @@ import javax.persistence.Table;
 ALTER TABLE delicesafpa.concerner
     OWNER to gestionnairefr;*/
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+
 
 @Entity @Table( name="concerner" )
-public class ConcernerPanArt {
+public class ConcernerPanArt  implements java.io.Serializable{
 
 	
 	@EmbeddedId
 	private ConcernerId id;
-	
-    @ManyToOne
+  
+	@ManyToOne
     @MapsId("idpanier")
     @JoinColumn(name = "idpanier")
     Panier idpanier;

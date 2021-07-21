@@ -30,7 +30,7 @@ public class EmployeService implements EmployeServiceI {
 	private EmployeRepository employeRepository;
 	
 
-	public void save(EmployeDTO employeDTO) {
+	public EmployeDTO save(EmployeDTO employeDTO) {
 		try {
 
 			Employe r = EmployeConverter.dTOToEntity(employeDTO);
@@ -38,6 +38,7 @@ public class EmployeService implements EmployeServiceI {
 		} catch (Exception e) {
 
 		}
+		return employeDTO;
 	}
 
 	public List<EmployeDTO> getAll() {
@@ -65,6 +66,8 @@ public class EmployeService implements EmployeServiceI {
 		}
 	}
 
+	
+	
 	
 	public void updateNomEmploye(String nom, int idemploye) {
 		try {
@@ -133,7 +136,7 @@ public class EmployeService implements EmployeServiceI {
 		}
 
 	}
-	
+
 	
 	
 }

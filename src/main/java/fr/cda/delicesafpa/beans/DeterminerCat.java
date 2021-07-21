@@ -7,9 +7,11 @@ import javax.persistence.ManyToOne;
 import javax.persistence.MapsId;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+
 @Entity
 @Table(name = "determinercat")
-public class DeterminerCat {
+public class DeterminerCat implements java.io.Serializable{
 
 	@EmbeddedId
 	private DeterminerCatId id;
@@ -19,7 +21,8 @@ public class DeterminerCat {
 	    @MapsId("idcategorie")
 	    @JoinColumn(name = "idcategorie")
 	    Categorie idcategorie;
-
+	
+	
 	    @ManyToOne
 	    @MapsId("idemploye")
 	    @JoinColumn(name = "idemploye")

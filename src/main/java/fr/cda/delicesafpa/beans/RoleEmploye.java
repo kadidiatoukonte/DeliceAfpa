@@ -10,15 +10,19 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 @Entity
 @Table(name = "roleemploye")
-public class RoleEmploye {
+public class RoleEmploye implements java.io.Serializable{
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int idstatus;
 
 	private String description;
 	
+	@JsonIgnore
 	@OneToMany(mappedBy = "idstatus",fetch = FetchType.EAGER)
 	Set<AssignerRole> assignerRole;
 

@@ -23,7 +23,7 @@ public class EtreSupService implements  EtreSupServiceI {
 	private  EtreSupRepository  etreSupRepository;
 	
 	
-	public void save(EtreSupDTO etreSupDTO) {
+	public EtreSupDTO save(EtreSupDTO etreSupDTO) {
 		try {
 
 			EtreSup r = EtreSupConverter.convertToEntity(etreSupDTO);
@@ -31,6 +31,7 @@ public class EtreSupService implements  EtreSupServiceI {
 		} catch (Exception e) {
 
 		}
+		return etreSupDTO;
 	}
 
 	public List<EtreSupDTO> getAll() {

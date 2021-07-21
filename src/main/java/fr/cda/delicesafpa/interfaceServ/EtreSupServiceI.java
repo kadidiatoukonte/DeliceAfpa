@@ -9,6 +9,6 @@ import fr.cda.delicesafpa.beans.Reservation;
 import fr.cda.delicesafpa.dto.EtreSupDTO;
 
 public interface EtreSupServiceI {
-	public void save(EtreSupDTO etreSup);
+	public EtreSupDTO save(EtreSupDTO etreSup);
 	public List<EtreSupDTO> getAll();
 }

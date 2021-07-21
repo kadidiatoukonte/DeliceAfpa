@@ -6,7 +6,7 @@ import java.util.List;
 import fr.cda.delicesafpa.dto.EmployeDTO;
 
 public interface EmployeServiceI {
-	public void save(EmployeDTO employe);
+	public EmployeDTO save(EmployeDTO employe);
 	public List<EmployeDTO> getAll();
 	public EmployeDTO getById(int id) ;
 	public void updateNomEmploye(String nom, int idemploye);

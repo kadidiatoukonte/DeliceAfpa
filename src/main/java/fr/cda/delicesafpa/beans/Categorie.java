@@ -17,11 +17,12 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 
 @Entity
 @Table(name = "categorie")
-public class Categorie {
+public class Categorie  implements java.io.Serializable{
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -35,10 +36,12 @@ public class Categorie {
 	
 	@Column(name = "visibilitecategorie")
 	private Boolean visibilitecategorie;
-
+	
+	@JsonIgnore
 	@OneToMany(mappedBy = "idcategorie",fetch = FetchType.EAGER)
 	Set<DeterminerCat> determinerCat;
 	
+	@JsonIgnore
 	@OneToMany( mappedBy="categorie", fetch = FetchType.EAGER  )
     private Set<Article> article ;
 	
@@ -55,7 +58,6 @@ public class Categorie {
 		this.visibilitecategorie = visibilitecategorie;
 	}
 
-	@JsonIgnore
 	public int getIdcategorie() {
 		return idcategorie;
 	}
@@ -64,7 +66,6 @@ public class Categorie {
 		this.idcategorie = idcategorie;
 	}
 
-	@JsonIgnore
 	public String getNomcategorie() {
 		return nomcategorie;
 	}
@@ -73,7 +74,6 @@ public class Categorie {
 		this.nomcategorie = nomcategorie;
 	}
 
-	@JsonIgnore
 	public String getDescriptioncategorie() {
 		return descriptioncategorie;
 	}
@@ -82,7 +82,6 @@ public class Categorie {
 		this.descriptioncategorie = descriptioncategorie;
 	}
 
-	@JsonIgnore
 	public Boolean getVisibilitecategorie() {
 		return visibilitecategorie;
 	}
@@ -90,8 +89,8 @@ public class Categorie {
 	public void setVisibilitecategorie(Boolean visibilitecategorie) {
 		this.visibilitecategorie = visibilitecategorie;
 	}
-
-	@JsonIgnore
+	
+	
 	public Set<DeterminerCat> getDeterminerCat() {
 		return determinerCat;
 	}
@@ -108,6 +107,8 @@ public class Categorie {
 	}
 	
 
+
+	
 
 	
 	

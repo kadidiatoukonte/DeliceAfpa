@@ -18,10 +18,13 @@ import javax.persistence.Lob;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
          
 @Entity
 @Table(name = "client")
-public class Client {
+public class Client  implements java.io.Serializable{
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -59,11 +62,15 @@ public class Client {
 
 	@Column(name = "passwordclient")
 	private String passwordclient;
-
+	
+	
+    @JsonIgnore
 	@OneToMany(fetch = FetchType.EAGER)
 	@JoinColumn(name = "idclient")
 	private Set<Commande> commandes;
-
+	
+	
+    @JsonIgnore
 	@OneToMany(fetch = FetchType.EAGER)
 	@JoinColumn(name = "idclient")
 	private Set<Reservation> reservations;

@@ -31,7 +31,7 @@ public class RoleEmployeService implements RoleEmployeServiceI {
 	@Autowired
 	private RoleEmployeRepository roleEmployeRepository;
 	
-	public void save(RoleEmployeDTO roleEmployeDTO) {
+	public RoleEmployeDTO save(RoleEmployeDTO roleEmployeDTO) {
 		try {
 
 			RoleEmploye r = RoleEmployeConverter.dTOToEntity(roleEmployeDTO);
@@ -39,6 +39,7 @@ public class RoleEmployeService implements RoleEmployeServiceI {
 		} catch (Exception e) {
 
 		}
+		return roleEmployeDTO;
 	}
 
 	public List<RoleEmployeDTO> getAll() {

@@ -10,9 +10,11 @@ import javax.persistence.ManyToOne;
 import javax.persistence.MapsId;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+
 @Entity
 @Table(name = "determinerart")
-public class DeterminerArt {
+public class DeterminerArt  implements java.io.Serializable{
 
 	@EmbeddedId
 	private DeterminerArtId id;
@@ -23,7 +25,8 @@ public class DeterminerArt {
     @MapsId("idarticle")
     @JoinColumn(name = "idarticle")
     Article idarticle;
-
+	
+	
     @ManyToOne
     @MapsId("idemploye")
     @JoinColumn(name = "idemploye")
