@@ -25,7 +25,7 @@ public class ArticleService implements ArticleServiceI {
 
 	public ArticleDTO save(ArticleDTO articleDTO) {
 		try {
-			Article article = articleconverter.dTOToEntity(articleDTO);
+			Article article = ArticleConverter.dTOToEntity(articleDTO);
 			articleRepository.save(article);
 			
 		} catch (Exception e) {

@@ -3,6 +3,7 @@ package fr.cda.delicesafpa.interfaceServ;
 import java.util.List;
 import java.util.Set;
 
+import org.springframework.stereotype.Service;
 
 import fr.cda.delicesafpa.beans.Article;
 import fr.cda.delicesafpa.beans.Categorie;

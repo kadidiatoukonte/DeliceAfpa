@@ -15,7 +15,7 @@ public class AssignerRole implements java.io.Serializable{
 
 	@EmbeddedId
 	private AssignerRoleId id;
-	@JsonBackReference
+	
 
     @ManyToOne
     @MapsId("idemploye_assigner_role")

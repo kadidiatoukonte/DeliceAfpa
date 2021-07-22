@@ -29,18 +29,7 @@ import com.fasterxml.jackson.annotation.JsonManagedReference;
 @Entity
 @Table(name = "article")
 public class Article implements java.io.Serializable{
-/*CREATE TABLE delicesafpa.article(
-	idarticle              SERIAL NOT NULL ,
-	nomarticle             VARCHAR (50) NOT NULL ,
-	prixarticle            FLOAT  NOT NULL ,
-	descriptionarticle     VARCHAR (150) NOT NULL ,
-	visibilitearticle      BOOL  NOT NULL ,
-	offreSpecialearticle   BOOL  NOT NULL ,
-	descriptionoffresp     VARCHAR (150)  ,
-	photoarticle           BYTEA  NOT NULL ,
-	idcategorie            INT    ,
-	PRIMARY KEY (idarticle)
-);*/
+
     @Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int idarticle;
@@ -65,7 +54,7 @@ public class Article implements java.io.Serializable{
 	
 	
 	
-	
+	@JsonIgnore
 	@OneToMany( mappedBy="idarticle", fetch = FetchType.EAGER  )
     private List<DeterminerArt> determinerart = new ArrayList<>();
 	    
@@ -73,16 +62,16 @@ public class Article implements java.io.Serializable{
 	@ManyToOne @JoinColumn(name="idcategorie", nullable=true)
     private Categorie categorie ;
 	
-	
+	@JsonIgnore
 	@OneToMany(mappedBy = "idarticle_etreSup",fetch = FetchType.EAGER)
 	Set<EtreSup> idarticle_etreSup;
 	
 	
 	
-	
+	@JsonIgnore
 	@OneToMany(mappedBy = "idarticle",fetch = FetchType.EAGER)
 	Set<EtreSup> idarticleS;
-	 
+	@JsonIgnore
 	@OneToMany
 	(fetch = FetchType.EAGER , mappedBy = "idarticle")
 	private Set<ConcernerPanArt> concernerPanArt;

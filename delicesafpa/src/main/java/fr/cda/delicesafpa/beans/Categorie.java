@@ -37,10 +37,11 @@ public class Categorie  implements java.io.Serializable{
 	@Column(name = "visibilitecategorie")
 	private Boolean visibilitecategorie;
 	
-	
+	@JsonIgnore
 	@OneToMany(mappedBy = "idcategorie",fetch = FetchType.EAGER)
 	Set<DeterminerCat> determinerCat;
 	
+	@JsonIgnore
 	@OneToMany( mappedBy="categorie", fetch = FetchType.EAGER  )
     private Set<Article> article ;
 	

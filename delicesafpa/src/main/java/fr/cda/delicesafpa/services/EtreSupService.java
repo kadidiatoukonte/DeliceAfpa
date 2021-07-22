@@ -16,20 +16,19 @@ import fr.cda.delicesafpa.interfaceServ.EtreSupServiceI;
 
 import fr.cda.delicesafpa.util.EtreSupConverter;
 
-
 @Service
-public class EtreSupService implements  EtreSupServiceI {
+public class EtreSupService implements EtreSupServiceI {
 	@Autowired
-	private  EtreSupRepository  etreSupRepository;
-	
-	
-	public void save(EtreSupDTO etreSupDTO) {
+	private EtreSupRepository etreSupRepository;
+
+	public EtreSupDTO save(EtreSupDTO etreSupDTO) {
 		try {
 
 			EtreSup r = EtreSupConverter.convertToEntity(etreSupDTO);
 			etreSupRepository.save(r);
+			return etreSupDTO;
 		} catch (Exception e) {
-
+			return null;
 		}
 	}
 
@@ -49,6 +48,4 @@ public class EtreSupService implements  EtreSupServiceI {
 
 	}
 
-
-	
 }
