@@ -11,6 +11,14 @@ import fr.cda.delicesafpa.beans.*;
 
 public interface EmployeRepository extends JpaRepository<Employe,Integer>{
 	
+	
+	
+	@Query("select e from Employe e where e.mailemploye = ?1")
+public	Employe findemployeMailEmploye( String employeEmail);
+	
+	
+	
+	
 	@Transactional
     @Modifying
 	@Query("update Employe e SET e.nomemploye = ?1 where e.idemploye = ?2")

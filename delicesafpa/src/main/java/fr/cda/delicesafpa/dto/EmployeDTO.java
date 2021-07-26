@@ -97,6 +97,13 @@ public class EmployeDTO {
 		this.statusemploye = statusemploye;
 	}
 
+	@Override
+	public String toString() {
+		return "EmployeDTO [idemploye=" + idemploye + ", nomemploye=" + nomemploye + ", prenomemploye=" + prenomemploye
+				+ ", telemploye=" + telemploye + ", mailemploye=" + mailemploye + ", passwordemploye=" + passwordemploye
+				+ ", statusemploye=" + statusemploye + "]";
+	}
+
 
 	
 	

@@ -30,7 +30,7 @@ public class EmployeService implements EmployeServiceI {
 	private EmployeRepository employeRepository;
 	
 
-	public void save(EmployeDTO employeDTO) {
+	public EmployeDTO save(EmployeDTO employeDTO) {
 		try {
 
 			Employe r = EmployeConverter.dTOToEntity(employeDTO);
@@ -38,6 +38,7 @@ public class EmployeService implements EmployeServiceI {
 		} catch (Exception e) {
 
 		}
+		return employeDTO;
 	}
 
 	public List<EmployeDTO> getAll() {
@@ -65,6 +66,8 @@ public class EmployeService implements EmployeServiceI {
 		}
 	}
 
+	
+	
 	
 	public void updateNomEmploye(String nom, int idemploye) {
 		try {
@@ -133,7 +136,58 @@ public class EmployeService implements EmployeServiceI {
 		}
 
 	}
+
 	
+	public boolean findemployeMailemploye(String email, String password) {
+		try {
+			
+			
+			System.out.println(email);
+			System.out.println("00");
+
+			System.out.println(employeRepository.findemployeMailEmploye(email));
+			System.out.println("01");
+
+			int result = employeRepository.findemployeMailEmploye(email).getPasswordemploye().compareTo(password);
+			System.out.println("aaa");
+			if (result == 0) {
+				
+				return true;
+			} else {	System.out.println(email);
+			System.out.println("ciao  non uguale??");
+			System.out.println(	employeRepository.findemployeMailEmploye(email).getPasswordemploye());
+			System.out.println(password);
+
+				return false;
+			}
+
+		} catch (Exception NoSuchElementException) {
+			System.out.println("ciao2");
+
+		System.out.println(	employeRepository.findemployeMailEmploye(email).getPasswordemploye());
+			return false;
+		}
+	}
 	
+	public EmployeDTO getemployeMailemploye(String email, String password) {
+		try {
+			
+			
+			
+			Employe result = employeRepository.findemployeMailEmploye(email);
+			System.out.println("aaa");
+			if (result!=null) {
+				
+				return EmployeConverter.EntityToDTO(result);	} else {	System.out.println(email);
+			
+
+				return null;
+			}
+
+		} catch (Exception NoSuchElementException) {
+			
+			return null;
+		}
+	}
 	
 }

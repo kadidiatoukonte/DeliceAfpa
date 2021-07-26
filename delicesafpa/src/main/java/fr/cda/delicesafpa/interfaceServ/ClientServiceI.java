@@ -11,4 +11,5 @@ public interface ClientServiceI {
 	public	ClientDTO save(ClientDTO client);
 	public	List<ClientDTO> getAll();
     public ClientDTO getById(int id) ;
+    public boolean 	findclientMailclient(String email, String password) ;
 }

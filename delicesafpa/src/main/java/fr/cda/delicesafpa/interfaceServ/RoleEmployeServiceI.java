@@ -9,8 +9,9 @@ import fr.cda.delicesafpa.dto.RoleEmployeDTO;
 
 public interface RoleEmployeServiceI {
 
-	public	void save(RoleEmployeDTO roleEmploye);
+	public	RoleEmployeDTO save(RoleEmployeDTO roleEmploye);
 	public List<RoleEmployeDTO> getAll();
 	public RoleEmployeDTO getById(int id) ;
+
 
 }

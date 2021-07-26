@@ -40,13 +40,12 @@ public class ClientService implements ClientServiceI {
 			List<Client> client = clientRepository.findAll();
 			List<ClientDTO> clientDTO = clientConverter.EntityToDTO(client);
 			return clientDTO;
-			
+
 		} catch (Exception e) {
 			return null;
 		}
 
 	}
-
 
 	public ClientDTO getById(int id) {
 		try {
@@ -58,8 +57,25 @@ public class ClientService implements ClientServiceI {
 		}
 	}
 
+	public boolean findclientMailclient(String email, String password) {
+		try {
+			
+			
+			System.out.println(email);
+			
 
+			int result = clientRepository.findclientMailclient(email).getPasswordclient().compareTo(password);
+			if (result == 0) {
+				
+				return true;
+			} else {	System.out.println(email);
+				return false;
+			}
 
-
+		} catch (Exception NoSuchElementException) {
+	
+			return false;
+		}
+	}
 
 }
