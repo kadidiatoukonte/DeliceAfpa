@@ -1,0 +1,175 @@
+EMPLOYE
+admin 8c6976e5b5410415bde908bd4dee15dfb167a9c873fc4bb8a81f6f2ab448a918
+responsable a397fab237fd36301acdb2f7da00a107983e2f0e713a297c68d93c4160f40549
+livreur 21bef81c50399dd680bcc9961659fa67ff8c2a6cd551baa22f5fe5d431c2f5fd
+sospendu d9e9e65a923ccc41565b24f37c424858ccc68e03cc610f75b7366841e4ff0189
+
+
+36
+{
+       
+        "nomemploye": "nomAdmin",
+        "prenomemploye": "prenomAdmin",
+        "telemploye": "123456111",
+        "mailemploye": "admin@gmail.com",
+        "passwordemploye": "8c6976e5b5410415bde908bd4dee15dfb167a9c873fc4bb8a81f6f2ab448a918",
+        "statusemploye": false
+    }
+
+
+
+{
+"idemploye_assigner_role": {
+            "idemploye": 1
+        },
+        "idemploye": {
+            "idemploye": 36
+        },
+        "idstatus": {
+            "idstatus": 1,
+            "description": "admin"
+        },
+        "date": [
+            2021,
+            7,
+            7,
+            19,
+            8,
+            45,
+            633000000
+        ]
+    }
+
+
+37
+{
+       
+        "nomemploye": "nomResponsable",
+        "prenomemploye": "prenomResponsable",
+        "telemploye": "123456222",
+        "mailemploye": "responsable@gmail.com",
+        "passwordemploye": "a397fab237fd36301acdb2f7da00a107983e2f0e713a297c68d93c4160f40549",
+        "statusemploye": false
+    }
+
+
+{
+"idemploye_assigner_role": {
+            "idemploye": 1
+        },
+        "idemploye": {
+            "idemploye": 37
+        },
+        "idstatus": {
+            "idstatus": 2,
+            "description": "responsable"
+        },
+        "date": [
+            2021,
+            7,
+            7,
+            19,
+            8,
+            45,
+            633000000
+        ]
+    }
+
+
+38
+{
+       
+        "nomemploye": "nomLivreur",
+        "prenomemploye": "prenomLivreur",
+        "telemploye": "123456333",
+        "mailemploye": "livreur@gmail.com",
+        "passwordemploye": "21bef81c50399dd680bcc9961659fa67ff8c2a6cd551baa22f5fe5d431c2f5fd",
+        "statusemploye": false
+    }
+
+
+{
+"idemploye_assigner_role": {
+            "idemploye": 1
+        },
+        "idemploye": {
+            "idemploye": 38
+        },
+        "idstatus": {
+            "idstatus": 3,
+            "description": "livreur"
+        },
+        "date": [
+            2021,
+            7,
+            7,
+            19,
+            8,
+            45,
+            633000000
+        ]
+    }
+
+
+
+39
+{    
+        "nomemploye": "nomSospendu",
+        "prenomemploye": "prenomSospendu",
+        "telemploye": "123456444",
+        "mailemploye": "sospendu@gmail.com",
+        "passwordemploye": "d9e9e65a923ccc41565b24f37c424858ccc68e03cc610f75b7366841e4ff0189",
+        "statusemploye": false
+    }
+
+{
+"idemploye_assigner_role": {
+            "idemploye": 1
+        },
+        "idemploye": {
+            "idemploye": 39
+        },
+        "idstatus": {
+            "idstatus": 4,
+            "description": "sospendu"
+        },
+        "date": [
+            2021,
+            7,
+            7,
+            19,
+            8,
+            45,
+            633000000
+        ]
+    }
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+REACT-REACT-REACT-REACT-REACT-REACT-REACT-REACT-REACT-REACT-REACT-REACT-REACT-REACT-REACT-REACT-REACT-REACT-
+REACT-REACT-REACT-REACT-REACT-REACT-REACT-REACT-REACT-REACT-REACT-REACT-REACT-REACT-REACT-REACT-REACT-REACT-
+REACT-REACT-REACT-REACT-REACT-REACT-REACT-REACT-REACT-REACT-REACT-REACT-REACT-REACT-REACT-REACT-REACT-REACT-
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+REACT-REACT-REACT-REACT-REACT-REACT-REACT-REACT-REACT-REACT-REACT-REACT-REACT-REACT-REACT-REACT-REACT-REACT-
+REACT-REACT-REACT-REACT-REACT-REACT-REACT-REACT-REACT-REACT-REACT-REACT-REACT-REACT-REACT-REACT-REACT-REACT-
+REACT-REACT-REACT-REACT-REACT-REACT-REACT-REACT-REACT-REACT-REACT-REACT-REACT-REACT-REACT-REACT-REACT-REACT-
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+npx create-react-app delicesafpa-app
+cd delicesafpa-app
+npm start
+
+npm install axios
+npm i react-bootstrap@1.0.0-beta.10
+npm install --save @types/react-router-dom
+npm install --save react-router-dom
+npm install formik --save
+npm i js-sha256@0.2.0(password 150 car in db )
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+
+
+

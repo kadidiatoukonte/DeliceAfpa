@@ -41,7 +41,7 @@
         localStorage.setItem('email',result.data.mailemploye);
        
 
-      })
+   
 
 
     
@@ -54,23 +54,22 @@
       { mail: this.state.email, pass: 'pass' },    // keyValue
      200                                     // ttl in seconds
     );
-     if (isAdmin()) {
-   this.props.history.push("/accuiladmin");
-  }else if(isResponsable()) {
-    this.props.history.push("/accuilresponsable");
-   
-  }else if(isLivreur()) {
-    this.props.history.push("/accuillivreur");
-   
-  }else  {
-    this.props.history.push("/");
-   
-  }
+  //////////////////////////
+  if (isAdmin()) {
+    this.props.history.push("/accuiladmin");
+   }else if(isResponsable()) {
+     this.props.history.push("/accuilresponsable");
+    
+   }else if(isLivreur()) {
+     this.props.history.push("/accuillivreur");
+    
+   }else  {
+     this.props.history.push("/");
+    
+   }
 
-
-        //////////////////////////
- 
-      })}
+  }) })}
+      
     });
     
  
