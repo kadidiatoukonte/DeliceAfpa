@@ -5,7 +5,7 @@ import NavPrivate from '../components/NavPrivate';
 import { Clear,  logout,getTimeOut } from '../util';
 import Footer from '../components/Footer';
 
-class AccuilClient extends Component {
+class DetailCommandeArticle extends Component {
 
 	
 	
@@ -46,7 +46,7 @@ class AccuilClient extends Component {
 		return (<div>
 			<NavPrivate></NavPrivate>
 
-			<JumbotronWrapper title="AccuilClient" description="">
+			<JumbotronWrapper title="DetailCommandeArticle" description="DetailCommandeArticle">
 				
 			<button  onClick={(e) => {
                 this.alertciao(e);
@@ -56,7 +56,7 @@ class AccuilClient extends Component {
                 
 
 
-accuil client		</Link>
+				DetailCommandeArticle		</Link>
 
 <button  onClick={(e) => {
                 this.handleLogout(e);
@@ -76,4 +76,4 @@ accuil client		</Link>
 
 
 
-export default AccuilClient;
+export default DetailCommandeArticle;

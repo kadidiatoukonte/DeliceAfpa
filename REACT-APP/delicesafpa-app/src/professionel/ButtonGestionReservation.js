@@ -4,7 +4,7 @@ import {Button } from 'react-bootstrap'
 import { isClient,isAdmin,isLivreur,isResponsable } from '../util';
 import {  withRouter } from "react-router-dom";
 
-class ButtonLogInProf extends Component {
+class ButtonGestionReservation extends Component {
 	constructor(props) {
         super(props);
 	
@@ -18,7 +18,7 @@ class ButtonLogInProf extends Component {
 	
 	
 			var room1= localStorage.getItem('client');	
-		if(room1==='client'){return true}else{return false;}  
+		if(room1==='client'||isLivreur()){return false}else{return true;}  
 	}
 
 	pushLoginProf = (e) => {
@@ -26,12 +26,12 @@ class ButtonLogInProf extends Component {
 		if (localStorage.getItem('timeout') ) {
 
 			if (isAdmin()) {
-				this.props.history.push("/accuiladmin");
+				this.props.history.push("/gestionreservation");
 			   }else if(isResponsable()) {
 				 this.props.history.push("/accuilresponsable");
 				
 			   }else if(isLivreur()) {
-				 this.props.history.push("/accuillivreur");
+				 this.props.history.push("/");
 				
 			   }else  {
 				 this.props.history.push("/");
@@ -50,10 +50,10 @@ class ButtonLogInProf extends Component {
 			
 			
 			<div>
-			    {!this.componentDidMount() ? 	
+			    {this.componentDidMount() ? 	
 				 <Button  variant="outline-success" onClick={(e) => {
                 this.pushLoginProf(e);
-              }}>Espace Prof </Button >:null
+              }}>ButtonGestionReservation</Button >:null
 
 			}
 		</div>
@@ -63,10 +63,5 @@ class ButtonLogInProf extends Component {
 
 
 
-ButtonLogInProf.propTypes = {
-	
-};
 
-
-
-export default withRouter(ButtonLogInProf);
+export default withRouter(ButtonGestionReservation);

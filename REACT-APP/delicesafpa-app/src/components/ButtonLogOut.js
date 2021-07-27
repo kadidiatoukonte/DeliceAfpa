@@ -1,7 +1,7 @@
 import React , { Component } from "react";
 
 import { Button } from 'react-bootstrap'
-import {logout,Clear} from '../util';
+import {logout} from '../util';
 import {  withRouter } from "react-router-dom";
 
 class ButtonLogOut extends Component {
@@ -20,7 +20,7 @@ class ButtonLogOut extends Component {
 	render() {
 		return (
 			<div>
-				 <Button  variant="outline-danger" onClick={(e) => {
+				 <Button  variant="outline-info" onClick={(e) => {
                 this.handleLogout(e);
               }}>Log Out </Button >
 

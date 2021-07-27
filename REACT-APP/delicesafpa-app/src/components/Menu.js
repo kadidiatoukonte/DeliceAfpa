@@ -8,7 +8,7 @@ import NavPrivate from "./NavPrivate";
 import {isClient,getTimeOut} from "../util";
 
 
-class Home extends Component {
+class Menu extends Component {
 
 	upSession(){
 		if (localStorage.getItem('timeout') ) {     // if no value exists associated with the key, return null
@@ -29,7 +29,7 @@ class Home extends Component {
 		return (<div>
 						  { !isClient()?<NavPublic></NavPublic>:
 							<NavPrivate></NavPrivate>}
-			<JumbotronWrapper title="Home" description="">
+			<JumbotronWrapper title="Menu" description="Menu">
 				<Link className="nav-link" to="/">
 
                 <ButtonLogOut></ButtonLogOut>
@@ -50,4 +50,4 @@ class Home extends Component {
 
 
 
-export default Home;
+export default Menu;

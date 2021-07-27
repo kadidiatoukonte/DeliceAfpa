@@ -2,20 +2,22 @@ import React , { Component } from "react";
 import { Link } from 'react-router-dom';
 import JumbotronWrapper from '../JumbotronWrapper';
 import NavPProfessionel from '../components/NavPProfessionel';
-import { Clear,  logoutCLient ,getTimeOut } from '../util';
+import { Clear,getTimeOut } from '../util';
+import Footer from '../components/Footer';
 
 class AccuilLivreur extends Component {
-	constructor() {
-		super();
-	   
-	}	
-		
-	  upSession(){
+	
+	
+
+	upSession(){
 
 		getTimeOut('timeout')
 	  }
-	
-	
+	 
+	  componentDidMount(){
+		this.upSession()
+
+	}
 	
 	
 	alertciao(e){
@@ -57,6 +59,10 @@ accuil livreur		</Link>
 <button  onClick={(e) => {
                 this.handleLogout(e);
               }}>Click </button>
+
+<Footer></Footer>
+
+
 		</JumbotronWrapper>
 		</div>
 		);

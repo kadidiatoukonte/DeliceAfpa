@@ -1,16 +1,16 @@
 import React , { Component } from "react";
 import { Link } from 'react-router-dom';
 import JumbotronWrapper from '../JumbotronWrapper';
-import NavPrivate from '../components/NavPrivate';
-import { Clear,  logout,getTimeOut } from '../util';
+import NavPProfessionel from '../components/NavPProfessionel';
+import { Clear,getTimeOut } from '../util';
 import Footer from '../components/Footer';
 
-class AccuilClient extends Component {
-
+class GestionReservation extends Component {
 	
+		
 	
 
-	  upSession(){
+	upSession(){
 
 		getTimeOut('timeout')
 	  }
@@ -21,11 +21,13 @@ class AccuilClient extends Component {
 	}
 	
 	
+	
 	alertciao(e){
 		e.preventDefault();
 		
 		alert(JSON.stringify(localStorage.getItem('timeout')));
-
+		
+		
 		this.upSession()
 
 }
@@ -34,9 +36,7 @@ class AccuilClient extends Component {
 
 	handleLogout = (e) => {
 		e.preventDefault();
-		logout();
 	    Clear();
-		localStorage.clear();
 		this.props.history.push("/");	
 		window.location.reload();
 	}
@@ -44,9 +44,9 @@ class AccuilClient extends Component {
 
 	render() {
 		return (<div>
-			<NavPrivate></NavPrivate>
+			<NavPProfessionel></NavPProfessionel>
 
-			<JumbotronWrapper title="AccuilClient" description="">
+			<JumbotronWrapper title="GestionReservation" description="GestionReservation">
 				
 			<button  onClick={(e) => {
                 this.alertciao(e);
@@ -56,12 +56,11 @@ class AccuilClient extends Component {
                 
 
 
-accuil client		</Link>
+accuil GestionReservation		</Link>
 
 <button  onClick={(e) => {
                 this.handleLogout(e);
               }}>Click </button>
-
 
 <Footer></Footer>
 
@@ -76,4 +75,4 @@ accuil client		</Link>
 
 
 
-export default AccuilClient;
+export default GestionReservation;

@@ -1,6 +1,6 @@
-import React,{Redirect} from "react";
+import React from "react";
 import FormsLoginProf from '../forms/FormsLoginProf';
-import { isClient } from '../util';
+import { isClient, getTimeOut} from '../util';
 
 import { withRouter } from "react-router-dom";
 
@@ -9,7 +9,7 @@ class LogInProf extends React.Component {
   constructor(props) {
     super(props);
 
-    this.goBack = this.goBack.bind(this); // i think you are missing this
+    this.goBack = this.goBack.bind(this); 
  
   
   
@@ -17,15 +17,33 @@ class LogInProf extends React.Component {
 		isLoginClient: isClient()
 	}
 }
+
 goBack(e){
   e.preventDefault();
   alert(JSON.stringify('ciao'));
   this.props.history.goBack();
 }
 
-componentDidMount(){
-  if (isClient())    {     this.props.history.goBack();	}
+upSession(){
+  if (localStorage.getItem('timeout') ) { 
+    
+    // if no value exists associated with the key, return null
+    if (isClient())    {   
+      this.props.history.goBack();	}
+    
+    
+    else{
+    
+    getTimeOut('timeout')
+  }
 }
+  }
+ 
+  componentDidMount(){
+  this.upSession()
+
+}
+
 
   render() {
 

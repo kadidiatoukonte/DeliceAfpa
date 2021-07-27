@@ -3,19 +3,21 @@ import { Link } from 'react-router-dom';
 import JumbotronWrapper from '../JumbotronWrapper';
 import NavPProfessionel from '../components/NavPProfessionel';
 import { Clear,  logout ,getTimeOut } from '../util';
+import Footer from '../components/Footer';
 
 class AccuilResponsable extends Component {
-	constructor() {
-		super();
-	   
-	}	
-		
-	  upSession(){
+	
+	
+
+	upSession(){
 
 		getTimeOut('timeout')
 	  }
-	
-	
+	 
+	  componentDidMount(){
+		this.upSession()
+
+	}
 	
 	
 	alertciao(e){
@@ -34,7 +36,6 @@ class AccuilResponsable extends Component {
 		e.preventDefault();
 		logout();
 	    Clear();
-		localStorage.clear();
 		this.props.history.push("/");	
 		window.location.reload();
 	}
@@ -59,6 +60,11 @@ class AccuilResponsable extends Component {
 <button  onClick={(e) => {
                 this.handleLogout(e);
               }}>Click </button>
+		
+		
+		<Footer></Footer>
+
+		
 		</JumbotronWrapper>
 		</div>
 		);

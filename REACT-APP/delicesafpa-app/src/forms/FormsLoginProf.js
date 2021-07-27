@@ -4,7 +4,7 @@
  import axios from "axios";
  import { withRouter } from "react-router-dom";
  import sha256 from "sha256";
- import { setTimeOut,Clear, isAdmin,isResponsable,isLivreur,isSospendu} from '../util';
+ import { setTimeOut,isAdmin,isResponsable,isLivreur} from '../util';
  
  
  class FormsLoginProf extends Component {

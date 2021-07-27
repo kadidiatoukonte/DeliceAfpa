@@ -1,10 +1,10 @@
 import React , { Component } from "react";
 
 import {Button } from 'react-bootstrap'
-import { isClient,isAdmin,isLivreur,isResponsable } from '../util';
+import { isClient,isAdmin} from '../util';
 import {  withRouter } from "react-router-dom";
 
-class ButtonLogInProf extends Component {
+class ButtonGestionMenu extends Component {
 	constructor(props) {
         super(props);
 	
@@ -26,13 +26,8 @@ class ButtonLogInProf extends Component {
 		if (localStorage.getItem('timeout') ) {
 
 			if (isAdmin()) {
-				this.props.history.push("/accuiladmin");
-			   }else if(isResponsable()) {
-				 this.props.history.push("/accuilresponsable");
-				
-			   }else if(isLivreur()) {
-				 this.props.history.push("/accuillivreur");
-				
+				this.props.history.push("/gestionmenu");
+			  
 			   }else  {
 				 this.props.history.push("/");
 				
@@ -53,7 +48,7 @@ class ButtonLogInProf extends Component {
 			    {!this.componentDidMount() ? 	
 				 <Button  variant="outline-success" onClick={(e) => {
                 this.pushLoginProf(e);
-              }}>Espace Prof </Button >:null
+              }}>ButtonGestionMenu </Button >:null
 
 			}
 		</div>
@@ -63,10 +58,7 @@ class ButtonLogInProf extends Component {
 
 
 
-ButtonLogInProf.propTypes = {
-	
-};
 
 
 
-export default withRouter(ButtonLogInProf);
+export default withRouter(ButtonGestionMenu);
