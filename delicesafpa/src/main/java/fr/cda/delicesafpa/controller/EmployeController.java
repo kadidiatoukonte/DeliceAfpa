@@ -68,8 +68,11 @@ public class EmployeController {
 	}
 
 	@GetMapping("/roleEmploye/{id}")
-	public RoleEmployeDTO getRoleEmployeId(@PathVariable("id") int idstatus) {
-		return roleEmployeService.getById(idstatus);
+	public RoleEmployeDTO getRoleEmployeId(@PathVariable("id") String idemp) {
+		System.out.println(idemp);
+		int id= Integer.valueOf(idemp);
+		System.out.println( roleEmployeService.getById(id).getDescription());
+		return roleEmployeService.getById(id);
 	}
 
 	// AssignerRole
@@ -102,10 +105,29 @@ public class EmployeController {
 	public EmployeDTO getemployeMailemploye(@RequestBody LoginDTO loginDTO) {
 		String email = loginDTO.getMailclient();
 		String pass = loginDTO.getPasswordclient();
+		
+		
+		System.out.println(pass);
 
 		EmployeDTO emp = employeService.getemployeMailemploye(email, pass);
 System.out.println(emp);
+System.out.println(pass);
+System.out.println(emp.getIdemploye());
 		return emp;
 
 	}
+	
+	@GetMapping(value = "/findRoleActuel/{id}")
+	public RoleEmployeDTO findRoleActuel(@PathVariable("id") String idemp) {
+		idemp=idemp.replaceAll("\\p{Punct}", "");
+
+		int id= Integer.valueOf(idemp);
+	
+		return assignerRoleService.findRoleActuel(employeService.getById(id));
+		 
+		
+	}
+	
+	
+	
 }

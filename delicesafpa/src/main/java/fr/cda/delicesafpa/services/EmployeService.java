@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -44,11 +45,12 @@ public class EmployeService implements EmployeServiceI {
 	public List<EmployeDTO> getAll() {
 		try {
 			List<EmployeDTO> listDto = new ArrayList<EmployeDTO>();
-			List<Employe> listDao =employeRepository.findAll();
+			List<Employe> listDao =employeRepository.findAll(Sort.by(Sort.Direction.ASC, "idemploye"));
 			for (Employe t : listDao) {
 				listDto.add(EmployeConverter.EntityToDTO(t));
 			}
-
+			System.out.println("ciao");
+System.out.println(listDto.size());
 			return listDto;
 
 		} catch (Exception e) {
@@ -172,14 +174,15 @@ public class EmployeService implements EmployeServiceI {
 	public EmployeDTO getemployeMailemploye(String email, String password) {
 		try {
 			
-			
+			System.out.println(password);
 			
 			Employe result = employeRepository.findemployeMailEmploye(email);
 			System.out.println("aaa");
 			if (result!=null) {
-				
+				System.out.println(password);
 				return EmployeConverter.EntityToDTO(result);	} else {	System.out.println(email);
-			
+				System.out.println(password);
+
 
 				return null;
 			}

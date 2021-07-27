@@ -61,14 +61,14 @@ public class ClientService implements ClientServiceI {
 		try {
 			
 			
-			System.out.println(email);
+			System.out.println(password);
 			
 
 			int result = clientRepository.findclientMailclient(email).getPasswordclient().compareTo(password);
 			if (result == 0) {
 				
 				return true;
-			} else {	System.out.println(email);
+			} else {	System.out.println(password);
 				return false;
 			}
 
