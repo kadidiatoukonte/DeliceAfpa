@@ -7,7 +7,6 @@ import NavPublic from "./NavPublic";
 import NavPrivate from "./NavPrivate";
 import {isClient,getTimeOut} from "../util";
 
-
 class Menu extends Component {
 
 	upSession(){
@@ -29,14 +28,15 @@ class Menu extends Component {
 		return (<div>
 						  { !isClient()?<NavPublic></NavPublic>:
 							<NavPrivate></NavPrivate>}
-			<JumbotronWrapper title="Menu" description="Menu">
-				<Link className="nav-link" to="/">
-
-                <ButtonLogOut></ButtonLogOut>
+			<JumbotronWrapper title="Menu" description="">
+				
 
 
-			Back to login
-		</Link>
+
+
+           
+
+
 
 		</JumbotronWrapper>
 		<Footer></Footer>

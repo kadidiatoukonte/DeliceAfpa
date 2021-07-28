@@ -44,6 +44,15 @@ export const getTimeOut = (keyName) => {
 
 
 
+//panier
+export const getPanier = () => {
+    if (JSON.stringify(localStorage.getItem('panier')) ) {
+        return true;
+    }
+    return false;
+}
+
+
 
 //ROLE-AUTH////ROLE-AUTH////ROLE-AUTH////ROLE-AUTH////ROLE-AUTH////ROLE-AUTH//
 //CLIENT?

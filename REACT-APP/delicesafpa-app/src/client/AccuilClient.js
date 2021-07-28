@@ -63,10 +63,11 @@ accuil client		</Link>
               }}>Click </button>
 
 
-<Footer></Footer>
+
 
 
 		</JumbotronWrapper>
+		<Footer></Footer>
 		</div>
 		);
 	}

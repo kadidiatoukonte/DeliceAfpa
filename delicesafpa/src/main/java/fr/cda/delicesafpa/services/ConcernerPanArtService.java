@@ -15,12 +15,16 @@ import fr.cda.delicesafpa.beans.ConcernerPanArt;
 import fr.cda.delicesafpa.dao.ArticleRepository;
 import fr.cda.delicesafpa.dao.ClientRepository;
 import fr.cda.delicesafpa.dao.ConcernerPanArtRepository;
+import fr.cda.delicesafpa.dao.PanierRepository;
+import fr.cda.delicesafpa.dto.AddProduitToPanierDTO;
 import fr.cda.delicesafpa.dto.AssignerRoleDTO;
 import fr.cda.delicesafpa.dto.ConcernerPanArtDTO;
 import fr.cda.delicesafpa.interfaceServ.ArticleServiceI;
 import fr.cda.delicesafpa.interfaceServ.ClientServiceI;
 import fr.cda.delicesafpa.interfaceServ.ConcernerPanArtServiceI;
+import fr.cda.delicesafpa.util.ArticleConverter;
 import fr.cda.delicesafpa.util.ConcernerPanArtConverter;
+import fr.cda.delicesafpa.util.PanierConverter;
 
 @Service
 public class ConcernerPanArtService implements ConcernerPanArtServiceI {
@@ -29,15 +33,45 @@ public class ConcernerPanArtService implements ConcernerPanArtServiceI {
 	private ConcernerPanArtRepository concernerPanArtRepository;
 	@Autowired
 	private ConcernerPanArtConverter concernerPanArtConverter;
+	@Autowired
+	private PanierRepository panierRepository;
+	@Autowired
+	private ArticleRepository articleRepository;
+	
 
-	public ConcernerPanArtDTO save(ConcernerPanArtDTO concernerPanArtDTO) {
+	public ConcernerPanArtDTO save(AddProduitToPanierDTO addPro) {
+		 ConcernerPanArtDTO newConcern = new ConcernerPanArtDTO();
 		try {
-			ConcernerPanArt concernerPanArt = concernerPanArtConverter.convertToEntity(concernerPanArtDTO);
-			concernerPanArtRepository.save(concernerPanArt);
-		} catch (Exception e) {
+			
+		    String Idpanier = addPro.getIdpanier();     
+		    Idpanier= Idpanier.replaceAll("\\p{Punct}", "");
+		    int id= Integer.valueOf(Idpanier);
+			 System.out.println("ciao panier  "+id);
 
+		    String Idarticle = addPro.getIdarticle();        
+		    Idarticle= Idarticle.replaceAll("\\p{Punct}", "");
+		    int idart= Integer.valueOf(Idarticle);
+			 System.out.println("ciao article   "+idart);
+
+		    String qua = addPro.getQuantite();  
+		    System.out.println(qua);
+		    qua= qua.replaceAll("\\p{Punct}", "");
+		    int intqua= Integer.valueOf(qua);
+	
+
+	 newConcern.setIdpanier(panierRepository.findById(id).get()	);
+	System.out.println(  "trova panier");
+	 newConcern.setIdarticle(articleRepository.findById(idart).get());
+		System.out.println(  "trova article");
+
+	 newConcern.setQuantitearticle(intqua);
+			ConcernerPanArt concernerPanArt = concernerPanArtConverter.convertToEntity(newConcern);
+			concernerPanArtRepository.save(concernerPanArt);
+
+		} catch (Exception e) {
+System.out.println("errore");
 		}
-		return concernerPanArtDTO;
+		return newConcern;
 	}
 
 	public List<ConcernerPanArtDTO> getAll() {

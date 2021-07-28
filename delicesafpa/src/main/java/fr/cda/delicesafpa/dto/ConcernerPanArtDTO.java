@@ -35,8 +35,9 @@ public class ConcernerPanArtDTO {
 		super();
 	}
 
-	public ConcernerPanArtDTO(Article idarticle, int quantitearticle) {
+	public ConcernerPanArtDTO(Panier idpanier, Article idarticle, int quantitearticle) {
 		super();
+		this.idpanier = idpanier;
 		this.idarticle = idarticle;
 		this.quantitearticle = quantitearticle;
 	}
@@ -65,12 +66,6 @@ public class ConcernerPanArtDTO {
 		this.quantitearticle = quantitearticle;
 	}
 
-	@Override
-	public String toString() {
-		return "ConcernerPanArtDTO [idpanier=" + idpanier + ", idarticle=" + idarticle + ", quantitearticle="
-				+ quantitearticle + "]";
-	}
-	
 	
 	
 	

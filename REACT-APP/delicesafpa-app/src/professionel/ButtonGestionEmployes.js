@@ -13,10 +13,11 @@ class ButtonGestionEmployes extends Component {
 	
 	}
 	}
-	
+		////////////////////////////WARNING WARNING DA CAMBIARE
+
 	componentDidMount(){
 	
-	
+	////////////////////////////WARNING WARNING DA CAMBIARE
 			var room1= localStorage.getItem('client');	
 		if(room1==='client'){return true}else{return false;}  
 	}
@@ -57,7 +58,9 @@ class ButtonGestionEmployes extends Component {
 }
 
 
+	////////////////////////////WARNING WARNING DA CAMBIARE
 
 
 
 export default withRouter(ButtonGestionEmployes);
+	////////////////////////////WARNING WARNING DA CAMBIARE

@@ -6,7 +6,7 @@ import lombok.Data;
 
 @Data
 public class PanierDTO {
-	private int idpanier;
+	private String idpanier;
 	private List<PanierDTO> listpanier;
 
 	public PanierDTO() {
@@ -14,16 +14,16 @@ public class PanierDTO {
 		// TODO Auto-generated constructor stub
 	}
 
-	public PanierDTO(int idpanier) {
+	public PanierDTO(String idpanier) {
 		super();
 		this.idpanier = idpanier;
 	}
 
-	public int getIdpanier() {
+	public String getIdpanier() {
 		return idpanier;
 	}
 
-	public void setIdpanier(int idpanier) {
+	public void setIdpanier(String idpanier) {
 		this.idpanier = idpanier;
 	}
 

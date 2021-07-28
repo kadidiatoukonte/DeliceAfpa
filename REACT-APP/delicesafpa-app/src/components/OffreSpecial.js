@@ -3,7 +3,7 @@ import axios from "axios";
 import {Card,Button,Col,Row,CardColumns} from 'react-bootstrap'
 import NavPublic from "./NavPublic";
 import NavPrivate from "./NavPrivate";
-import {isClient,getTimeOut} from "../util";
+import {isClient} from "../util";
 import ButtonAddtoCard from '../components/ButtonAddtoCard';
 import Footer from './Footer';
 
@@ -16,12 +16,35 @@ class OffreSpecial extends React.Component {
     this.state = {
       articles: [],
       article: {},
+    idarticle:"",
       nomarticle: "",
       descriptionarticle: "",
       descriptionoffresp: "",
 	  prixarticle: "",
     };
   }
+  addToPanier = (id) => {
+ 
+    axios.post("/delicesafpa/addconcernerpanart", {
+      
+          "idpanier": JSON.stringify(localStorage.getItem('panier'))
+     ,
+ 
+          "idarticle": id
+      ,
+      "quantite": "1"
+  }).then((result) => {if(result){   alert('prodotto aggiunto') }   
+
+
+
+  id.preventDefault();}    
+   
+  )
+
+      
+}
+  
+
 
  
   componentDidMount() {
@@ -39,6 +62,9 @@ class OffreSpecial extends React.Component {
        	  { !isClient()?<NavPublic></NavPublic>:
 							<NavPrivate></NavPrivate>}
 <br></br><br></br>
+
+ 
+    
 	  <div class="m-5 p-5 ">    <ul>
 
     
@@ -53,7 +79,7 @@ class OffreSpecial extends React.Component {
 		<Card
 >
     <Card.Img     
-              src={process.env.PUBLIC_URL + '/exampleplat.png'}
+              src = {require("./Slow_food.png").default}//{process.env.PUBLIC_URL + '/exampleplat.png'}
               alt=""
               className=" align-top"
               
@@ -62,7 +88,7 @@ class OffreSpecial extends React.Component {
   <Card className="text-center">
     <blockquote className="blockquote mb-0 card-body">
       <p>
-	  {item.nomarticle}          
+	  {item.nomarticle}   	  
       </p>
 	  <div class="m-3">
 	  <small className="text-muted">
@@ -79,7 +105,11 @@ class OffreSpecial extends React.Component {
 	  <small className="text-muted">
 	  <cite title="Source Title">{item.prixarticle} €</cite></small>
   <div  className="text-center">
+   
+  <form   onSubmit={(e) => {this.addToPanier(item.idarticle)}}>
     <ButtonAddtoCard></ButtonAddtoCard>
+    </form>
+    
     </div>  
     </blockquote>
   </Card>
@@ -95,6 +125,30 @@ class OffreSpecial extends React.Component {
         </ul>
 
 		</div>	
+
+
+    <Row md={4}>
+   {this.state.articles.map((item) => (
+    <Col xs={6}>
+      <Card>
+        <Card.Img variant="top" src={process.env.PUBLIC_URL + '/png/exampleplat.png'} />
+        <Card.Body>
+          <Card.Title>{item.nomarticle}</Card.Title>
+          <Card.Text>
+		  {item.descriptionarticle}
+          </Card.Text>
+        </Card.Body>
+    
+        <form   onSubmit={(e) => {this.addToPanier(item.idarticle)}}>
+    <ButtonAddtoCard></ButtonAddtoCard>
+    </form>
+      </Card>
+      
+    </Col>
+  ))}
+</Row>
+
+
 
 		<Footer></Footer>
 

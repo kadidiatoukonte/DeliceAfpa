@@ -1,5 +1,5 @@
 import React , { Component }from 'react';
-import { Button } from 'react-bootstrap'
+import { Button,OverlayTrigger,Tooltip } from 'react-bootstrap'
 
 
 class ButtonAddtoCard extends Component {
@@ -7,9 +7,19 @@ class ButtonAddtoCard extends Component {
 		return (
     <div className="ButtonAddtoCard">
 
-      <Button  variant="outline-warning" >
-<img
-              src={require("./addpanier.png").default}
+<OverlayTrigger
+   
+      
+      overlay={
+        <Tooltip id='buttonaddchart'>
+       <strong> add to panier!</strong>
+        </Tooltip>
+      }
+    >
+     
+     <Button  type="submit" variant="trasparent"   className="rounded-circle ">
+<img  
+              src={process.env.PUBLIC_URL + '/icons/shoppingcartadd.png'} 
               height={50} width={50}
             
               className="d-inline-block align-top"
@@ -19,6 +29,10 @@ class ButtonAddtoCard extends Component {
          
          
       </Button>
+    </OverlayTrigger>
+
+
+
     </div>
   );
 }

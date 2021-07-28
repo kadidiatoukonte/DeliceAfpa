@@ -49,7 +49,28 @@
          200                                     // ttl in seconds
         );
         localStorage.setItem('role', 'client');
-        this.props.history.push("/accuilclient");}
+
+        axios.post("/delicesafpa/addpanier", {
+        
+        }).then((result) => {
+          localStorage.setItem('panier',result.data.idpanier);
+          alert(result.data.idpanier);
+
+
+        
+
+
+
+
+
+
+
+
+
+          this.props.history.push("/accuilclient");
+
+        })
+        }
       
     });
     

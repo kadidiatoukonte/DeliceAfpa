@@ -1,17 +1,19 @@
 package fr.cda.delicesafpa.controller;
 
 import java.util.List;
+import java.util.Set;
 
 import org.springframework.beans.factory.annotation.Autowired;
 
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import fr.cda.delicesafpa.dto.AddProduitToPanierDTO;
 import fr.cda.delicesafpa.dto.CommandeDTO;
 import fr.cda.delicesafpa.dto.ConcernerPanArtDTO;
 import fr.cda.delicesafpa.dto.PanierDTO;
 import fr.cda.delicesafpa.dto.StatusCommandeDTO;
 import fr.cda.delicesafpa.dto.TraiterCommandeDTO;
-
+import fr.cda.delicesafpa.interfaceServ.ArticleServiceI;
 import fr.cda.delicesafpa.interfaceServ.CommandeServiceI;
 import fr.cda.delicesafpa.interfaceServ.ConcernerPanArtServiceI;
 
@@ -20,6 +22,8 @@ import fr.cda.delicesafpa.interfaceServ.PanierServiceI;
 import fr.cda.delicesafpa.interfaceServ.StatusCommandeServiceI;
 
 import fr.cda.delicesafpa.interfaceServ.TraiterCommandeServiceI;
+import fr.cda.delicesafpa.util.ArticleConverter;
+import fr.cda.delicesafpa.util.PanierConverter;
 
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -44,6 +48,10 @@ public class CommandeController {
 
 	@Autowired
 	ConcernerPanArtServiceI concernerPanArtService;
+	
+	@Autowired
+	ArticleServiceI articleService;
+	
 
 	@PostMapping("/addcommande") /**/
 	public CommandeDTO addCommande(@RequestBody CommandeDTO commande) {
@@ -97,9 +105,9 @@ public class CommandeController {
 	}
 
 	@PostMapping("/addpanier") /**/
-	public PanierDTO addPanier(@RequestBody PanierDTO panier) {
+	public PanierDTO addPanier() {
 
-		return panierService.save(panier);
+		return panierService.save();
 
 	}
 
@@ -114,11 +122,15 @@ public class CommandeController {
 	public PanierDTO getPanier(@PathVariable("id") int id) {
 		return panierService.getById(id);
 	}
+//	AddProduitToPanierDTO(String idpanier, String idarticle, String quantite) 
 
+	
 	@PostMapping("/addconcernerpanart") /**/
-	public ConcernerPanArtDTO addConPanArt(@RequestBody ConcernerPanArtDTO cap) {
+	public ConcernerPanArtDTO addConPanArt(@RequestBody AddProduitToPanierDTO addPro) {
+		
+		
 
-		return concernerPanArtService.save(cap);
+		return concernerPanArtService.save(addPro);
 
 	}
 
@@ -129,4 +141,18 @@ public class CommandeController {
 
 	}
 
+	@GetMapping("/findConcernerPanArtPanier/{id}")
+	public	Set<ConcernerPanArtDTO> findConcernerPanArtPanier( @PathVariable("id") String id)
+	{
+		System.out.println(id);
+		
+	return	panierService.findConcernerPanArtPanier( id);
+		
+		
+	}
+	
+	
+	
+	
+	
 }
