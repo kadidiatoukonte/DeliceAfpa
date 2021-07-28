@@ -1,5 +1,6 @@
 package fr.cda.delicesafpa.services;
 
+import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
@@ -133,11 +134,11 @@ public class ArticleService implements ArticleServiceI {
 	}
 
 	public Set<ArticleDTO> findOffrespeciale() {
-		Set<ArticleDTO> aDTO = null;
+		Set<ArticleDTO>aDTO= new HashSet<ArticleDTO>();
 
 		try {
 			System.out.println("try1");
-
+			
 			Set<Article> a = articleRepository.findOffrespeciale();
 
 			for (Article ar : a) {

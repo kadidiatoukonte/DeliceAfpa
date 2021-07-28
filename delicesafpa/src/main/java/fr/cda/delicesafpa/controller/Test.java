@@ -143,18 +143,10 @@ public class Test {
 		/* %%%%%%%%%%%%%%%%%%% */// TRAITER RESERVATION
 		 LocalDateTime now = LocalDateTime.now();
 		 
-			TraiterReservationId idtres = new TraiterReservationId(1, 1, 3, now);
-			TraiterReservation newTR = new TraiterReservation(
-					idtres,
-					ReservationConverter.dTOToEntity(reservationService.getById(1)),
-					EmployeConverter.dTOToEntity(employeService.getById(1)) ,
-					
-					StatusReservationConverter.convertToEntity(statusReservationService.getById(3)));/**/
-
-			TraiterReservationDTO dto  = TraiterReservationConverter.convertToDto(newTR);
-			traiterReservationService.save(dto);
 	
-			System.out.println(traiterReservationService.getAll().get(traiterReservationService.getAll().size()-1));
+
+	
+			System.out.println(articleService.findOffrespeciale());
 			/* %%%%%%%%%%%%%%%%%%% */// TRAITER RESERVATION
 	/*
 			System.out.println(newTR);
