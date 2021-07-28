@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import JumbotronWrapper from '../JumbotronWrapper';
 import NavPProfessionel from '../components/NavPProfessionel';
 import Footer from '../components/Footer';
-import { Clear,getTimeOut } from '../util';
+import { Clear,getTimeOut, isResponsable,isAdmin } from '../util';
 import ButtonArchive from "./ButtonArchive";
 import ButtonGestionCommande from "./ButtonGestionCommande";
 import ButtonGestionEmployes from "./ButtonGestionEmployes";
@@ -22,7 +22,7 @@ class AccuilAdmin extends Component {
 	 
 	  componentDidMount(){
 		this.upSession()
-
+if(!isAdmin){ Clear()}
 	}
 	
 

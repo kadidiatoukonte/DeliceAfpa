@@ -18,7 +18,7 @@ const NavP = () => (
               height={100} width={90}
               alt=""
               className="d-inline-block align-top"
-              roundedCircle
+              
             />
   
       

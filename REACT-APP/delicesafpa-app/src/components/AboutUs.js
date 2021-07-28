@@ -73,26 +73,7 @@ class AboutUs extends Component {
 
 
 		</JumbotronWrapper>
-		<Container>
-  <Row>
-    <Col xs={4} md={3}>
-      <Image          src={require("./avatar.png").default}
- rounded />
-    </Col>
-    <Col xs={4} md={3}>
-      <Image          src={require("./avatar.png").default}
- roundedCircle />
-    </Col>
-    <Col xs={4} md={3}>
-      <Image          src={require("./avatar.png").default}
- thumbnail />
-    </Col>
-	<Col xs={4} md={3}>
-      <Image          src={require("./avatar.png").default}
- thumbnail />
-    </Col>
-  </Row>
-</Container>
+	
 		<Footer></Footer>
 
 		</div>

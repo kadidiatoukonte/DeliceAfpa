@@ -1,7 +1,7 @@
 import React , { Component } from "react";
 import JumbotronWrapper from '../JumbotronWrapper';
 import NavPProfessionel from '../components/NavPProfessionel';
-import { Clear,  logout ,getTimeOut } from '../util';
+import { Clear,  logout ,getTimeOut,isResponsable } from '../util';
 import Footer from '../components/Footer';
 import ButtonArchive from "./ButtonArchive";
 import ButtonGestionCommande from "./ButtonGestionCommande";
@@ -10,7 +10,14 @@ import ButtonGestionReservation from "./ButtonGestionReservation";
 
 class AccuilResponsable extends Component {
 	
-	
+	 handleSubmit(e) {
+		e.preventDefault();
+		console.log('Hai cliccato Invia.');
+		
+		if(!JSON.stringify(localStorage.getItem('role')).includes('responsable'))
+	{ localStorage.clear();
+		window.location.reload(); }
+	  }
 
 	upSession(){
 
@@ -19,7 +26,7 @@ class AccuilResponsable extends Component {
 	 
 	  componentDidMount(){
 		this.upSession()
-
+		if(!isResponsable){ localStorage.clear(); }
 	}
 	
 	
@@ -28,16 +35,15 @@ class AccuilResponsable extends Component {
 		
 		alert(JSON.stringify(localStorage.getItem('timeout')));
 		
-		
-		this.upSession()
-
+		if(!JSON.stringify(localStorage.getItem('role')).includes('responsable'))
+	{ localStorage.clear();
+		window.location.reload(); }
 }
 
 
 
 	handleLogout = (e) => {
 		e.preventDefault();
-		logout();
 	    Clear();
 		this.props.history.push("/");	
 		window.location.reload();
@@ -54,7 +60,7 @@ class AccuilResponsable extends Component {
                 this.alertciao(e);
               }}>alerttimeout </button>
 		
-		<div  class="m-3"><ButtonGestionCommande></ButtonGestionCommande></div>
+		<div  class="m-3"> <ButtonGestionCommande></ButtonGestionCommande></div>
 			<div  class="m-3" >	<ButtonGestionReservation></ButtonGestionReservation></div>
 			<div class="m-3">	<ButtonArchive></ButtonArchive></div>
 
