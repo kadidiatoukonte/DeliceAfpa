@@ -13,7 +13,7 @@ const NavPProfessionel = () => (
 <Fragment><div>
 
 
-    <Navbar bg="success" variant="dark" expand="lg" fixed="top">    <Navbar.Brand href="#home">{JSON.stringify(localStorage.getItem('role'))}</Navbar.Brand>
+    <Navbar bg="success" variant="dark" expand="lg" fixed="top" >    <Navbar.Brand href="#home">{JSON.stringify(localStorage.getItem('role'))}</Navbar.Brand>
                             <Navbar.Toggle aria-controls="basic-navbar-nav" />
                             <Navbar.Collapse id="basic-navbar-nav">
                                 <Nav className="mr-auto">

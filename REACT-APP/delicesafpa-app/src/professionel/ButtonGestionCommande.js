@@ -34,7 +34,7 @@ class ButtonGestionCommande extends Component {
 				 this.props.history.push("/gestioncommandelivreur");
 				
 			   }else  {
-				 this.props.history.push("/");
+				 this.props.history.push("/loginprof");
 				
 			   }         }
 			
@@ -51,9 +51,10 @@ class ButtonGestionCommande extends Component {
 			
 			<div>
 			    {!this.componentDidMount() ? 	
-				 <Button  variant="outline-success" onClick={(e) => {
+
+				<div className="d-grid gap-2"> <Button size="lg"  variant="outline-success" onClick={(e) => {
                 this.pushLoginProf(e);
-              }}> ButtonGestionCommande</Button >:null
+              }}> ButtonGestionCommande</Button ></div>:null
 
 			}
 		</div>

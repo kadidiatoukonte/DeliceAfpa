@@ -51,7 +51,7 @@ class ButtonLogInProf extends Component {
 			
 			<div>
 			    {!this.componentDidMount() ? 	
-				 <Button  variant="outline-success" onClick={(e) => {
+				 <Button  variant="outline-danger" onClick={(e) => {
                 this.pushLoginProf(e);
               }}>Espace Prof </Button >:null
 
@@ -62,10 +62,6 @@ class ButtonLogInProf extends Component {
 }
 
 
-
-ButtonLogInProf.propTypes = {
-	
-};
 
 
 

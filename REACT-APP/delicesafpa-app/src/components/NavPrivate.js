@@ -12,7 +12,7 @@ const NavPublic = () => (
 <Fragment><div>
 
 
-    <Navbar bg="danger" variant="dark" expand="lg" sticky="top">    <Navbar.Brand href="#home">Private Nav</Navbar.Brand>
+    <Navbar bg="danger" variant="dark" expand="lg" fixed="top">    <Navbar.Brand href="#home">Private Nav</Navbar.Brand>
                             <Navbar.Toggle aria-controls="basic-navbar-nav" />
                             <Navbar.Collapse id="basic-navbar-nav">
                                 <Nav className="mr-auto">

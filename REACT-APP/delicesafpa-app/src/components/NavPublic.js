@@ -12,7 +12,17 @@ const NavP = () => (
 <Fragment><div>
 
 
-    <Navbar bg="warning" variant="light" expand="lg" sticky="top">    <Navbar.Brand href="#home">Public Nav</Navbar.Brand>
+    <Navbar bg="warning" variant="light" expand="lg" fixed="top">    <Navbar.Brand href=""> 
+    <img
+              src={require("./Slow_food.png").default}
+              height={100} width={90}
+              alt=""
+              className="d-inline-block align-top"
+              roundedCircle
+            />
+  
+      
+      </Navbar.Brand>
                             <Navbar.Toggle aria-controls="basic-navbar-nav" />
                             <Navbar.Collapse id="basic-navbar-nav">
                                 <Nav className="mr-auto">

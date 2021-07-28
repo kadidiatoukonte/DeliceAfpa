@@ -11,7 +11,7 @@ const AdminRoute = ({component: Component, ...rest}) => {
         <Route {...rest} render={props => (
             isAdmin() ?
                 <Component {...props} />
-            : <Redirect to="/" />
+            : <Redirect to="/loginprof" />
         )} />
     );
 };

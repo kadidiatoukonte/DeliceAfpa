@@ -1,7 +1,5 @@
 import React , { Component } from "react";
-import { Link } from 'react-router-dom';
 import JumbotronWrapper from '../JumbotronWrapper';
-import ButtonLogOut from "./ButtonLogOut";
 import Footer from './Footer';
 import NavPublic from "./NavPublic";
 import NavPrivate from "./NavPrivate";
@@ -26,20 +24,13 @@ class Home extends Component {
 
 
 	render() {
-		return (<div>
+		return ( <div class="text-center ">
 						  { !isClient()?<NavPublic></NavPublic>:
 							<NavPrivate></NavPrivate>}
 			<JumbotronWrapper title="Home" description="">
-				<Link className="nav-link" to="/">
-
-                <ButtonLogOut></ButtonLogOut>
-
-
-			Back to login
-		</Link>
-
-   <Footer></Footer>
+				
 		</JumbotronWrapper>
+		<Footer></Footer>
 
 		</div>
 		);

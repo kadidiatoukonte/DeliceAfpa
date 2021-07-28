@@ -39,8 +39,8 @@ class OffreSpecial extends Component {
 			Back to login
 		</Link>
 
-   <Footer></Footer>
 		</JumbotronWrapper>
+		<Footer></Footer>
 
 		</div>
 		);

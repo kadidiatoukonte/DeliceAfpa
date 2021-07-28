@@ -11,7 +11,7 @@ const LivreurRoute = ({component: Component, ...rest}) => {
         <Route {...rest} render={props => (
             isLivreur() ?
                 <Component {...props} />
-            : <Redirect to="/" />
+            : <Redirect to="/loginprof" />
         )} />
     );
 };

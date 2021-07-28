@@ -31,10 +31,10 @@ class ButtonGestionReservation extends Component {
 				 this.props.history.push("/accuilresponsable");
 				
 			   }else if(isLivreur()) {
-				 this.props.history.push("/");
+				 this.props.history.push("/loginprof");
 				
 			   }else  {
-				 this.props.history.push("/");
+				 this.props.history.push("/loginprof");
 				
 			   }         }
 			
@@ -51,9 +51,9 @@ class ButtonGestionReservation extends Component {
 			
 			<div>
 			    {this.componentDidMount() ? 	
-				 <Button  variant="outline-success" onClick={(e) => {
+			<div className="d-grid gap-2"> 	 <Button size="lg" variant="outline-success" onClick={(e) => {
                 this.pushLoginProf(e);
-              }}>ButtonGestionReservation</Button >:null
+              }}>ButtonGestionReservation</Button ></div>:null
 
 			}
 		</div>

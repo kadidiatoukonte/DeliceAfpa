@@ -57,14 +57,15 @@ class GestionCommande extends Component {
 
 accuil GestionCommande		</Link>
 
-<button  onClick={(e) => {
+<button size="lg" onClick={(e) => {
                 this.handleLogout(e);
               }}>Click </button>
 
-<Footer></Footer>
 
 
 		</JumbotronWrapper>
+		<Footer></Footer>
+
 		</div>
 		);
 	}

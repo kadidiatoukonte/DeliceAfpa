@@ -75,11 +75,14 @@ class AccuilAdmin extends Component {
 
 
 accuil Admin		</Link>
-<Footer></Footer>
 
 
 		</JumbotronWrapper>
-		</div></div>
+		</div>
+		
+		<Footer></Footer>
+
+		</div>
 
 		
 		);

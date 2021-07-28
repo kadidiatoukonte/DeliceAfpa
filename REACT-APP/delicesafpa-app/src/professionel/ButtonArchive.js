@@ -34,7 +34,7 @@ class ButtonArchive extends Component {
 				 this.props.history.push("/archivelivreur");
 				
 			   }else  {
-				 this.props.history.push("/");
+				 this.props.history.push("/loginprof");
 				
 			   }         }
 			
@@ -51,9 +51,9 @@ class ButtonArchive extends Component {
 			
 			<div>
 			    {!this.componentDidMount() ? 	
-				 <Button  variant="outline-success" onClick={(e) => {
+				 <div className="d-grid gap-2"> <Button size="lg" variant="outline-success" onClick={(e) => {
                 this.pushLoginProf(e);
-              }}>ARCHIVE </Button >:null
+              }}>ARCHIVE </Button ></div>:null
 
 			}
 		</div>

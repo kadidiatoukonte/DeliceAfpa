@@ -5,7 +5,7 @@
  import { withRouter } from "react-router-dom";
  import sha256 from "sha256";
  import { setTimeOut,isAdmin,isResponsable,isLivreur} from '../util';
- 
+ import {Spinner,Button} from 'react-bootstrap'
  
  class FormsLoginProf extends Component {
 
@@ -16,17 +16,21 @@
  nom: '',
  email: '',
  password: '' ,
- role:''};
+ role:'',
+ hidenn: true
+};
   }
-
+  
 
   getLogiIn = (e) => {
-   
+this.setState({hidenn: false});
     axios.post("/delicesafpa/findemployeMailemploye", {
       mailclient:this.state.email ,
       passwordclient:this.state.password,
     
     }).then((result) => {
+      this.setState({hidenn: false});
+
       if(result.data===true){ 
      
       
@@ -47,6 +51,9 @@
     
       var a =localStorage.getItem('id');
       axios.get("/delicesafpa/findRoleActuel/"+a).then((result) => {
+
+        if(!result){  this.setState({hidenn: true});
+      }
      
      localStorage.setItem('role',JSON.stringify(result.data.description))
      setTimeOut(
@@ -68,11 +75,17 @@
     
    }
 
-  }) })}
+  }) 
+
+  this.setState({visibleSpin: false});
+
+
+
+})}
       
     });
     
- 
+
   };
 
   render() {
@@ -110,12 +123,15 @@
            <ErrorMessage name="email" component="div" /></div>
          <div> <Field type="password" name="password" ref={this.textPassword}/>
            <ErrorMessage name="password" component="div" /></div>
-           <button type="submit" >
-             Submit
-           </button>
+        <div className="d-grid gap-5 m-3  p-5"> 
+<Button type='submit' size="lg" variant="success" >LOG IN</Button></div>
          </Form>
        )}
      </Formik>
+
+  <Spinner hidden={this.state.hidenn} animation="grow" variant="warning" /> 
+ 
+
    </div>
  );}}
  

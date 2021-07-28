@@ -60,10 +60,11 @@ accuil GestionEmploye		</Link>
                 this.handleLogout(e);
               }}>Click </button>
 
-<Footer></Footer>
 
 
 		</JumbotronWrapper>
+		<Footer></Footer>
+
 		</div>
 		);
 	}

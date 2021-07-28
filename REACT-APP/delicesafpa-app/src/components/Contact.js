@@ -1,7 +1,5 @@
 import React , { Component } from "react";
-import { Link } from 'react-router-dom';
 import JumbotronWrapper from '../JumbotronWrapper';
-import ButtonLogOut from "./ButtonLogOut";
 import Footer from './Footer';
 import NavPublic from "./NavPublic";
 import NavPrivate from "./NavPrivate";
@@ -30,17 +28,13 @@ class Contact extends Component {
 		return (<div>
 						  { !isClient()?<NavPublic></NavPublic>:
 							<NavPrivate></NavPrivate>}
+		  <div class="text-center p-5 ">
+
 			<JumbotronWrapper title="Contact" description="Contact">
-				<Link className="nav-link" to="/">
-
-                <ButtonLogOut></ButtonLogOut>
-
-
-			Back to login
-		</Link>
-
-   <Footer></Footer>
+			
 		</JumbotronWrapper>
+		</div>
+		<Footer></Footer>
 
 		</div>
 		);

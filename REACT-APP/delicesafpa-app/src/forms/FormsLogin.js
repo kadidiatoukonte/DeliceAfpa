@@ -5,6 +5,7 @@
  import { withRouter } from "react-router-dom";
  import sha256 from "sha256";
  import { loginClient,setTimeOut } from '../util';
+ import {Spinner,Button} from 'react-bootstrap'
 
 
  
@@ -91,9 +92,8 @@
            <Field type="password" name="password" ref={this.textPassword}/>
            <ErrorMessage name="password" component="div" />
            </div>
-           <button type="submit" disabled={isSubmitting}>
-             Submit
-           </button>
+           <div className="d-grid gap-5 m-3  p-5"> 
+<Button type='submit' size="lg" variant="danger" >LOG IN</Button></div>
          </Form>
        )}
      </Formik>

@@ -29,7 +29,7 @@ class ButtonGestionMenu extends Component {
 				this.props.history.push("/gestionmenu");
 			  
 			   }else  {
-				 this.props.history.push("/");
+				 this.props.history.push("/loginprof");
 				
 			   }         }
 			
@@ -46,9 +46,9 @@ class ButtonGestionMenu extends Component {
 			
 			<div>
 			    {!this.componentDidMount() ? 	
-				 <Button  variant="outline-success" onClick={(e) => {
+				<div className="d-grid gap-2">  <Button  size="lg" variant="outline-success" onClick={(e) => {
                 this.pushLoginProf(e);
-              }}>ButtonGestionMenu </Button >:null
+              }}>ButtonGestionMenu </Button ></div>:null
 
 			}
 		</div>

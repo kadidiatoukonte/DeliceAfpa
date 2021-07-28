@@ -1,10 +1,10 @@
 import React , { Component } from "react";
-import { Link } from 'react-router-dom';
 import JumbotronWrapper from '../JumbotronWrapper';
 import NavPProfessionel from '../components/NavPProfessionel';
 import { Clear,getTimeOut } from '../util';
 import Footer from '../components/Footer';
-
+import ButtonArchive from "./ButtonArchive";
+import ButtonGestionCommande from "./ButtonGestionCommande";
 class AccuilLivreur extends Component {
 	
 	
@@ -49,21 +49,14 @@ class AccuilLivreur extends Component {
 			<button  onClick={(e) => {
                 this.alertciao(e);
               }}>alerttimeout </button>
-				<Link className="nav-link" to="/">
+				
 
-                
-
-
-accuil livreur		</Link>
-
-<button  onClick={(e) => {
-                this.handleLogout(e);
-              }}>Click </button>
-
-<Footer></Footer>
-
+				<div  class="m-3"><ButtonGestionCommande></ButtonGestionCommande></div>
+			<div class="m-3">	<ButtonArchive></ButtonArchive></div>
 
 		</JumbotronWrapper>
+		<Footer></Footer>
+
 		</div>
 		);
 	}
