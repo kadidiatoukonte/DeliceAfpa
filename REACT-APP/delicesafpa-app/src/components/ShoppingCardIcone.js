@@ -1,28 +1,41 @@
 import React , { Component }from 'react';
 import { Button,OverlayTrigger,Tooltip } from 'react-bootstrap'
-import { getPanier} from '../util'
+import { getPanier,addPanier} from '../util'
 import axios from 'axios'
+import {  withRouter ,Link} from "react-router-dom";
 
 class ShoppingCardIcone extends Component {
 	
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
    
  this.state = { 
   getPanier: getPanier(),
-  sizePanier: "0"
+  sizePanier: 0//this.componentDidMount()
  };
  
+}
+pushToPanier=()=>{
+
+
+  this.props.history.push("/panier");
+   window.location.reload()
 }
 
 
 
 
-componentDidMount(){
-  const p = 35;//JSON.stringify(localStorage.getItem('panier'));
-	axios.get("/delicesafpa/findConcernerPanArtPanier",p)
+//componentDidMount(){
+//const a = { idpanier : "35"};
+//	axios.post("/delicesafpa/findConcernerPanArtPanier",a).then((result)=>{
+//alert(this.state.sizePanier)
+  //  return true//result.lenght
+
+
+  
+  /*)*/
 		
-		if(this.state.getPanier){
+	//	if(this.state.getPanier){ 
  
  
     
@@ -32,14 +45,9 @@ componentDidMount(){
       
       //this.setState({sizePanier:result.length})
       
-      
-      return true; }   
-    else{
-   
-      
-      return false;}
 
-      		}/*)  }*/
+  
+ 
 
 
   
@@ -61,8 +69,9 @@ componentDidMount(){
       }
     >
      
-     <Button  type="submit"  variant="trasparent"   className="rounded-circle ">
-     { this.componentDidMount()?  
+     <Link to= "/Panier" >   <Button  type="submit"  variant="trasparent"  onClick={(e)=>this.pushToPanier()
+} className="rounded-circle ">
+     { 1>0?  
 
 <img  
             src=   {process.env.PUBLIC_URL + '/icons/shoppingcart1.png'} 
@@ -85,6 +94,7 @@ componentDidMount(){
          
          
       </Button>
+      </Link>
     </OverlayTrigger>
 
 
@@ -98,4 +108,4 @@ componentDidMount(){
 
 
 
-export default ShoppingCardIcone;
+export default withRouter(ShoppingCardIcone);

@@ -1,7 +1,12 @@
+import axios from 'axios';
+ 
+
+
 const admin = 'admin';
 const responsable = 'responsable';
 const livreur = 'livreur';
 const client = 'client';
+export const panierSize=0; 
 
 //TIME-OUT////TIME-OUT////TIME-OUT////TIME-OUT////TIME-OUT//
 
@@ -42,9 +47,20 @@ export const getTimeOut = (keyName) => {
 
 //TIME-OUT////TIME-OUT////TIME-OUT////TIME-OUT////TIME-OUT////TIME-OUT//
 
+export const createPanier =()=>{    if(!localStorage.getItem('panier')){
 
+    axios.post("/delicesafpa/addpanier", {        
+   }).then((result) => {
+     localStorage.setItem('panier',result.data.idpanier);
+    
+   })
+  
+ }
+}
 
 //panier
+
+
 export const getPanier = () => {
     if (JSON.stringify(localStorage.getItem('panier')) ) {
         return true;
@@ -52,8 +68,13 @@ export const getPanier = () => {
     return false;
 }
 
-
-
+export const addToPanier = () => {
+    if (getPanier()) {
+        panierSize=  panierSize + 1
+        return true;
+    }
+    return false;
+}
 //ROLE-AUTH////ROLE-AUTH////ROLE-AUTH////ROLE-AUTH////ROLE-AUTH////ROLE-AUTH//
 //CLIENT?
 export const isClient = () => {

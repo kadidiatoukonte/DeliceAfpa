@@ -80,7 +80,7 @@ public class ArticleController {
 	}
  
 	
-	@GetMapping(value="/alletresup")
+	@GetMapping(value="/getalletresup")
 	public List<EtreSupDTO> getAllEtreSup() {
 		List<EtreSupDTO> list =etreSupService.getAll();
 		System.out.println(list.size());

@@ -79,7 +79,7 @@ return null;
 		}
 	}
 
-	public	Set<ConcernerPanArtDTO> findConcernerPanArtPanier( String idpanier )
+	public	Set<ConcernerPanArtDTO> findConcernerPanArtPanier( PanierDTO idpanier )
 
 	{			Set<ConcernerPanArtDTO> concDTO = new HashSet<ConcernerPanArtDTO>();
 
@@ -87,7 +87,7 @@ return null;
 
 		try {
 			
-		    String Idpanier = idpanier;     
+		    String Idpanier = idpanier.getIdpanier();     
 		    Idpanier= Idpanier.replaceAll("\\p{Punct}", "");
 		    int id= Integer.valueOf(Idpanier);
 			 System.out.println("ciao panier 2 ");

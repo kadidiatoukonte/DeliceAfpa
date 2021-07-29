@@ -14,4 +14,9 @@ public interface ConcernerPanArtRepository extends JpaRepository<ConcernerPanArt
 	
 	@Query("select c from ConcernerPanArt c where c.id.idpanier = ?1")
 public	Set<ConcernerPanArt> findConcernerPanArt( int idpanier);
+
+
+@Query("select c from ConcernerPanArt c where c.id.idpanier = ?1 and c.id.idarticle = ?2")
+public	ConcernerPanArt findConcerner( int idpanier,int idarticle);
 }
+

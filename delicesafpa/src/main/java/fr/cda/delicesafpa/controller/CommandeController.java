@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import fr.cda.delicesafpa.dto.AddProduitToPanierDTO;
 import fr.cda.delicesafpa.dto.CommandeDTO;
 import fr.cda.delicesafpa.dto.ConcernerPanArtDTO;
+import fr.cda.delicesafpa.dto.IdConcerPanArtDTO;
 import fr.cda.delicesafpa.dto.PanierDTO;
 import fr.cda.delicesafpa.dto.StatusCommandeDTO;
 import fr.cda.delicesafpa.dto.TraiterCommandeDTO;
@@ -141,18 +142,27 @@ public class CommandeController {
 
 	}
 
-	@GetMapping("/findConcernerPanArtPanier/{id}")
-	public	Set<ConcernerPanArtDTO> findConcernerPanArtPanier( @PathVariable("id") String id)
+	@PostMapping("/findConcernerPanArtPanier")
+	public	Set<ConcernerPanArtDTO> findConcernerPanArtPanier(@RequestBody PanierDTO idpanier)
 	{
-		System.out.println(id);
+		System.out.println(idpanier);
 		
-	return	panierService.findConcernerPanArtPanier( id);
+	return	panierService.findConcernerPanArtPanier( idpanier);
 		
 		
 	}
 	
 	
 	
+	@PostMapping("/findConcernerAddOne")
+	public	ConcernerPanArtDTO findConcernerAddOne(@RequestBody IdConcerPanArtDTO idConcerPanArtDTO)
+	{
+		System.out.println(idConcerPanArtDTO);
+		
+	return	concernerPanArtService.findConcernerAddOne( idConcerPanArtDTO);
+		
+		
+	}
 	
 	
 }

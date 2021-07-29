@@ -50,12 +50,6 @@
         );
         localStorage.setItem('role', 'client');
 
-        axios.post("/delicesafpa/addpanier", {
-        
-        }).then((result) => {
-          localStorage.setItem('panier',result.data.idpanier);
-          alert(result.data.idpanier);
-
 
         
 
@@ -69,7 +63,7 @@
 
           this.props.history.push("/accuilclient");
 
-        })
+        
         }
       
     });

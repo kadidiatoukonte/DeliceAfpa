@@ -7,6 +7,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.steadystate.css.parser.ParseException;
+
 import fr.cda.delicesafpa.beans.Article;
 import fr.cda.delicesafpa.beans.AssignerRole;
 import fr.cda.delicesafpa.beans.Categorie;
@@ -19,6 +21,7 @@ import fr.cda.delicesafpa.dao.PanierRepository;
 import fr.cda.delicesafpa.dto.AddProduitToPanierDTO;
 import fr.cda.delicesafpa.dto.AssignerRoleDTO;
 import fr.cda.delicesafpa.dto.ConcernerPanArtDTO;
+import fr.cda.delicesafpa.dto.IdConcerPanArtDTO;
 import fr.cda.delicesafpa.interfaceServ.ArticleServiceI;
 import fr.cda.delicesafpa.interfaceServ.ClientServiceI;
 import fr.cda.delicesafpa.interfaceServ.ConcernerPanArtServiceI;
@@ -38,7 +41,66 @@ public class ConcernerPanArtService implements ConcernerPanArtServiceI {
 	@Autowired
 	private ArticleRepository articleRepository;
 	
+	
+	public	ConcernerPanArtDTO findConcernerAddOne( IdConcerPanArtDTO idConcerPanArtDTO) {
+	System.out.println("ciao1");
+		if(findConcerner(idConcerPanArtDTO)!=null)
+			
+		{	System.out.println("ciao2");
 
+			ConcernerPanArtDTO dto =findConcerner(idConcerPanArtDTO);
+			System.out.println("ciao3");
+
+		dto.setQuantitearticle(dto.getQuantitearticle()+1);
+		System.out.println("ciao4");
+
+		try {			System.out.println("ciao5");
+
+			ConcernerPanArt	c = ConcernerPanArtConverter.convertToEntity(dto);
+			System.out.println("ciao6");
+
+			concernerPanArtRepository.save( c);
+			System.out.println("ciao7");
+
+		} catch (ParseException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		System.out.println("ciao8");
+
+		return dto;
+		};
+		return null;
+ 
+	
+	};
+
+	public	ConcernerPanArtDTO findConcerner( IdConcerPanArtDTO idConcerPanArtDTO) {
+		ConcernerPanArtDTO dto =  new ConcernerPanArtDTO();
+		try {
+		String Idpanier = idConcerPanArtDTO.getIdpanier();     
+	    Idpanier= Idpanier.replaceAll("\\p{Punct}", "");
+	    int id= Integer.valueOf(Idpanier);
+		 System.out.println("ciao panier  "+id);
+
+	    String Idarticle = idConcerPanArtDTO.getIdarticle();        
+	    Idarticle= Idarticle.replaceAll("\\p{Punct}", "");
+	    int idart= Integer.valueOf(Idarticle);
+		 System.out.println("ciao article   "+idart);
+		 ConcernerPanArt dao= 	 concernerPanArtRepository.findConcerner(id, idart);
+		dto =  ConcernerPanArtConverter.convertToDto(dao);
+		return dto ;
+		} catch (Exception e) {
+			System.out.println("errore");
+
+			return null;
+					}
+					
+		
+		
+		
+	}
+	
 	public ConcernerPanArtDTO save(AddProduitToPanierDTO addPro) {
 		 ConcernerPanArtDTO newConcern = new ConcernerPanArtDTO();
 		try {

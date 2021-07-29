@@ -193,7 +193,10 @@ public Set<ConcernerPanArt> getConcernerPanArt() {
 	/*java.lang.StackOverflowError*/
 	@Override
 	public String toString() {
-		return "nomarticle=" + nomarticle + ", prixarticle=" + prixarticle
+		return 
+				
+				idarticle+
+				"nomarticle=" + nomarticle + ", prixarticle=" + prixarticle
 				+ ", descriptionarticle=" + descriptionarticle + ", visibilitearticle=" + visibilitearticle
 				+ ", offrespecialearticle=" + offrespecialearticle + ", descriptionoffresp=" + descriptionoffresp
 				+ ", determinerart=" + determinerart.size() + ", categorie=" + categorie + ", idarticle_etreSup="

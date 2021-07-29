@@ -4,6 +4,8 @@ import Footer from './Footer';
 import NavPublic from "./NavPublic";
 import NavPrivate from "./NavPrivate";
 import {isClient,getTimeOut} from "../util";
+import MapContact from "./MapContact";
+import {Row,Col,Container,Image} from 'react-bootstrap'
 
 
 class Contact extends Component {
@@ -31,10 +33,15 @@ class Contact extends Component {
 		  <div class="text-center p-5 ">
 
 			<JumbotronWrapper title="Contact" description="Contact">
-			
+			<div class=" p-5 ">
+	<MapContact></MapContact></div>
+		
+		
+		
 		</JumbotronWrapper>
 		</div>
 		<Footer></Footer>
+
 
 		</div>
 		);

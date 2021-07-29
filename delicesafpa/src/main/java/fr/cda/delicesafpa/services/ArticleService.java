@@ -137,19 +137,28 @@ public class ArticleService implements ArticleServiceI {
 		Set<ArticleDTO>aDTO= new HashSet<ArticleDTO>();
 		Set<Article> a= new HashSet<Article>();
 		try {
-			
+			System.out.println("catch1");
+	
  a = articleRepository.findOffrespeciale();
+	System.out.println("catch2");
 
 			for (Article ar : a) {
+				System.out.println("catch3");
+System.out.println(ar);
 				aDTO.add(articleconverter.EntityToDTO(ar));
+				System.out.println("catch4");
+
 			}
 
 
 		} catch (Exception e) {
-			System.out.println("catch");
+			System.out.println("catch5");
 			System.out.println(aDTO.size());
 			System.out.println(a.size());
+			System.out.println("catch6");
+
 		}
+		System.out.println("catch7");
 
 		return aDTO;
 	}

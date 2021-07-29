@@ -15,6 +15,6 @@ public interface PanierServiceI {
 	public	PanierDTO save();
 	public	List<PanierDTO> getAll();
 	public PanierDTO getById(int id) ;
-	public	Set<ConcernerPanArtDTO> findConcernerPanArtPanier( String idpanier );
+	public	Set<ConcernerPanArtDTO> findConcernerPanArtPanier( PanierDTO panierDTO );
 
 }

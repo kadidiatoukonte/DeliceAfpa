@@ -5,11 +5,13 @@ import ButtonLogOut from "./ButtonLogOut";
 import Footer from './Footer';
 import NavPublic from "./NavPublic";
 import NavPrivate from "./NavPrivate";
-import {isClient,getTimeOut} from "../util";
+import {isClient,getTimeOut,createPanier} from "../util";
 
 class Menu extends Component {
-
-	upSession(){
+	constructor(){
+super()
+	}
+upSession(){
 		if (localStorage.getItem('timeout') ) {     // if no value exists associated with the key, return null
 			getTimeOut('timeout')
 		}
@@ -18,7 +20,7 @@ class Menu extends Component {
 	 
 	  componentDidMount(){
 		this.upSession()
-
+		createPanier()
 	}
 
 

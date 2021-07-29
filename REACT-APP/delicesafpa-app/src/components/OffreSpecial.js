@@ -3,10 +3,9 @@ import axios from "axios";
 import {Card,Button,Col,Row,CardColumns} from 'react-bootstrap'
 import NavPublic from "./NavPublic";
 import NavPrivate from "./NavPrivate";
-import {isClient} from "../util";
+import {isClient,createPanier} from "../util";
 import ButtonAddtoCard from '../components/ButtonAddtoCard';
 import Footer from './Footer';
-
 
 
 class OffreSpecial extends React.Component {
@@ -23,8 +22,12 @@ class OffreSpecial extends React.Component {
 	  prixarticle: "",
     };
   }
+
+
+
+
   addToPanier = (id) => {
- 
+
     axios.post("/delicesafpa/addconcernerpanart", {
       
           "idpanier": JSON.stringify(localStorage.getItem('panier'))
@@ -33,8 +36,7 @@ class OffreSpecial extends React.Component {
           "idarticle": id
       ,
       "quantite": "1"
-  }).then((result) => {if(result){   alert('prodotto aggiunto') }   
-
+  }).then((result) => {
 
 
   id.preventDefault();}    
@@ -48,6 +50,7 @@ class OffreSpecial extends React.Component {
 
  
   componentDidMount() {
+    createPanier()
     axios.get("/delicesafpa/findOffrespeciale").then((result) => {
       this.setState({ articles: result.data });
     });
@@ -125,8 +128,7 @@ class OffreSpecial extends React.Component {
         </ul>
 
 		</div>	
-
-
+  
     <Row md={4}>
    {this.state.articles.map((item) => (
     <Col xs={6}>
@@ -148,7 +150,24 @@ class OffreSpecial extends React.Component {
   ))}
 </Row>
 
-
+<div classs="mb-5">
+<br></br>
+<br></br>
+<br></br>
+<br></br>
+<br></br>
+<br></br>
+<br></br>
+<br></br>
+<br></br>
+<br></br>
+<br></br>
+<br></br>
+<br></br>
+<br></br>
+<br></br>
+<br></br>
+</div>
 
 		<Footer></Footer>
 

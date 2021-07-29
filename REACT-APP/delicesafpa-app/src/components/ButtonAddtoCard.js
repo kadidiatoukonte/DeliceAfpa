@@ -1,11 +1,32 @@
 import React , { Component }from 'react';
 import { Button,OverlayTrigger,Tooltip } from 'react-bootstrap'
-
+import axios from 'axios';
+import Panier from './Panier';
+import {addToPanier,panierSize} from "../util";
 
 class ButtonAddtoCard extends Component {
+  constructor() {
+    super();
+  }
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  addPanier  = (e) =>{
+
+}
+
 	render() {
 		return (
-    <div className="ButtonAddtoCard">
 
 <OverlayTrigger
    
@@ -17,7 +38,9 @@ class ButtonAddtoCard extends Component {
       }
     >
      
-     <Button  type="submit" variant="trasparent"   className="rounded-circle ">
+     <Button  type="submit" variant="trasparent" onClick={(e) => {
+                this.addPanier(e);
+              }}  className="rounded-circle ">
 <img  
               src={process.env.PUBLIC_URL + '/icons/shoppingcartadd.png'} 
               height={50} width={50}
@@ -33,7 +56,6 @@ class ButtonAddtoCard extends Component {
 
 
 
-    </div>
   );
 }
 }
