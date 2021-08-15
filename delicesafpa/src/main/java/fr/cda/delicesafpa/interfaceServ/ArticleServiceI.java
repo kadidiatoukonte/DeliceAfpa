@@ -3,11 +3,13 @@ package fr.cda.delicesafpa.interfaceServ;
 import java.util.List;
 import java.util.Set;
 
+import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Service;
 
 import fr.cda.delicesafpa.beans.Article;
 import fr.cda.delicesafpa.beans.Categorie;
 import fr.cda.delicesafpa.dto.ArticleDTO;
+import fr.cda.delicesafpa.dto.CategorieDTO;
 
 public interface ArticleServiceI {
 
@@ -22,5 +24,5 @@ public interface ArticleServiceI {
 	public void updateDescriptionOffresp(String dsp, int idarticle);
 	public void updateCategorieArt(Categorie cat, int idarticle);
 	public Set<ArticleDTO> findOffrespeciale();
-	
+	public Set<Article> findArticleWithCategorie(CategorieDTO categorieDTO);
 }

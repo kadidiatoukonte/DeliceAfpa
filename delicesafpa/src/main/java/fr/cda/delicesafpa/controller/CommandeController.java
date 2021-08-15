@@ -1,5 +1,8 @@
 package fr.cda.delicesafpa.controller;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.time.LocalTime;
 import java.util.List;
 import java.util.Set;
 
@@ -7,7 +10,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import fr.cda.delicesafpa.dto.AddCommandeDTO;
 import fr.cda.delicesafpa.dto.AddProduitToPanierDTO;
+import fr.cda.delicesafpa.dto.AddTraiterCommandeDTO;
 import fr.cda.delicesafpa.dto.CommandeDTO;
 import fr.cda.delicesafpa.dto.ConcernerPanArtDTO;
 import fr.cda.delicesafpa.dto.IdConcerPanArtDTO;
@@ -26,6 +31,7 @@ import fr.cda.delicesafpa.interfaceServ.TraiterCommandeServiceI;
 import fr.cda.delicesafpa.util.ArticleConverter;
 import fr.cda.delicesafpa.util.PanierConverter;
 
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -56,7 +62,8 @@ public class CommandeController {
 
 	@PostMapping("/addcommande") /**/
 	public CommandeDTO addCommande(@RequestBody CommandeDTO commande) {
-
+		
+		
 		return commandeService.save(commande);
 
 	}
@@ -73,14 +80,39 @@ public class CommandeController {
 		return commandeService.getById(id);
 	}
 
+	
+	
+	
 	@ResponseBody
 	@PostMapping("/addtraitercommande") /**/
 	public TraiterCommandeDTO addTraiterCommande(@RequestBody TraiterCommandeDTO commande) {
 		System.out.println("ciao");
+		
+		
+		
 		return traiterCommandeService.save(commande);
 
 	}
+	
+	
+	@ResponseBody
+	@PostMapping("/addADDtraitercommande") /**/
+	public TraiterCommandeDTO addADDTraiterCommande(@RequestBody AddTraiterCommandeDTO commande) {
+		System.out.println("ciao");
+		
+		System.out.println(commande);
+		
+		return traiterCommandeService.saveAdd(commande);
 
+	}
+
+	
+	
+	
+	
+	
+	
+	
 	@GetMapping("/traitercommandegetall") /**/
 	public List<TraiterCommandeDTO> AllTraiterCommande() {
 		System.out.println(traiterCommandeService.getAll().size());
@@ -144,10 +176,10 @@ public class CommandeController {
 
 	@PostMapping("/findConcernerPanArtPanier")
 	public	Set<ConcernerPanArtDTO> findConcernerPanArtPanier(@RequestBody PanierDTO idpanier)
-	{
+	{Set<ConcernerPanArtDTO> p = panierService.findConcernerPanArtPanier( idpanier);
 		System.out.println(idpanier);
-		
-	return	panierService.findConcernerPanArtPanier( idpanier);
+		System.out.println(idpanier);
+	return	p;
 		
 		
 	}
@@ -158,11 +190,88 @@ public class CommandeController {
 	public	ConcernerPanArtDTO findConcernerAddOne(@RequestBody IdConcerPanArtDTO idConcerPanArtDTO)
 	{
 		System.out.println(idConcerPanArtDTO);
-		
-	return	concernerPanArtService.findConcernerAddOne( idConcerPanArtDTO);
+		ConcernerPanArtDTO c =concernerPanArtService.findConcernerAddOne( idConcerPanArtDTO);
+		System.out.println(idConcerPanArtDTO);
+		System.out.println(c);
+	return	c;
 		
 		
 	}
 	
 	
+	
+	@PostMapping("/findConcernerMinusOne")
+	public	ConcernerPanArtDTO findConcernerMinusOne(@RequestBody IdConcerPanArtDTO idConcerPanArtDTO)
+	{
+		System.out.println(idConcerPanArtDTO);
+		ConcernerPanArtDTO c =concernerPanArtService.findConcernerMinusOne( idConcerPanArtDTO);
+		System.out.println(idConcerPanArtDTO);
+		System.out.println(c);
+	return	c;
+		
+		
+	}
+	
+	
+	
+	
+	@PostMapping("/findConcernerDelete")
+
+	public void deleteConcernerPanArt( @RequestBody IdConcerPanArtDTO idConcerPanArtDTO) {
+		
+		concernerPanArtService.deleteConcernerPanArt(idConcerPanArtDTO);
+	
+	System.out.println(idConcerPanArtDTO);
+	
+	}
+	
+	
+	@GetMapping("/testdate")
+public void testdate( ) {
+		
+		int p1 = 77400 % 60;
+	    int p2 = 77400 / 60;
+	    int p3 = p2 % 60;
+	    p2 = p2 / 60;
+	    System.out.print( p2 + ":" + p3 + ":" + p1);	
+	    LocalTime time = LocalTime.of(p2, p3);
+	    System.out.print( p2 + ":" + p3 + ":" + p1);	
+
+	System.out.println(time);
+	}
+
+	@PostMapping("/addcommandeclient") /**/
+	public /*AddCommandeDTO*//**/CommandeDTO addCommande(@RequestBody AddCommandeDTO commande) {
+
+		int time = commande.getHoraire();
+		int p1 = time % 60;
+	    int p2 = time / 60;
+	    int p3 = p2 % 60;
+	    p2 = p2 / 60;
+	    System.out.print( p2 + ":" + p3 + ":" + p1);	
+	    LocalTime timeLocal = LocalTime.of(p2, p3);
+	    System.out.print( p2 + ":" + p3 + ":" + p1);
+	    System.out.println(commande);
+	    System.out.println(timeLocal);
+	    CommandeDTO c =   commandeService.saveAddCommande(commande);
+	    System.out.println(c);
+		return c;
+
+	}
+	/* %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% */
+	public static java.sql.Date getDate(String date) {
+		java.util.Date utilDate;
+		java.sql.Date sqlDate = null;
+		try {
+			utilDate = new SimpleDateFormat("yyyy-MM-dd").parse(date);
+			sqlDate = new java.sql.Date(utilDate.getTime());
+		} catch (ParseException e) {
+			e.printStackTrace();
+
+		}
+
+		return sqlDate;
+
+	}
+
 }

@@ -8,6 +8,7 @@ import ContactUs from'./components/ContactUs';
 import Menu from'./components/Menu';
 import AboutUs from'./components/AboutUs';
 import OffreSpecial from'./components/OffreSpecial';
+import ConfirmModification from'./components/ConfirmModification';
 
 
 
@@ -22,7 +23,10 @@ import LivreurRoute from './routes/LivreurRoute';
 import LogInClient from './client/LogInClient';
 
 import DetailCommandeArticle from './client/DetailCommandeArticle';
-import AccuilClient from'./client/AccuilClient';
+import AccuilClient from './client/AccuilClient';
+import ConfirmPCommandeClient from './client/ConfirmPCommandeClient';
+
+
 
 
 
@@ -54,10 +58,16 @@ function App() {
     <PublicRoute  path="/panier"exact component={Panier} />	
     <PublicRoute  path="/menu"exact component={Menu} />	
     <PublicRoute  path="/offrespecial"  exact component={OffreSpecial} />
-    
+    <PublicRoute exact path="/modifiepanier" component={ConfirmModification} />	
+
+
+
     <PrivateRoute path="/accuilclient" exact component={AccuilClient}/>
     <PrivateRoute path="/detailcommandearticle" exact component={DetailCommandeArticle}/>
-    
+    <PrivateRoute path="/confirmcommandeclient" exact component={ConfirmPCommandeClient}/>
+
+
+
     <AdminRoute path="/accuiladmin" exact component={AccuilAdmin}/>
     <AdminRoute path="/gestionemploye" exact component={GestionEmploye}/>
     <AdminRoute path="/gestionmenu" exact component={GestionMenu}/>

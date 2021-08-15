@@ -59,6 +59,9 @@ public class Commande implements java.io.Serializable {
 	@Column(name = "horaire")
 	private LocalTime horaire;
 	
+	@Column(name = "totcommande")
+	private double totcommande;
+	
 	@ManyToOne
 	@JoinColumn(name = "idclient", nullable = false)
 	private Client idclient;
@@ -195,6 +198,32 @@ public class Commande implements java.io.Serializable {
 		return "Commande [idcommande=" + idcommande + ", datecommande=" + datecommande + ", adressecommande="
 				+ adressecommande + ", horaire=" + horaire + ", idclient=" + idclient.getNomclient() + ", traiterCommande="
 				+ traiterCommande + ", employe=" + employe + ", panier=" + panier + "]";
+	}
+
+
+
+	public double getTotcommande() {
+		return totcommande;
+	}
+
+
+
+	public void setTotcommande(double totcommande) {
+		this.totcommande = totcommande;
+	}
+
+
+
+	public Commande(Date datecommande, String adressecommande, LocalTime horaire, double totcommande, Client idclient,
+			Employe employe, Panier panier) {
+		super();
+		this.datecommande = datecommande;
+		this.adressecommande = adressecommande;
+		this.horaire = horaire;
+		this.totcommande = totcommande;
+		this.idclient = idclient;
+		this.employe = employe;
+		this.panier = panier;
 	}
 	
 	

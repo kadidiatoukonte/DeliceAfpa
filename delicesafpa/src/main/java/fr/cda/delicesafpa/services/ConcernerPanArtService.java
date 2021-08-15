@@ -43,52 +43,98 @@ public class ConcernerPanArtService implements ConcernerPanArtServiceI {
 	
 	
 	public	ConcernerPanArtDTO findConcernerAddOne( IdConcerPanArtDTO idConcerPanArtDTO) {
-	System.out.println("ciao1");
 		if(findConcerner(idConcerPanArtDTO)!=null)
-			
-		{	System.out.println("ciao2");
-
+		{	
 			ConcernerPanArtDTO dto =findConcerner(idConcerPanArtDTO);
-			System.out.println("ciao3");
+		
 
 		dto.setQuantitearticle(dto.getQuantitearticle()+1);
-		System.out.println("ciao4");
 
-		try {			System.out.println("ciao5");
+		try {			
 
 			ConcernerPanArt	c = ConcernerPanArtConverter.convertToEntity(dto);
-			System.out.println("ciao6");
+			
 
 			concernerPanArtRepository.save( c);
-			System.out.println("ciao7");
+	
 
 		} catch (ParseException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		System.out.println("ciao8");
+	
 
 		return dto;
-		};
-		return null;
- 
+		}
+		
+		
+		else {  
+			AddProduitToPanierDTO addPro= new AddProduitToPanierDTO(idConcerPanArtDTO.getIdpanier(),idConcerPanArtDTO.getIdarticle(),"1");
+		
+			
+			return save( addPro);}
+		
 	
 	};
 
+	
+	/*deleteConcernerPanArt( IdConcerPanArtDTO idConcerPanArtDTO)*/
+	public	ConcernerPanArtDTO findConcernerMinusOne( IdConcerPanArtDTO idConcerPanArtDTO) {
+		if(findConcerner(idConcerPanArtDTO)!=null)
+		{	
+			ConcernerPanArtDTO dto =findConcerner(idConcerPanArtDTO);
+		if(dto.getQuantitearticle()>1) {
+
+		dto.setQuantitearticle(dto.getQuantitearticle()-1);
+
+		try {			
+
+			ConcernerPanArt	c = ConcernerPanArtConverter.convertToEntity(dto);
+			
+
+			concernerPanArtRepository.save( c);
+	
+
+		} catch (ParseException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	
+
+		return dto;}
+		else {deleteConcernerPanArt(  idConcerPanArtDTO);
+		return null;
+		}
+		
+		
+		
+		}
+		
+		
+		else {  
+		
+			
+			return null;}
+		
+	
+	};
+
+	
+	
+	
+	
 	public	ConcernerPanArtDTO findConcerner( IdConcerPanArtDTO idConcerPanArtDTO) {
 		ConcernerPanArtDTO dto =  new ConcernerPanArtDTO();
 		try {
 		String Idpanier = idConcerPanArtDTO.getIdpanier();     
 	    Idpanier= Idpanier.replaceAll("\\p{Punct}", "");
 	    int id= Integer.valueOf(Idpanier);
-		 System.out.println("ciao panier  "+id);
 
 	    String Idarticle = idConcerPanArtDTO.getIdarticle();        
 	    Idarticle= Idarticle.replaceAll("\\p{Punct}", "");
 	    int idart= Integer.valueOf(Idarticle);
-		 System.out.println("ciao article   "+idart);
 		 ConcernerPanArt dao= 	 concernerPanArtRepository.findConcerner(id, idart);
-		dto =  ConcernerPanArtConverter.convertToDto(dao);
+		 dto =  ConcernerPanArtConverter.convertToDto(dao);
 		return dto ;
 		} catch (Exception e) {
 			System.out.println("errore");
@@ -150,4 +196,25 @@ System.out.println("errore");
 		}
 
 	}
-}
+	
+	
+	
+	
+	
+	
+	
+	
+	public void deleteConcernerPanArt( IdConcerPanArtDTO idConcerPanArtDTO) {
+	
+			String Idpanier = idConcerPanArtDTO.getIdpanier();     
+		    Idpanier= Idpanier.replaceAll("\\p{Punct}", "");
+		    int id= Integer.valueOf(Idpanier);
+			 System.out.println("ciao panier  "+id);
+
+		    String Idarticle = idConcerPanArtDTO.getIdarticle();        
+		    Idarticle= Idarticle.replaceAll("\\p{Punct}", "");
+		    int idart= Integer.valueOf(Idarticle);
+			 System.out.println("ciao article   "+idart);
+			 concernerPanArtRepository.deleteConcernerPanArt(id, idart);
+	
+}}

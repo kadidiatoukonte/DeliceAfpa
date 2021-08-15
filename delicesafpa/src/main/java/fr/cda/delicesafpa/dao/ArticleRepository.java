@@ -15,8 +15,8 @@ import fr.cda.delicesafpa.beans.*;
 public interface ArticleRepository extends JpaRepository<Article,Integer>{
 	
 	
-	@Query("select a from Article a where a.descriptionarticle like '%noce'")
-	Set<Article> findArticleWithDescriptionArticle();
+	@Query("select a from Article a where a.categorie =?1")
+	Set<Article> findArticleWithCategorie(@Param("idcat") Categorie cat);
 	
 	@Transactional
     @Modifying

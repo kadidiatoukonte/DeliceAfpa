@@ -10,7 +10,10 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
+
+import fr.cda.delicesafpa.beans.Article;
 import fr.cda.delicesafpa.dto.ArticleDTO;
+import fr.cda.delicesafpa.dto.CategorieDTO;
 import fr.cda.delicesafpa.dto.DeterminerArtDTO;
 import fr.cda.delicesafpa.dto.EtreSupDTO;
 import fr.cda.delicesafpa.interfaceServ.ArticleServiceI;
@@ -96,4 +99,12 @@ public class ArticleController {
 
 	
 	
+	@PostMapping(value="/findbycategorie")
+
+	public Set<Article> findArticleWithCategorie(@RequestBody CategorieDTO categorieDTO){
+
+		return articleService.findArticleWithCategorie(categorieDTO);
+		
+		
+	}
 }

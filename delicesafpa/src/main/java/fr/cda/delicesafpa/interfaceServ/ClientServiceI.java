@@ -12,4 +12,7 @@ public interface ClientServiceI {
 	public	List<ClientDTO> getAll();
     public ClientDTO getById(int id) ;
     public boolean 	findclientMailclient(String email, String password) ;
+	public ClientDTO findclientBMail(String email);
+	public int findclientIdByMail(String email) ;
+
 }

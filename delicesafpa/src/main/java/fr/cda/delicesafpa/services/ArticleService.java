@@ -14,8 +14,10 @@ import fr.cda.delicesafpa.beans.Categorie;
 import fr.cda.delicesafpa.beans.Client;
 import fr.cda.delicesafpa.dao.ArticleRepository;
 import fr.cda.delicesafpa.dto.ArticleDTO;
+import fr.cda.delicesafpa.dto.CategorieDTO;
 import fr.cda.delicesafpa.interfaceServ.ArticleServiceI;
 import fr.cda.delicesafpa.util.ArticleConverter;
+import fr.cda.delicesafpa.util.CategorieConverter;
 
 @Service
 public class ArticleService implements ArticleServiceI {
@@ -162,4 +164,27 @@ System.out.println(ar);
 
 		return aDTO;
 	}
+	
+	
+	
+	public Set<Article> findArticleWithCategorie(CategorieDTO categorieDTO){
+		try {
+			
+			
+			
+	Categorie c = CategorieConverter.dTOToEntity(categorieDTO);
+			
+		
+System.out.println(articleRepository.findArticleWithCategorie(c));
+
+		return	articleRepository.findArticleWithCategorie(c);
+
+		} catch (Exception e) {
+			System.out.println("catch");
+	
+			return null;
+		}
+
+	}
+	
 }

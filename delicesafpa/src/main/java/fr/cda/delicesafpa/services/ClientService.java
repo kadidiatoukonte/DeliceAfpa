@@ -59,22 +59,48 @@ public class ClientService implements ClientServiceI {
 
 	public boolean findclientMailclient(String email, String password) {
 		try {
-			
-			
+
 			System.out.println(password);
-			
 
 			int result = clientRepository.findclientMailclient(email).getPasswordclient().compareTo(password);
 			if (result == 0) {
-				
+
 				return true;
-			} else {	System.out.println(password);
+			} else {
+				System.out.println(password);
 				return false;
 			}
 
 		} catch (Exception NoSuchElementException) {
-	
+
 			return false;
+		}
+	}
+
+	public ClientDTO findclientBMail(String email) {
+		try {
+
+			Client c = clientRepository.findclientMailclient(email);
+			ClientDTO cDTO = clientConverter.EntityToDTO(c);
+			return cDTO;
+
+		} catch (Exception NoSuchElementException) {
+
+			return null;
+		}
+	}
+
+	public int findclientIdByMail(String email) {
+		int id = 0;
+		try {
+
+			Client c = clientRepository.findclientMailclient(email);
+			id = c.getIdclient();
+			return id;
+
+		} catch (Exception NoSuchElementException) {
+
+			return id;
 		}
 	}
 

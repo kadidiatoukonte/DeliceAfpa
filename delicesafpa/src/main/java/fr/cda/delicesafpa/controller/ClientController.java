@@ -291,4 +291,31 @@ public class ClientController {
     }
     	
 
+		 @PostMapping(value = "/clientinfo")
+
+		    public ClientDTO clientinfo(@RequestBody LoginDTO clientLoginDTO)  {
+		    	String clientemail = clientLoginDTO.getMailclient();
+
+		    	int id=clientService.findclientIdByMail(clientemail); 
+		    
+		    	ClientDTO c=clientService.findclientBMail(clientemail ); 
+		    	c.setIdclient(id);
+		    	
+		    	System.out.println(c);
+		        return c;
+
+		    }
+		
+		 @PostMapping(value = "/clientid")
+
+		 public int findclientIdByMail(@RequestBody LoginDTO clientLoginDTO)  {
+		    	String clientemail = clientLoginDTO.getMailclient();
+		    	
+		    	System.out.println( clientemail);
+
+		    	int id=clientService.findclientIdByMail(clientemail); 
+		    	System.out.println("trovato +"+id + clientemail);
+		        return id;
+
+		    }
 }

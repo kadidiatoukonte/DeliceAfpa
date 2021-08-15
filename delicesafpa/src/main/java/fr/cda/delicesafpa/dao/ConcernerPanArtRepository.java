@@ -12,11 +12,17 @@ import fr.cda.delicesafpa.beans.*;
 
 public interface ConcernerPanArtRepository extends JpaRepository<ConcernerPanArt,ConcernerId>{
 	
-	@Query("select c from ConcernerPanArt c where c.id.idpanier = ?1")
+	@Query("select c from ConcernerPanArt c where c.id.idpanier = ?1 ")
 public	Set<ConcernerPanArt> findConcernerPanArt( int idpanier);
 
 
 @Query("select c from ConcernerPanArt c where c.id.idpanier = ?1 and c.id.idarticle = ?2")
 public	ConcernerPanArt findConcerner( int idpanier,int idarticle);
-}
 
+
+
+@Transactional
+@Modifying
+@Query("delete from ConcernerPanArt c  where c.id.idpanier = ?1 and c.id.idarticle = ?2")
+public void deleteConcernerPanArt( int idpanier,int idarticle);
+}

@@ -16,5 +16,6 @@ public interface ConcernerPanArtServiceI {
 	public	List<ConcernerPanArtDTO> getAll();
 	public	ConcernerPanArtDTO findConcerner( IdConcerPanArtDTO idConcerPanArtDTO);
 	public	ConcernerPanArtDTO findConcernerAddOne( IdConcerPanArtDTO idConcerPanArtDTO);
-
+	public void deleteConcernerPanArt( IdConcerPanArtDTO idConcerPanArtDTO) ;
+	public	ConcernerPanArtDTO findConcernerMinusOne( IdConcerPanArtDTO idConcerPanArtDTO) ;
 }

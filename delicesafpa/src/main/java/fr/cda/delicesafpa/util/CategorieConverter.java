@@ -28,7 +28,7 @@ public class CategorieConverter {
 
 	}
 
-	public Categorie dTOToEntity(CategorieDTO categorie) {
+	public static Categorie dTOToEntity(CategorieDTO categorie) {
 		ModelMapper mapper = new ModelMapper();
 		Categorie map = mapper.map(categorie, Categorie.class);
 		return map;

@@ -10,14 +10,16 @@ import { Table } from "react-bootstrap";
 import axios from "axios";
 import ButtonAddtoCard from '../components/ButtonAddtoCard';
 import {Card,Button,Col,Row,CardColumns} from 'react-bootstrap'
-
+import ButtonDeleteFromCart from '../components/ButtonDeleteFromCart';
+import ButtonMinusFromCart from '../components/ButtonMinusFromCart';
 
 
 class Panier extends Component {
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
 
-    this.state = {
+    
+  this.state = {
       articles: [],
       article: {},
     idarticle:"",
@@ -25,13 +27,26 @@ class Panier extends Component {
       descriptionarticle: "",
       descriptionoffresp: "",
 	  prixarticle: "",
-    
+    quantitearticle:"",
+    totpanier:0,
+    totqtapanier:0
     };
   }
   
   
+  testClient(e){
+    if (localStorage.getItem('client') ) {     // if no value exists associated with the key, return null
+      this.props.history.push("/confirmcommandeclient"); 
+      
+		}else{         this.props.history.push("/loginclient"); 
+  }
+		
+	  }
+
+
+
   
-  
+
   
   
   upSession(){
@@ -41,19 +56,97 @@ class Panier extends Component {
 		
 	  }
 
+    addToPanier = (id) => {
+      axios.post("/delicesafpa/findConcernerAddOne", {
+        
+            "idpanier": JSON.stringify(localStorage.getItem('panier'))
+       ,
+   
+            "idarticle": id
+       
+    })
 
+    this.props.history.push("/modifiepanier"); 
+
+   
+ 
+
+  }
+
+
+  minusToPanier = (id) => {
+    axios.post("/delicesafpa/findConcernerMinusOne", {
+      
+          "idpanier": JSON.stringify(localStorage.getItem('panier'))
+     ,
+ 
+          "idarticle": id
+     
+  })
+
+
+  this.props.history.push("/modifiepanier"); 
+
+}
+
+
+
+
+
+  deleteFromPanier = (id) => {
+    axios.post("/delicesafpa/findConcernerDelete",{
+        
+      "idpanier": JSON.stringify(localStorage.getItem('panier'))
+ ,
+
+      "idarticle": id
+ 
+})
+
+        
+this.props.history.push("/modifiepanier"); 
+
+}
 
  
-  componentDidMount() {
+  componentWillMount() {
     this.upSession()
 
 
-    if(!localStorage.getItem('panier')){ alert("panier  vuoto")}else{
- const p =   localStorage.getItem('panier')
+    if(!localStorage.getItem('panier')){ alert("panier  vuoto")
+    this.props.history.push("/");	
+
+  
+  
+  
+  }else{
+   const p =   localStorage.getItem('panier')
 const a = { idpanier : p};
 axios.post("/delicesafpa/findConcernerPanArtPanier",a).then((result) => {
+
+
+
   this.setState({ articles: result.data });
+  if(this.state.articles.length<1){  alert("panier  vuoto");
+  
+  this.props.history.push("/");	
+}
+  this.state.articles.forEach(element => 
+    {  var a=   parseFloat(element.quantitearticle)  *  parseFloat(element.idarticle.prixarticle );
+       var aqta= parseFloat(element.quantitearticle);
+       this.setState({ totqtapanier:  this.state.totqtapanier+aqta });
+      this.setState({ totpanier:  this.state.totpanier+a });
+    
+    
+    
+        }  )
+
     });
+
+    
+
+  
+
   }}
 
  
@@ -69,29 +162,114 @@ axios.post("/delicesafpa/findConcernerPanArtPanier",a).then((result) => {
 			{ !isClient()?<NavPublic></NavPublic>:
 			<NavPrivate></NavPrivate>}
 			<JumbotronWrapper title="Panier" description="">
-		  <Row md={4}>
+
+      <Table striped bordered hover>
+  <thead>
+    <tr>
+      <th>id</th>
+      <th>Article</th>
+      <th>qta</th>
+      <th>prix</th>
+      <th>tot</th>
+    </tr>
+  </thead>
+  {this.state.articles.map((item) => (
+  <tbody>
+    <tr>
+      <td> {item.idarticle.idarticle}</td>
+      <td>{item.idarticle.nomarticle}
+</td>
+      <td>{item.quantitearticle}</td>
+      <td>{item.idarticle.prixarticle} €</td>
+    <td>  {parseFloat(item.quantitearticle)  *  parseFloat(item.idarticle.prixarticle )} €</td>
+    </tr>
+    
+  </tbody>
+  ))}
+
+  <thead>
+  <tr>
+  <td colSpan="3"></td>
+      <td>Tot qta: {this.state.totqtapanier} </td>
+      
+      <td>Tot panier:  {this.state.totpanier} €</td>
+    </tr>
+    <button type="button" onClick={(e) => {
+                this.testClient(e);
+     } }>Confirm!</button>
+  </thead>
+</Table>
+
+
+     
+     
+
+
+     
+      <Row md={4}>
    {this.state.articles.map((item) => (
     <Col xs={6}>
       <Card>
         <Card.Img variant="top" src={process.env.PUBLIC_URL + '/png/exampleplat.png'} />
         <Card.Body>
-          <Card.Title>{item.nomarticle}</Card.Title>
+          <Card.Title>qta x{item.quantitearticle}</Card.Title>
           <Card.Text>
-		  {item.descriptionarticle}
+          {item.idarticle.idarticle}
           </Card.Text>
         </Card.Body>
-    
-        <form   onSubmit={(e) => {this.addToPanier(item.idarticle)}}>
+
+        <div class="container">
+        <div class="row">
+        <div class="col-sm">
+        <form   onSubmit={(e) => {this.addToPanier(item.idarticle.idarticle)}}>
     <ButtonAddtoCard></ButtonAddtoCard>
+   
     </form>
+    </div>
+    <div class="col-sm">
+
+
+    {item.quantitearticle}
+
+</div>
+
+<div class="col-sm">
+
+    <form   onSubmit={(e) => {this.minusToPanier(item.idarticle.idarticle)}}>
+
+    <ButtonMinusFromCart></ButtonMinusFromCart>
+    </form>
+
+</div>
+
+<div class="col-sm">
+
+
+     <form   onSubmit={(e) => {this.deleteFromPanier(item.idarticle.idarticle)}}>
+
+<ButtonDeleteFromCart></ButtonDeleteFromCart>
+
+
+</form>
+</div>
+</div></div>
       </Card>
       
     </Col>
   ))}
 </Row>
+  
 
 
 		</JumbotronWrapper>
+    <br></br>
+    <br></br>
+    <br></br>
+    <br></br>
+    <br></br>
+    <br></br>
+    <br></br>
+    <br></br>
 		<Footer></Footer>
 
 		</div>

@@ -15,7 +15,7 @@ class OffreSpecial extends React.Component {
     this.state = {
       articles: [],
       article: {},
-    idarticle:"",
+      idarticle:"",
       nomarticle: "",
       descriptionarticle: "",
       descriptionoffresp: "",
@@ -28,14 +28,13 @@ class OffreSpecial extends React.Component {
 
   addToPanier = (id) => {
 
-    axios.post("/delicesafpa/addconcernerpanart", {
+    axios.post("/delicesafpa/findConcernerAddOne", {
       
           "idpanier": JSON.stringify(localStorage.getItem('panier'))
      ,
  
-          "idarticle": id
-      ,
-      "quantite": "1"
+          "idarticle": JSON.stringify(id)
+    
   }).then((result) => {
 
 
@@ -49,7 +48,7 @@ class OffreSpecial extends React.Component {
 
 
  
-  componentDidMount() {
+  componentWillMount() {
     createPanier()
     axios.get("/delicesafpa/findOffrespeciale").then((result) => {
       this.setState({ articles: result.data });

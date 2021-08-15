@@ -1,10 +1,8 @@
 import React , { Component }from 'react';
 import { Button,OverlayTrigger,Tooltip } from 'react-bootstrap'
-import axios from 'axios';
-import Panier from './Panier';
-import {addToPanier,panierSize} from "../util";
 
-class ButtonAddtoCard extends Component {
+
+class ButtonMinusFromCart extends Component {
   constructor() {
     super();
   }
@@ -20,9 +18,6 @@ class ButtonAddtoCard extends Component {
 
 
 
-  
-
-
 	render() {
 		return (
 
@@ -30,15 +25,15 @@ class ButtonAddtoCard extends Component {
    
       
       overlay={
-        <Tooltip id='buttonaddchart'>
-       <strong> add to panier!</strong>
+        <Tooltip id='delete'>
+       <strong> Delete One From Cart!</strong>
         </Tooltip>
       }
     >
      
-     <Button  type="submit" variant="trasparent"  className="rounded-circle ">
+     <Button  type="submit" variant="trasparent"   className="rounded-circle ">
 <img  
-              src={process.env.PUBLIC_URL + '/icons/shoppingcartadd.png'} 
+              src={process.env.PUBLIC_URL + '/icons/minusshoppingcart.png'} 
               height={50} width={50}
             
               className="d-inline-block align-top"
@@ -60,4 +55,4 @@ class ButtonAddtoCard extends Component {
 
 
 
-export default ButtonAddtoCard;
+export default ButtonMinusFromCart;

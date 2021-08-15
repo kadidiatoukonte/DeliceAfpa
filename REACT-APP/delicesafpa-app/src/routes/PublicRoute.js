@@ -10,7 +10,7 @@ import ContactUs from'../components/ContactUs';
 import Panier from'../components/Panier';
 import Home from'../components/Home';
 import OffreSpecial from'../components/OffreSpecial';
-
+import ConfirmModification from'../components/ConfirmModification';
 
 
 import LogInClient from'../client/LogInClient';
@@ -32,8 +32,8 @@ const PublicRoutes = () => (
     <Route exact path="/panier" component={Panier} />	
     <Route exact path="/menu" component={Menu} />	
     <Route exact path="/offrespecial" component={OffreSpecial} />	
-
     
+    <Route exact path="/modifiepanier" component={ConfirmModification} />	
     </Switch>
 </div>
 
