@@ -7,7 +7,7 @@ import { Table } from "react-bootstrap";
 import axios from "axios";
 import {Button } from 'react-bootstrap'
 
-class GestionCommande extends Component {
+class GestionCommandeLivreur extends Component {
 	
 	constructor(props) {
 		super(props);
@@ -51,9 +51,9 @@ class GestionCommande extends Component {
 	
 	componentDidMount() {
 		this.upSession()
-
-
-		axios.get("/delicesafpa/commOnCourse").then((result) => {
+		const id = +localStorage.getItem('id');
+		
+		axios.get("/delicesafpa/commandeOnCourseLivreur/"+ id).then((result) => {
 			this.setState({ commandes: result.data });
 			if(this.state.commandes.length<1){alert("nessuna comanda!")}
 		})
@@ -84,7 +84,7 @@ class GestionCommande extends Component {
 		return (<div>
 			<NavPProfessionel></NavPProfessionel>
 
-			<JumbotronWrapper title="GestionCommande" description="GestionCommande">
+			<JumbotronWrapper title="GestionCommandeLivreur" description="GestionCommande">
 				
 			<Table striped bordered hover>
   <thead>
@@ -139,4 +139,4 @@ class GestionCommande extends Component {
 
 
 
-export default GestionCommande;
+export default GestionCommandeLivreur;

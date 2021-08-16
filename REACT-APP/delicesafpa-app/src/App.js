@@ -40,7 +40,10 @@ import GestionMenu from './professionel/GestionMenu';
 import Archive from './professionel/Archive';
 import GestionCommande from './professionel/GestionCommande';
 import GestionReservation from './professionel/GestionReservation';
+import DetailCommande from './professionel/DetailCommande';
+import FindLivreur from './professionel/FindLivreur';
 
+import GestionCommandeLivreur from './professionel/GestionCommandeLivreur';
 
 function App() {
   return (
@@ -74,18 +77,22 @@ function App() {
     <AdminRoute path="/archiveadmin" exact component={Archive}/>
     <AdminRoute path="/gestioncommande" exact component={GestionCommande}/>
     <AdminRoute path="/gestionreservation" exact component={GestionReservation}/>
+    <AdminRoute path="/gestioncommandedetail" exact component={DetailCommande}/>
 
+    <AdminRoute path="/findlivreur" exact component={FindLivreur}/>
 
 
     <ResponsableRoute path="/accuilresponsable" exact component={AccuilResponsable}/>
     <ResponsableRoute path="/archiveresponsable" exact component={Archive}/>
     <ResponsableRoute path="/gestioncommanderesponsable" exact component={GestionCommande}/>
     <ResponsableRoute path="/gestionreservationresponsable" exact component={GestionReservation}/>
-    
+    <ResponsableRoute path="/gestioncommandedetailresponsable" exact component={DetailCommande}/>
+
     
     <LivreurRoute path="/accuillivreur" exact component={AccuilLivreur}/>
     <LivreurRoute path="/archivelivreur" exact component={Archive}/>
-    <LivreurRoute path="/gestioncommandelivreur" exact component={GestionCommande}/>
+    <LivreurRoute path="/gestioncommandelivreur" exact component={GestionCommandeLivreur}/>
+    <LivreurRoute path="/gestioncommandedetaillivreur" exact component={DetailCommande}/>
 
 
     </Switch>

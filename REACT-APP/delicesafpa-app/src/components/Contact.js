@@ -37,9 +37,9 @@ class Contact extends Component {
 	<MapContact></MapContact></div>
 		
 		
-		
 		</JumbotronWrapper>
 		</div>
+
 		<Footer></Footer>
 
 

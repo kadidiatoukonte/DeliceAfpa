@@ -10,6 +10,15 @@ import lombok.Data;
 @Data
 public class AddTraiterCommandeDTO {
 
+	@Override
+	public String toString() {
+		return "AddTraiterCommandeDTO [idcommande=" + idcommande + ", idemploye=" + idemploye + ", idstatus=" + idstatus
+				+ "]";
+	}
+
+
+
+
 	private String idcommande;
 
 	private String idemploye;	

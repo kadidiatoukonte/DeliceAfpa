@@ -13,12 +13,15 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import fr.cda.delicesafpa.dto.AddCommandeDTO;
 import fr.cda.delicesafpa.dto.AddProduitToPanierDTO;
 import fr.cda.delicesafpa.dto.AddTraiterCommandeDTO;
+import fr.cda.delicesafpa.dto.AssignerLivreurDTO;
 import fr.cda.delicesafpa.dto.CommandeDTO;
+import fr.cda.delicesafpa.dto.CommandeTableDetailDTO;
 import fr.cda.delicesafpa.dto.ConcernerPanArtDTO;
 import fr.cda.delicesafpa.dto.IdConcerPanArtDTO;
 import fr.cda.delicesafpa.dto.PanierDTO;
 import fr.cda.delicesafpa.dto.StatusCommandeDTO;
 import fr.cda.delicesafpa.dto.TraiterCommandeDTO;
+import fr.cda.delicesafpa.dto.TraiterCommandeTableDTO;
 import fr.cda.delicesafpa.interfaceServ.ArticleServiceI;
 import fr.cda.delicesafpa.interfaceServ.CommandeServiceI;
 import fr.cda.delicesafpa.interfaceServ.ConcernerPanArtServiceI;
@@ -35,6 +38,7 @@ import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -258,6 +262,58 @@ public void testdate( ) {
 		return c;
 
 	}
+	
+	
+	
+	@GetMapping("/commOnCourse") /**/
+
+	public List<TraiterCommandeTableDTO> findCommandeOnCourse(){
+		
+		
+	return commandeService.findCommandeOnCourse();	
+	
+	}
+	
+
+	@GetMapping("/commandeOnCourseLivreur/{id}") /**/
+
+	public List<TraiterCommandeTableDTO> findCommandeOnCourseLivreur(@PathVariable("id") int id){
+		
+		
+	return commandeService.findCommandeOnCourseLivreur(id);	
+	
+	}
+	
+	
+	
+	@GetMapping("/commandePanierId/{id}") /**/
+	public int commandePanierId(@PathVariable("id") int id) {
+		CommandeDTO c = commandeService.getById(id);
+        int idP = c.getPanier().getIdpanier();		
+		
+		return idP;
+	}
+
+	
+	
+	@GetMapping("/getByIdTableDetail/{id}") /**/
+	public 	CommandeTableDetailDTO getByIdTableDetail(@PathVariable("id")  int id) {
+		
+		return 	commandeService.getByIdTableDetail(id);
+		
+	
+	}
+	
+	@PutMapping("/updateCommandeLivreur")
+	public AssignerLivreurDTO updateCommandeLivreur(@RequestBody AssignerLivreurDTO  a )
+	{
+    commandeService.updateCommandeLivreur(a);
+   System.out.println( commandeService.getById(a.getIdcommande()));
+	return a;
+	}
+
+	
+	
 	/* %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% */
 	public static java.sql.Date getDate(String date) {
 		java.util.Date utilDate;

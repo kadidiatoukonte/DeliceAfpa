@@ -128,6 +128,16 @@ System.out.println(emp.getIdemploye());
 		
 	}
 	
+	@GetMapping(value = "/findListLivreurSOnline")
+	public List<EmployeDTO> findListLivreurSOnline() {
+		
+		
+		
+		return assignerRoleService.findListLivreurSOnline();
+		
+	}
+	
+	
 	
 	
 }

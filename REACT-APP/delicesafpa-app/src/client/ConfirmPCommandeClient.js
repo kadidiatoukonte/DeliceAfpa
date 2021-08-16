@@ -123,15 +123,13 @@ addLivraison = (e) =>{
     var m =item.value.mail;
     this.setState({ mailclient: m });
   axios.post("/delicesafpa/addcommandeclient",
-  { "adressecommande":"da finire",
+  { "adressecommande":"consegnare a ",
   "horaire": this.state.time ,
   "idclient":this.state.client.idclient,
   "totcommande" :this.state.totpanier,
   "idpanier":pan
   }
 
-
-  
 ).then((result) => {
   
 
@@ -158,7 +156,45 @@ this.props.history.push("/");
 
   )}
 
+  addEmporter = (e) =>{ 
+    e.preventDefault();
+    const pan =localStorage.getItem('panier') ;
+const item = JSON.parse(localStorage.getItem('timeout') );
+  var m =item.value.mail;
+  this.setState({ mailclient: m });
+axios.post("/delicesafpa/addcommandeclient",
+{ "adressecommande":"emporter",
+"horaire": this.state.time ,
+"idclient":this.state.client.idclient,
+"totcommande" :this.state.totpanier,
+"idpanier":pan
+}
 
+).then((result) => {
+
+
+axios.post("/delicesafpa/addADDtraitercommande",
+{ "idcommande":result.data.idcommande,
+"idemploye": 1,
+"idstatus" :1,
+}
+
+
+
+)
+
+
+
+
+alert("comanda inviata")
+localStorage.removeItem("panier");
+this.props.history.push("/");	
+
+}
+
+
+
+)}
 
 
 
@@ -232,31 +268,26 @@ this.props.history.push("/");
 </Table>
 <Tabs justify  defaultActiveKey="emporter" id="uncontrolled-tab-example" className="mb-3">
   <Tab eventKey="emporter" title="Emporter">
-  
-  <Form         >
-  <Row className="mb-3">
-    <Form.Group as={Col} controlId="formGridEmail">
-      <Form.Label>Email</Form.Label>
-      <Form.Control type="email" placeholder="Enter email" />
-    </Form.Group>
-
-  </Row>
-
+  <Form  onSubmit={this.addEmporter}>
   
 
 
+
+
   <Row className="mb-3">
-    <Form.Group as={Col} controlId="formGridCity">
-      <Form.Label>City</Form.Label>
-      <Form.Control />
-    </Form.Group>
+  
 
 
-    <Form.Group as={Col} controlId="formGridZip">
-      <Form.Label>Zip</Form.Label>
-      <Form.Control />
+    <Form.Group as={Col} controlId="formGridH">
+      <Form.Label>Heure</Form.Label>
+      <TimePicker onChange={this.handleTimeChange} value={this.state.time} start="19:00" end="23:00" step={30} />
+
     </Form.Group>
   </Row>
+  
+  
+  
+
   <Button variant="primary" type="submit">
     Submit
   </Button>

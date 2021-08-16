@@ -83,6 +83,14 @@ this.setState({hidenn: false});
 
 })}
       
+else{alert("error")
+      
+        this.props.history.goBack();
+      
+      }
+
+
+
     });
     
 

@@ -65,6 +65,11 @@
 
         
         }
+        else{alert("error")
+      
+        this.props.history.goBack();
+      
+      }
       
     });
     
