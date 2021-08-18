@@ -1,0 +1,74 @@
+http://localhost:8080/delicesafpa/addEmploye
+ciao
+5
+
+
+{
+       
+        "nomemploye": "nomOFF",
+        "prenomemploye": "prenomOFF",
+        "telemploye": "123456111",
+        "mailemploye": "livreurOFF@gmail.com",
+        "passwordemploye": "b133a0c0e9bee3be20163d2ad31d6248db292aa6dcb1ee087a2aa50e0fc75ae2",
+        "statusemploye": false
+    }
+
+
+{
+       
+        "nomemploye": "nomON",
+        "prenomemploye": "prenomON",
+        "telemploye": "123456111",
+        "mailemploye": "livreurON@gmail.com",
+        "passwordemploye": "b133a0c0e9bee3be20163d2ad31d6248db292aa6dcb1ee087a2aa50e0fc75ae2",
+        "statusemploye": true
+    }
+
+
+http://localhost:8080/delicesafpa/addAssignerRole
+
+{
+"idemploye_assigner_role": {
+            "idemploye": 1
+        },
+        "idemploye": {
+            "idemploye": 5
+        },
+        "idstatus": {
+            "idstatus": 3,
+            "description": "livreur"
+        },
+        "date": [
+            2021,
+            7,
+            7,
+            19,
+            8,
+            45,
+            633000000
+        ]
+    }
+
+
+{
+"idemploye_assigner_role": {
+            "idemploye": 1
+        },
+        "idemploye": {
+            "idemploye": 6
+        },
+        "idstatus": {
+            "idstatus": 3,
+            "description": "livreur"
+        },
+        "date": [
+            2021,
+            7,
+            7,
+            19,
+            8,
+            45,
+            633000000
+        ]
+    }
+

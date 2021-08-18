@@ -1,0 +1,88 @@
+insert into delicesafpa.statusreservation(
+description)values('nouvelle');
+
+insert into delicesafpa.statusreservation(
+description)values('accepte');
+
+insert into delicesafpa.statusreservation(
+description)values('refuse');
+
+insert into delicesafpa.statusreservation(
+description)values('conclu');
+
+
+
+insert into delicesafpa.statuscommande(
+description)values('nouvelle');
+
+insert into delicesafpa.statuscommande(
+description)values('accepte');
+
+insert into delicesafpa.statuscommande(
+description)values('refuse');
+
+insert into delicesafpa.statuscommande(
+description)values('pris');
+
+insert into delicesafpa.statuscommande(
+description)values('conclu');
+
+
+insert into delicesafpa.roleemploye(
+description)values('admin');
+
+insert into delicesafpa.roleemploye(
+description)values('responsable');
+
+insert into delicesafpa.roleemploye(
+description)values('livreur');
+
+insert into delicesafpa.roleemploye(
+description)values('sospendu');
+
+
+
+insert into delicesafpa.categorie(nomcategorie,descriptioncategorie,visibilitecategorie)values('entree','description cat','true');
+insert into delicesafpa.categorie(nomcategorie,descriptioncategorie,visibilitecategorie)values('plat','description cat','true');
+insert into delicesafpa.categorie(nomcategorie,descriptioncategorie,visibilitecategorie)values('dessert','description cat','true');
+
+ insert into delicesafpa.article(nomarticle,prixarticle,descriptionarticle,visibilitearticle,offrespecialearticle,descriptionoffresp,idcategorie) 
+values('nom1entree',10,'nomDDD1entree',true,true,'desc off 1',1);
+
+insert into delicesafpa.article(nomarticle,prixarticle,descriptionarticle,visibilitearticle,offrespecialearticle,descriptionoffresp,idcategorie) 
+values('nom2entree',10,'nomDDD1entree',true,false,'desc off 2',1);
+
+insert into delicesafpa.article(nomarticle,prixarticle,descriptionarticle,visibilitearticle,offrespecialearticle,descriptionoffresp,idcategorie) 
+values('nom1plat',10,'nomDDD1plat',true,true,'desc off p1',2);
+
+ insert into delicesafpa.article(nomarticle,prixarticle,descriptionarticle,visibilitearticle,offrespecialearticle,descriptionoffresp,idcategorie) 
+values('nom2plat',10,'nomDDD2plat',true,false,'desc off p2',2);
+
+
+ insert into delicesafpa.article(nomarticle,prixarticle,descriptionarticle,visibilitearticle,offrespecialearticle,descriptionoffresp,idcategorie) 
+values('nom1dessert',10,'nomDDD1dessert',true,true,'desc off d1',3);
+
+ insert into delicesafpa.article(nomarticle,prixarticle,descriptionarticle,visibilitearticle,offrespecialearticle,descriptionoffresp,idcategorie) 
+values('nom2dessert',10,'nomDDD2dessert',true,false,'desc off d2',3);
+
+
+
+
+
+
+insert into delicesafpa.client(nomclient,
+	   prenomclient,
+	datebirclient ,
+	paysclient,
+	adresseclient ,
+	complementadrclient,
+	cpclient,
+	villeclient,
+	telclient ,
+	mailclient,
+	passwordclient
+	)values('nom','prenom','2010-10-10','italie','adresseclient',
+			'complementadrclient','123','lille',	123456,'mailclient@gmail.com',
+						'948fe603f61dc036b5c596dc09fe3ce3f3d30dc90f024c85f3c82db2ccab679d' );
+
+ 
